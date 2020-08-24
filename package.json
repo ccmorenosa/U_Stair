@@ -1,0 +1,66 @@
+{
+  "name": "u_stair",
+  "version": "1.0.0",
+  "description": "A grade curriculum schedule manager",
+  "main": "src/index.js",
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "test": "electron .",
+    "pack": "electron-builder --dir",
+    "distw": "electron-builder --win",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "ustair",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm",
+        "pacman"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "msi",
+        "squirrel"
+      ],
+      "icon": "build/icon.ico"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afmorenosa/U_Stair.git"
+  },
+  "keywords": [
+    "Universitary",
+    "Schedule",
+    "Grade"
+  ],
+  "author": "Andŕes Felipe Moreno Sarria <afmorenosa@unal.edu.co>",
+  "email": "afmorenosa@unal.edu.co",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/afmorenosa/U_Stair/issues"
+  },
+  "homepage": "https://github.com/afmorenosa/U_Stair#readme",
+  "devDependencies": {
+    "electron": "^9.2.1",
+    "electron-builder": "^22.8.0"
+  }
+}
