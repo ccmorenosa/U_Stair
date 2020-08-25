@@ -16,39 +16,16 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-const electron = require("electron");
-const path = require("path");
-const url = require("url");
-
-const { app, BrowserWindow } = require('electron')
-
-function createWindow () {
-  // Create the browser window.
-  const win = new BrowserWindow({
-    width: 300,
-    height: 400,
-    resizable: false,
-    webPreferences: {
-      nodeIntegration: true
-    }
-  })
-
-  // win.maximize();
-
-  // and load the index.html of the app.
-  win.loadURL(url.format({
-    pathname: path.join(__dirname,"index.html"),
-    protocol: "file:",
-    slashes: true
-  }));
-
-  // Open the DevTools.
-  win.webContents.openDevTools();
-
-  win.on("close",  () => {
-    win = null;
-    app.quit();
-  });
+.main-menu {
+  box-sizing: border-box;
+  height: 255px;
+  padding-top: 20px;
 }
 
-app.whenReady().then(createWindow)
+.main-button {
+  border: solid #111 2px;
+  box-sizing: border-box;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-bottom: 25px;
+}

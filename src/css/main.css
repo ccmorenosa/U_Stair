@@ -1,0 +1,227 @@
+/*
+** UStair.  Grade curriculum schedule.
+** Copyright (C) 2020  Andŕes Felipe Moreno Sarria
+**
+** This program is free software: you can redistribute it and/or modify
+** it under the terms of the GNU General Public License as published by
+** the Free Software Foundation, either version 3 of the License, or
+** (at your option) any later version.
+**
+** This program is distributed in the hope that it will be useful,
+** but WITHOUT ANY WARRANTY; without even the implied warranty of
+** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+** GNU General Public License for more details.
+**
+** You should have received a copy of the GNU General Public License
+** along with this program.  If not, see <https://www.gnu.org/licenses/>.
+**/
+
+html, body {
+ background: #eee;
+ font-family: serif;
+ height: 100%;
+ margin: 0;
+ padding: 0;
+ width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Containers Settings */
+
+.container {
+  box-sizing: border-box;
+  display: block;
+  padding: 23px 0 23px 0;
+}
+
+
+/* width proportions */
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 50%;
+}
+
+.third-width {
+  width: 33.33%;
+}
+
+.two-thirds-width {
+  width: 66.66%;
+}
+
+
+/* floats */
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+
+/* Text Alignment */
+
+.t-center {
+  text-align: center;
+}
+
+.t-right {
+  text-align: right;
+}
+
+.t-left {
+  text-align: left;
+}
+
+
+/* Font Sizes */
+
+.tiny {
+  font-size: 10px !important;
+}
+
+.small {
+  font-size: 12px !important;
+}
+
+.medium {
+  font-size: 15px !important;
+}
+
+.large {
+  font-size: 18px !important;
+}
+
+.xlarge {
+  font-size: 24px !important;
+}
+
+.xxlarge {
+  font-size: 36px !important;
+}
+
+.xxxlarge {
+  font-size: 48px !important;
+}
+
+.jumbo {
+  font-size: 64px !important;
+}
+
+
+/* Relative Displays */
+
+.display-container {
+  position: relative;
+}
+
+.display-topleft {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.display-topright {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.display-bottomleft {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.display-bottomright {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.display-middle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.display-left {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(0%,-50%);
+  -ms-transform: translate(-0%,-50%);
+}
+
+.display-right {
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  transform: translate(0%,-50%);
+  -ms-transform: translate(0%,-50%);
+}
+
+.display-topmiddle {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%,0%);
+  -ms-transform: translate(-50%,0%);
+}
+
+.display-bottommiddle {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%,0%);
+  -ms-transform: translate(-50%,0%);
+}
+
+
+/* Font Settings*/
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+
+/* Scroll Bars Settings */
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ccc;
+}
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #777;
+}
+
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+/* Cursor */
+.pointer {
+  cursor: pointer;
+}
