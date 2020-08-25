@@ -17,14 +17,18 @@
 **/
 
 const electron = require("electron");
+const {app, BrowserWindow, ipcMain, dialog} = electron;
 const path = require("path");
 const url = require("url");
 
-const { app, BrowserWindow } = require('electron')
+// Define all windows
+var welcomeWin;
+var mainWin;
+var processor;
 
 function createWindow () {
   // Create the browser window.
-  const win = new BrowserWindow({
+  welcomeWin = new BrowserWindow({
     width: 300,
     height: 400,
     resizable: false,
@@ -33,22 +37,72 @@ function createWindow () {
     }
   })
 
-  // win.maximize();
-
   // and load the index.html of the app.
-  win.loadURL(url.format({
+  welcomeWin.loadURL(url.format({
     pathname: path.join(__dirname,"index.html"),
     protocol: "file:",
     slashes: true
   }));
 
-  // Open the DevTools.
-  win.webContents.openDevTools();
+  // Create processor window, it will not be visible
+  processor = new BrowserWindow({
+    show: false,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  });
 
-  win.on("close",  () => {
-    win = null;
+  // Load the processor window
+  processor.loadURL(url.format({
+    pathname: path.join(__dirname,"processor/processor.html"),
+    protocol: "file:",
+    slashes: true
+  }));
+
+  // Open the DevTools.
+  welcomeWin.webContents.openDevTools();
+
+  welcomeWin.on("close",  () => {
     app.quit();
   });
 }
 
-app.whenReady().then(createWindow)
+app.whenReady().then(createWindow);
+
+ipcMain.on("NEW", (event, value) => {
+  dialog.showSaveDialog({
+    title: "Nueva malla",
+    filters: { name: 'Malla curricular', extensions: ['umesh'] }
+  }).then(result => {
+    if(!result.canceled) {
+      console.log(result.filePath);
+      // welcomeWin.hide();
+    }
+  }).catch(err => {
+    console.log(err)
+  });
+});
+
+ipcMain.on("OPEN", function (event, value) {
+  dialog.showOpenDialog({
+    title: "Abrir malla",
+    propertries: [
+      "openFile"
+    ]
+  }).then(result => {
+    if(!result.canceled) {
+      welcomeWin.hide();
+    }
+  }).catch(err => {
+    console.log(err)
+  });
+  // welcomeWin.hide();
+});
+
+ipcMain.on("SETTINGS", function (event, value) {
+  console.log("GETTED");
+});
+
+ipcMain.on("EXIT", function (event, value) {
+  welcomeWin.close();
+});
