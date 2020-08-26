@@ -16,17 +16,34 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-const {ipcRenderer} = require("electron");
+const TabGroup = require("electron-tabs");
 
-// Buttons in the main menu
-var mainButtons = ["NEW", "OPEN", "SETTINGS", "EXIT"]
+let tabGroup = new TabGroup();
+let subjects = tabGroup.addTab({
+  title: "Grupo de materias",
+  src: "http://electron.atom.io",
+  visible: true,
+  closable: false,
+  active: true
+});
 
-// Add events for all buttons
-for (var button of mainButtons) {
-  (function(action){
-    document.getElementById(action).addEventListener("click",
-    (event) => {
-      ipcRenderer.send(action, null);
-    });
-  })(button)
-}
+let plan = tabGroup.addTab({
+  title: "Planeación",
+  src: "http://electron.atom.io",
+  visible: true,
+  closable: false
+});
+
+let schedule = tabGroup.addTab({
+  title: "Malla",
+  src: "http://electron.atom.io",
+  visible: true,
+  closable: false
+});
+
+let semester = tabGroup.addTab({
+  title: "Semestre",
+  src: "http://electron.atom.io",
+  visible: true,
+  closable: false
+});

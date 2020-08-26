@@ -17,16 +17,20 @@
 **/
 
 const {ipcRenderer} = require("electron");
+const sqlite = require("sqlite3");
+const path = require("path");
+const fs = require("fs");
 
-// Buttons in the main menu
-var mainButtons = ["NEW", "OPEN", "SETTINGS", "EXIT"]
+var dataBase;
 
-// Add events for all buttons
-for (var button of mainButtons) {
-  (function(action){
-    document.getElementById(action).addEventListener("click",
-    (event) => {
-      ipcRenderer.send(action, null);
-    });
-  })(button)
-}
+ipcRenderer.on("NEW", (event, value) => {
+  dataBase = new sqlite.Database(path.join(value, "u_stair/new_file.db"), function (err) {
+    if (err) {
+      return console.error(err.message);
+    } else {
+      console.log("Connected to database");
+    }
+  });
+
+  dataBase.run("PRAGMA foreign_keys=ON;");
+});

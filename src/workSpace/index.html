@@ -25,33 +25,17 @@
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="../../node_modules/electron-tabs/electron-tabs.css">
+  <link rel="stylesheet" href="../css/main.css">
 </head>
 
-<body class="welcome-window">
-  <!-- App icon -->
-  <div class="full-width container">
-    <div class="full-width t-center jumbo">U Stair</div>
+<body>
+  <div class="etabs-tabgroup">
+    <div class="etabs-tabs"></div>
+    <div class="etabs-buttons"></div>
   </div>
+  <div class="etabs-views"></div>
 
-  <!-- Main menu -->
-  <div class="full-width main-menu">
-    <div id="NEW" class="main-button t-center xlarge pointer">
-      Nueva malla
-    </div>
-
-    <div id="OPEN" class="main-button t-center xlarge pointer">
-      Abrir malla
-    </div>
-
-    <div id="SETTINGS" class="main-button t-center xlarge pointer">
-      Configuración
-    </div>
-
-    <div id="EXIT" class="main-button t-center xlarge pointer">Salir</div>
-  </div>
-
-  <script src="js/home.js"></script>
+  <script src="js/workSpace.js"></script>
 </body>
 </html>

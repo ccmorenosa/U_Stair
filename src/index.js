@@ -20,14 +20,18 @@ const electron = require("electron");
 const {app, BrowserWindow, ipcMain, dialog} = electron;
 const path = require("path");
 const url = require("url");
+const fs = require("fs");
 
-// Define all windows
+// Declare all windows
 var welcomeWin;
-var mainWin;
+var workSpaceWindow;
 var processor;
 
+// Declare important dirs
+var tempDir;
+
 function createWindow () {
-  // Create the browser window.
+  // Create the welcome window.
   welcomeWin = new BrowserWindow({
     width: 300,
     height: 400,
@@ -59,31 +63,82 @@ function createWindow () {
     slashes: true
   }));
 
+  // Define temporal dir
+  tempDir = app.getPath("temp");
+  fs.mkdir(path.join(tempDir, "/u_stair"), { recursive: true }, (err) => {
+    if (err) {
+      throw err
+    };
+  });
+
   // Open the DevTools.
   welcomeWin.webContents.openDevTools();
+  processor.webContents.openDevTools();
 
   welcomeWin.on("close",  () => {
+    fs.rmdir(path.join(tempDir, "/u_stair"), { recursive: true }, (err) => {
+      if (err) {
+        throw err
+      };
+    });
     app.quit();
   });
 }
 
-app.whenReady().then(createWindow);
+const gotTheLock = app.requestSingleInstanceLock()
+
+if (!gotTheLock) {
+  app.quit()
+} else {
+  app.on('second-instance', (event, commandLine, workingDirectory) => {
+    // Someone tried to run a second instance, we should focus our window.
+    if (welcomeWin) {
+      if (welcomeWin.isMinimized()) {
+        welcomeWin.restore()
+      };
+      welcomeWin.focus();
+    }
+  })
+
+  // Create myWindow, load the rest of the app, etc...
+  app.whenReady().then(createWindow);
+}
 
 ipcMain.on("NEW", (event, value) => {
-  dialog.showSaveDialog({
-    title: "Nueva malla",
-    filters: { name: 'Malla curricular', extensions: ['umesh'] }
-  }).then(result => {
-    if(!result.canceled) {
-      console.log(result.filePath);
-      // welcomeWin.hide();
+  // Create the browser window.
+  workSpaceWindow = new BrowserWindow({
+    width: 800,
+    minWidth: 800,
+    height: 600,
+    minHeight: 600,
+    webPreferences: {
+      nodeIntegration: true,
+      webviewTag: true
     }
-  }).catch(err => {
-    console.log(err)
+  })
+
+  workSpaceWindow.maximize();
+
+  // and load the index.html of the workSpaceWindow.
+  workSpaceWindow.loadURL(url.format({
+    pathname: path.join(__dirname,"workSpace/index.html"),
+    protocol: "file:",
+    slashes: true
+  }));
+
+  workSpaceWindow.webContents.openDevTools();
+
+  workSpaceWindow.on("close",  () => {
+    workSpaceWindow=null;
+    welcomeWin.show();
   });
+
+  processor.send("NEW", tempDir);
+
+  welcomeWin.hide();
 });
 
-ipcMain.on("OPEN", function (event, value) {
+ipcMain.on("OPEN", (event, value) => {
   dialog.showOpenDialog({
     title: "Abrir malla",
     propertries: [
@@ -91,7 +146,7 @@ ipcMain.on("OPEN", function (event, value) {
     ]
   }).then(result => {
     if(!result.canceled) {
-      welcomeWin.hide();
+      // welcomeWin.hide();
     }
   }).catch(err => {
     console.log(err)
@@ -99,10 +154,10 @@ ipcMain.on("OPEN", function (event, value) {
   // welcomeWin.hide();
 });
 
-ipcMain.on("SETTINGS", function (event, value) {
+ipcMain.on("SETTINGS", (event, value) => {
   console.log("GETTED");
 });
 
-ipcMain.on("EXIT", function (event, value) {
+ipcMain.on("EXIT", (event, value) => {
   welcomeWin.close();
 });

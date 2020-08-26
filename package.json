@@ -61,6 +61,9 @@
   "homepage": "https://github.com/afmorenosa/U_Stair#readme",
   "devDependencies": {
     "electron": "^9.2.1",
-    "electron-builder": "^22.8.0"
+    "electron-builder": "^22.8.0",
+    "electron-tabs": "^0.15.0",
+    "fs": "0.0.1-security",
+    "sqlite3": "^5.0.0"
   }
 }
