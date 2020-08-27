@@ -65,7 +65,8 @@ function createWindow () {
 
   // Define temporal dir
   tempDir = app.getPath("temp");
-  fs.mkdir(path.join(tempDir, "/u_stair"), { recursive: true }, (err) => {
+  fs.mkdir(path.join(tempDir, "/u_stair/Subjects"), { recursive: true },
+           (err) => {
     if (err) {
       throw err
     };
@@ -121,7 +122,7 @@ ipcMain.on("NEW", (event, value) => {
 
   // and load the index.html of the workSpaceWindow.
   workSpaceWindow.loadURL(url.format({
-    pathname: path.join(__dirname,"workSpace/index.html"),
+    pathname: path.join(__dirname,"workSpace/Subjects/index.html"),
     protocol: "file:",
     slashes: true
   }));
@@ -133,9 +134,9 @@ ipcMain.on("NEW", (event, value) => {
     welcomeWin.show();
   });
 
-  processor.send("NEW", tempDir);
-
   welcomeWin.hide();
+
+  processor.send("NEW", tempDir);
 });
 
 ipcMain.on("OPEN", (event, value) => {
@@ -160,4 +161,9 @@ ipcMain.on("SETTINGS", (event, value) => {
 
 ipcMain.on("EXIT", (event, value) => {
   welcomeWin.close();
+});
+
+ipcMain.on("status", (event, value) => {
+  workSpaceWindow.send("status", value);
+  console.log(value);
 });

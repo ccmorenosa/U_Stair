@@ -25,17 +25,33 @@
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="../../node_modules/electron-tabs/electron-tabs.css">
-  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../css/workSpace.css">
+  <link rel="stylesheet" href="css/Subjects.css">
 </head>
 
 <body>
-  <div class="etabs-tabgroup">
-    <div class="etabs-tabs"></div>
-    <div class="etabs-buttons"></div>
+  <div class="tabs-bar full-width large">
+    <a class="tab float-left active">Grupo de Materias</a>
+    <a class="tab float-left">Planeación</a>
+    <a class="tab float-left">Malla</a>
+    <a class="tab float-left">Semestre</a>
   </div>
-  <div class="etabs-views"></div>
+  <div class="tool-bar full-width">
+    <img src="" class="tool">
+  </div>
+  <div class="work-space with-tool-bar full-width">
+    <div class="database-view float-left">
+      database
+    </div>
 
-  <script src="js/workSpace.js"></script>
+    <div class="database-filter float-left">
+      filter
+    </div>
+  </div>
+  <div id="status-bar" class="status-bar full-width small">Idle</div>
+
+  <script src="js/subjects.js"></script>
+  <script src="../js/workSpace.js"></script>
 </body>
 </html>

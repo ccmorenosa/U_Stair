@@ -21,10 +21,14 @@ const sqlite = require("sqlite3");
 const path = require("path");
 const fs = require("fs");
 
-var dataBase;
+var subjectDataBase;
 
 ipcRenderer.on("NEW", (event, value) => {
-  dataBase = new sqlite.Database(path.join(value, "u_stair/new_file.db"), function (err) {
+  ipcRenderer.send("status", "cargando base de datos");
+
+  subjectDataBase = new sqlite.Database(path.join(value,
+                                                  "u_stair/Subjects/local.db"),
+                                        (err) => {
     if (err) {
       return console.error(err.message);
     } else {
@@ -32,5 +36,14 @@ ipcRenderer.on("NEW", (event, value) => {
     }
   });
 
-  dataBase.run("PRAGMA foreign_keys=ON;");
+  subjectDataBase.run("PRAGMA foreign_keys=ON;");
+
+  subjectDataBase.run(fs.readFileSync(path.join(__dirname, "../sql/Subjects.sql"))
+  .toString(), (err) => {
+    if (err) {
+      return console.error(err.message);
+    }
+  });
+
+  ipcRenderer.send("status", "listo");
 });

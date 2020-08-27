@@ -16,10 +16,5 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-const {ipcRenderer} = require("electron");
-const path = require("path");
-
-var statusBar = document.getElementById("status-bar");
-ipcRenderer.on("status", (event, value) => {
-  statusBar.innerText = "asda"
-});
+function statusBar() {
+}

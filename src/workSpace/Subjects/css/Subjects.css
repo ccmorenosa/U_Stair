@@ -16,10 +16,15 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-const {ipcRenderer} = require("electron");
-const path = require("path");
+.work-space .database-view {
+  border-right: solid #888 1px;
+  box-sizing: border-box;
+  height: 100%;
+  width: calc(100% - 300px);
+}
 
-var statusBar = document.getElementById("status-bar");
-ipcRenderer.on("status", (event, value) => {
-  statusBar.innerText = "asda"
-});
+.work-space .database-filter {
+  box-sizing: border-box;
+  height: 100%;
+  width: 300px;
+}
