@@ -225,3 +225,14 @@ p {
 .pointer {
   cursor: pointer;
 }
+
+/* Borders */
+.right-border{
+  border-right: solid #888 1px;
+  box-sizing: border-box;
+}
+
+.bottom-border{
+  border-bottom: solid #888 1px;
+  box-sizing: border-box;
+}

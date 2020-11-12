@@ -16,14 +16,25 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-.work-space .database-view {
-  height: 100%;
-  overflow: hidden;
-  width: calc(100% - 300px);
-}
+const {ipcRenderer} = require("electron");
 
-.work-space .database-filter {
-  box-sizing: border-box;
-  height: 100%;
-  width: 300px;
+var form = document.getElementById("new-db-subject-form");
+
+function newDbSubject() {
+
+  var data = [
+    form.children["Codigo"].value,
+    form.children["Materia"].value,
+    form.children["Programa"].value,
+    form.children["Universidad"].value,
+    form.children["Sede"].value,
+    form.children["Facultad"].value,
+    form.children["Departamento"].value,
+    form.children["Creditos"].value];
+
+  data = data.map((value) => {
+    return "\"" + value + "\"";
+  });
+
+  ipcRenderer.send("NEW-DB-SUBJECT-CREATED", data);
 }

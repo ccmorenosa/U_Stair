@@ -1,0 +1,65 @@
+<!--
+....UStair.  Grade curriculum schedule.
+....Copyright (C) 2020  Andŕes Felipe Moreno Sarria
+....
+....This program is free software: you can redistribute it and/or modify
+....it under the terms of the GNU General Public License as published by
+....the Free Software Foundation, either version 3 of the License, or
+....(at your option) any later version.
+....
+....This program is distributed in the hope that it will be useful,
+....but WITHOUT ANY WARRANTY; without even the implied warranty of
+....MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+....GNU General Public License for more details.
+....
+....You should have received a copy of the GNU General Public License
+....along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Nueva Materia</title>
+  <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../../css/home.css">
+</head>
+
+<body>
+  <form id="new-db-subject-form" class="" onsubmit="newDbSubject();">
+    <div class="form-label">Código</div>
+    <input type="number" name="Codigo" required/>
+
+    <div class="form-label">Materia</div>
+    <input type="text" name="Materia" required/>
+
+    <div class="form-label">Programa</div>
+    <select class="" name="Programa">
+      <option value="Pregrado">Pregrado</option>
+      <option value="Postgrado">Postgrado</option>
+    </select>
+
+    <div class="form-label">Universidad</div>
+    <input type="text" name="Universidad" required/>
+
+    <div class="form-label">Sede</div>
+    <input type="text" name="Sede" required/>
+
+    <div class="form-label">Facultad</div>
+    <input type="text" name="Facultad" required/>
+
+    <div class="form-label">Departamento</div>
+    <input type="text" name="Departamento" required/>
+
+    <div class="form-label">Creditos</div>
+    <input type="number" name="Creditos" min="1" max="50" required/>
+
+    <input type="submit" name="Aceptar" value="Aceptar">
+  </form>
+
+  <script src="js/newDbSubject.js"></script>
+</body>
+</html>

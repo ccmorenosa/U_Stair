@@ -20,6 +20,7 @@ const {ipcRenderer} = require("electron");
 const path = require("path");
 
 var statusBar = document.getElementById("status-bar");
+
 ipcRenderer.on("status", (event, value) => {
-  statusBar.innerText = "asda"
+  statusBar.innerText = value;
 });

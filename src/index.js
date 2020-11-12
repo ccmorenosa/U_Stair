@@ -25,6 +25,7 @@ const fs = require("fs");
 // Declare all windows
 var welcomeWin;
 var workSpaceWindow;
+var formWindow;
 var processor;
 
 // Declare important dirs
@@ -66,7 +67,7 @@ function createWindow () {
   // Define temporal dir
   tempDir = app.getPath("temp");
   fs.mkdir(path.join(tempDir, "/u_stair/Subjects"), { recursive: true },
-           (err) => {
+  (err) => {
     if (err) {
       throw err
     };
@@ -128,7 +129,6 @@ ipcMain.on("NEW", (event, value) => {
   }));
 
   workSpaceWindow.webContents.openDevTools();
-
   workSpaceWindow.on("close",  () => {
     workSpaceWindow=null;
     welcomeWin.show();
@@ -163,7 +163,40 @@ ipcMain.on("EXIT", (event, value) => {
   welcomeWin.close();
 });
 
+ipcMain.on("NEW-DB-SUBJECT", (event, value) => {
+  workSpaceWindow.send("status", "nueva materia");
+
+  formWindow = new BrowserWindow({
+    width: 300,
+    height: 400,
+    resizable: false,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  })
+
+  // and load the index.html of the app.
+  formWindow.loadURL(url.format({
+    pathname: path.join(__dirname,"forms/newDbSubject/index.html"),
+    protocol: "file:",
+    slashes: true
+  }));
+
+  formWindow.on("close",  () => {
+    formWindow=null;
+    workSpaceWindow.send("status", "listo");
+  });
+});
+
+ipcMain.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
+  formWindow.close();
+  processor.send("NEW-DB-SUBJECT-CREATED", value);
+});
+
+ipcMain.on("UPDATE-SUBJECTS", (event, value) => {
+  workSpaceWindow.send("UPDATE-SUBJECTS", value);
+});
+
 ipcMain.on("status", (event, value) => {
   workSpaceWindow.send("status", value);
-  console.log(value);
 });

@@ -26,24 +26,57 @@ var subjectDataBase;
 ipcRenderer.on("NEW", (event, value) => {
   ipcRenderer.send("status", "cargando base de datos");
 
-  subjectDataBase = new sqlite.Database(path.join(value,
-                                                  "u_stair/Subjects/local.db"),
-                                        (err) => {
-    if (err) {
-      return console.error(err.message);
-    } else {
-      console.log("Connected to database");
+  subjectDataBase = new sqlite.Database(
+    path.join(value, "u_stair/Subjects/local.db"),
+    (err) => {
+      if (err) {
+        return console.error(err.message);
+      } else {
+        console.log("Connected to database");
+      }
     }
-  });
+  );
 
   subjectDataBase.run("PRAGMA foreign_keys=ON;");
 
-  subjectDataBase.run(fs.readFileSync(path.join(__dirname, "../sql/Subjects.sql"))
-  .toString(), (err) => {
-    if (err) {
-      return console.error(err.message);
+  subjectDataBase.run(
+    fs.readFileSync(path.join(__dirname,"../sql/Subjects.sql")).toString(),
+    (err) => {
+      if (err) {
+        return console.error(err.message);
+      } else {
+        updateTable();
+      }
     }
-  });
+  );
 
   ipcRenderer.send("status", "listo");
 });
+
+ipcRenderer.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
+  subjectDataBase.run(
+    "INSERT INTO Materias " +
+    "(Codigo, Nombre, Creditos, Universidad, Sede," +
+    " Facultad, Departamento, Programa) " +
+    "VALUES (".concat(value) + ");",
+    function (err) {
+      if (err) {
+        return console.error(err.message);
+      }
+    }
+  );
+
+  updateTable();
+
+  ipcRenderer.send("status", "listo");
+});
+
+function updateTable() {
+  subjectDataBase.all("SELECT * FROM Materias;",
+  function (err, table) {
+    if (err) {
+      return console.error(err.message);
+    }
+    ipcRenderer.send("UPDATE-SUBJECTS", table);
+  });
+}
