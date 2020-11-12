@@ -15,7 +15,7 @@
 -- along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 CREATE TABLE IF NOT EXISTS Materias(
-  Codigo INTEGER PRIMARY KEY,
+  Codigo CHAR(20) PRIMARY KEY,
   Nombre TEXT,
   Creditos INTEGER,
   Universidad TEXT,
