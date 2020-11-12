@@ -31,6 +31,13 @@ var processor;
 // Declare important dirs
 var tempDir;
 
+/**
+* This function create the main window, that will be shown in the middle of the
+* screen.
+*
+* It also will create the processor that will most of the process of the
+* application and the database.
+*/
 function createWindow () {
   // Create the welcome window.
   welcomeWin = new BrowserWindow({
@@ -87,6 +94,7 @@ function createWindow () {
   });
 }
 
+// This avoid to open most that one window.
 const gotTheLock = app.requestSingleInstanceLock()
 
 if (!gotTheLock) {
@@ -106,6 +114,7 @@ if (!gotTheLock) {
   app.whenReady().then(createWindow);
 }
 
+// This event get the event when the user wants to create a new database.
 ipcMain.on("NEW", (event, value) => {
   // Create the browser window.
   workSpaceWindow = new BrowserWindow({
@@ -139,6 +148,7 @@ ipcMain.on("NEW", (event, value) => {
   processor.send("NEW", tempDir);
 });
 
+// This event get the event when the user wants to load an existing database.
 ipcMain.on("OPEN", (event, value) => {
   dialog.showOpenDialog({
     title: "Abrir malla",
@@ -155,14 +165,18 @@ ipcMain.on("OPEN", (event, value) => {
   // welcomeWin.hide();
 });
 
+// This event get the event when the user wants to change the program
+// configuration.
 ipcMain.on("SETTINGS", (event, value) => {
   console.log("GETTED");
 });
 
+// This event will close the application.
 ipcMain.on("EXIT", (event, value) => {
   welcomeWin.close();
 });
 
+// This event create a new window to add a new subject to the database.
 ipcMain.on("NEW-DB-SUBJECT", (event, value) => {
   workSpaceWindow.send("status", "nueva materia");
 
@@ -188,15 +202,18 @@ ipcMain.on("NEW-DB-SUBJECT", (event, value) => {
   });
 });
 
+// This event will create a new subject to the database.
 ipcMain.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
   formWindow.close();
   processor.send("NEW-DB-SUBJECT-CREATED", value);
 });
 
+// This event will update the database in the table of the subject database.
 ipcMain.on("UPDATE-SUBJECTS", (event, value) => {
   workSpaceWindow.send("UPDATE-SUBJECTS", value);
 });
 
+// This event update the status bar.
 ipcMain.on("status", (event, value) => {
   workSpaceWindow.send("status", value);
 });
