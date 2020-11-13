@@ -34,21 +34,25 @@ ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
   "<th class=\"right-border\">Sede</th>\n" +
   "<th class=\"right-border\">Facultad</th>\n" +
   "<th class=\"right-border\">Departamento</th>\n" +
-  "<th>Programa</th>\n" +
+  "<th class=\"right-border\">Programa</th>\n" +
+  "<th>Borrar</th>\n" +
   "</tr>\n";
 
   for (var row in value) {
     var entries = value[row];
     tableContent += "<tr>\n";
 
-    tableContent += "<td class=\"right-border\">" + entries.Codigo + "</td>\n";
-    tableContent += "<td class=\"right-border\">" + entries.Nombre + "</td>\n";
-    tableContent += "<td class=\"right-border\">" + entries.Creditos + "</td>\n";
-    tableContent += "<td class=\"right-border\">" + entries.Universidad + "</td>\n";
-    tableContent += "<td class=\"right-border\">" + entries.Sede + "</td>\n";
-    tableContent += "<td class=\"right-border\">" + entries.Facultad + "</td>\n";
-    tableContent += "<td class=\"right-border\">" + entries.Departamento + "</td>\n";
-    tableContent += "<td>" + entries.Programa + "</td>\n";
+    tableContent += "<td class=\"right-border\">" + entries.Codigo + "</td>\n" +
+    "<td class=\"right-border\">" + entries.Nombre + "</td>\n" +
+    "<td class=\"right-border\">" + entries.Creditos + "</td>\n" +
+    "<td class=\"right-border\">" + entries.Universidad + "</td>\n" +
+    "<td class=\"right-border\">" + entries.Sede + "</td>\n" +
+    "<td class=\"right-border\">" + entries.Facultad + "</td>\n" +
+    "<td class=\"right-border\">" + entries.Departamento + "</td>\n" +
+    "<td class=\"right-border\">" + entries.Programa + "</td>\n" +
+    "<td>" +
+    "<img src=\"../../assets/icons-delete-50.svg\" class=\"icon-button\"/>" +
+    "</td>\n";
 
     tableContent += "</tr>\n";
   }

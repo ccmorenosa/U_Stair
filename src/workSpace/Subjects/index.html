@@ -31,12 +31,15 @@
 </head>
 
 <body>
+  <!-- Tabs bar -->
   <div class="tabs-bar full-width medium">
     <a class="tab float-left active">Grupo de Materias</a>
     <a class="tab float-left">Planeación</a>
     <a class="tab float-left">Malla</a>
     <a class="tab float-left">Semestre</a>
   </div>
+
+  <!-- Tool bar -->
   <div class="tool-bar full-width">
     <img src="../../assets/icons8-add-file-50.png" class="tool float-left right-border">
     <img src="../../assets/icons8-email-open-50.png" class="tool float-left right-border">
@@ -46,7 +49,11 @@
 
     <img id="NEW-DB-SUBJECT" src="../../assets/icons8-plus-50.png" class="tool right-border">
   </div>
+
+  <!-- Work space of the subject table -->
   <div class="work-space with-tool-bar full-width">
+
+    <!-- Table with all the subjects in the database -->
     <div class="database-view float-left medium right-border">
       <table id="DATABASE-TABLE" class="full-width t-center">
 
@@ -58,18 +65,22 @@
           <th class="right-border">Sede</th>
           <th class="right-border">Facultad</th>
           <th class="right-border">Departamento</th>
-          <th>Programa</th>
+          <th class="right-border">Programa</th>
+          <th>Borrar</th>
         </tr>
 
       </table>
     </div>
 
+    <!-- Filter of the table -->
     <div class="database-filter float-left">
-      filter
+      Filtro
     </div>
   </div>
+
   <div id="status-bar" class="status-bar full-width small">Idle</div>
 
+  <!-- Script to handle the events -->
   <script src="../js/workSpace.js"></script>
   <script src="js/subjects.js"></script>
 </body>
