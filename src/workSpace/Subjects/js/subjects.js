@@ -26,32 +26,33 @@ document.getElementById("NEW-DB-SUBJECT").addEventListener("click", (event) => {
 
 // Event to update the table whenever is necesary.
 ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
+  console.log("Update");
   // Fill the table headers.
   tableContent = "<tr>\n" +
-  "<th class=\"right-border\">Código</th>\n" +
-  "<th class=\"right-border\">Nombre</th>\n" +
-  "<th class=\"right-border\">Créditos</th>\n" +
-  "<th class=\"right-border\">Universidad</th>\n" +
-  "<th class=\"right-border\">Sede</th>\n" +
-  "<th class=\"right-border\">Facultad</th>\n" +
-  "<th class=\"right-border\">Departamento</th>\n" +
-  "<th class=\"right-border\">Programa</th>\n" +
-  "<th>Borrar</th>\n" +
+  "<th class=\"right-border bottom-border\">Código</th>\n" +
+  "<th class=\"right-border bottom-border\">Nombre</th>\n" +
+  "<th class=\"right-border bottom-border\">Créditos</th>\n" +
+  "<th class=\"right-border bottom-border\">Universidad</th>\n" +
+  "<th class=\"right-border bottom-border\">Sede</th>\n" +
+  "<th class=\"right-border bottom-border\">Facultad</th>\n" +
+  "<th class=\"right-border bottom-border\">Departamento</th>\n" +
+  "<th class=\"right-border bottom-border\">Programa</th>\n" +
+  "<th class=\"bottom-border\">Borrar</th>\n" +
   "</tr>\n";
 
   // Fill the table content.
   for (var row in value) {
     var entries = value[row];
     tableContent += "<tr>\n" +
-    "<td class=\"right-border\">" + entries.Codigo + "</td>\n" +
-    "<td class=\"right-border\">" + entries.Nombre + "</td>\n" +
-    "<td class=\"right-border\">" + entries.Creditos + "</td>\n" +
-    "<td class=\"right-border\">" + entries.Universidad + "</td>\n" +
-    "<td class=\"right-border\">" + entries.Sede + "</td>\n" +
-    "<td class=\"right-border\">" + entries.Facultad + "</td>\n" +
-    "<td class=\"right-border\">" + entries.Departamento + "</td>\n" +
-    "<td class=\"right-border\">" + entries.Programa + "</td>\n" +
-    "<td><img src=\"../../assets/icons-delete-50.svg\" " +
+    "<td class=\"right-border bottom-border\">" + entries.Codigo + "</td>\n" +
+    "<td class=\"right-border bottom-border\">" + entries.Nombre + "</td>\n" +
+    "<td class=\"right-border bottom-border\">" + entries.Creditos + "</td>\n" +
+    "<td class=\"right-border bottom-border\">" + entries.Universidad + "</td>\n" +
+    "<td class=\"right-border bottom-border\">" + entries.Sede + "</td>\n" +
+    "<td class=\"right-border bottom-border\">" + entries.Facultad + "</td>\n" +
+    "<td class=\"right-border bottom-border\">" + entries.Departamento + "</td>\n" +
+    "<td class=\"right-border bottom-border\">" + entries.Programa + "</td>\n" +
+    "<td class=\"bottom-border\"><img src=\"../../assets/icons-delete-50.svg\" " +
     "class=\"icon-button pointer\"/>" +
     "</td>\n";
 

@@ -90,8 +90,7 @@ function updateTable() {
   function (err, table) {
     if (err) {
       return console.error(err.message);
-    } else {
-      ipcRenderer.send("UPDATE-SUBJECTS", table);
     }
+    ipcRenderer.send("UPDATE-SUBJECTS", table);
   });
 }
