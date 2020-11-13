@@ -19,13 +19,14 @@
 var table = document.getElementById("DATABASE-TABLE");
 var obj;
 
+// Add a event to add a new subject with the ubtton in the tool bar.
 document.getElementById("NEW-DB-SUBJECT").addEventListener("click", (event) => {
   ipcRenderer.send("NEW-DB-SUBJECT", null);
 });
 
+// Event to update the table whenever is necesary.
 ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
-  obj = value;
-  console.log(value);
+  // Fill the table headers.
   tableContent = "<tr>\n" +
   "<th class=\"right-border\">Código</th>\n" +
   "<th class=\"right-border\">Nombre</th>\n" +
@@ -38,11 +39,11 @@ ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
   "<th>Borrar</th>\n" +
   "</tr>\n";
 
+  // Fill the table content.
   for (var row in value) {
     var entries = value[row];
-    tableContent += "<tr>\n";
-
-    tableContent += "<td class=\"right-border\">" + entries.Codigo + "</td>\n" +
+    tableContent += "<tr>\n" +
+    "<td class=\"right-border\">" + entries.Codigo + "</td>\n" +
     "<td class=\"right-border\">" + entries.Nombre + "</td>\n" +
     "<td class=\"right-border\">" + entries.Creditos + "</td>\n" +
     "<td class=\"right-border\">" + entries.Universidad + "</td>\n" +
@@ -50,12 +51,13 @@ ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
     "<td class=\"right-border\">" + entries.Facultad + "</td>\n" +
     "<td class=\"right-border\">" + entries.Departamento + "</td>\n" +
     "<td class=\"right-border\">" + entries.Programa + "</td>\n" +
-    "<td>" +
-    "<img src=\"../../assets/icons-delete-50.svg\" class=\"icon-button\"/>" +
+    "<td><img src=\"../../assets/icons-delete-50.svg\" " +
+    "class=\"icon-button pointer\"/>" +
     "</td>\n";
 
     tableContent += "</tr>\n";
   }
 
+  // Update table.
   table.innerHTML = tableContent;
 });

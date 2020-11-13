@@ -22,13 +22,13 @@ const path = require("path");
 const url = require("url");
 const fs = require("fs");
 
-// Declare all windows
+// Declare all windows.
 var welcomeWin;
 var workSpaceWindow;
 var formWindow;
 var processor;
 
-// Declare important dirs
+// Declare important dirs.
 var tempDir;
 
 /**
@@ -56,7 +56,7 @@ function createWindow () {
     slashes: true
   }));
 
-  // Create processor window, it will not be visible
+  // Create processor window, it will not be visible.
   processor = new BrowserWindow({
     show: false,
     webPreferences: {
@@ -64,14 +64,14 @@ function createWindow () {
     }
   });
 
-  // Load the processor window
+  // Load the processor window.
   processor.loadURL(url.format({
     pathname: path.join(__dirname,"processor/processor.html"),
     protocol: "file:",
     slashes: true
   }));
 
-  // Define temporal dir
+  // Define temporal dir.
   tempDir = app.getPath("temp");
   fs.mkdir(path.join(tempDir, "/u_stair/Subjects"), { recursive: true },
   (err) => {

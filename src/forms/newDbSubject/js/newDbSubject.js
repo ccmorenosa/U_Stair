@@ -20,6 +20,9 @@ const {ipcRenderer} = require("electron");
 
 var form = document.getElementById("new-db-subject-form");
 
+/**
+* This function submit the form to create a new subject in the database.
+*/
 function newDbSubject() {
 
   var data = [

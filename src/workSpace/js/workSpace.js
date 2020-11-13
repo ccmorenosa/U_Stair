@@ -19,8 +19,10 @@
 const {ipcRenderer} = require("electron");
 const path = require("path");
 
+// Variable of the status bar.
 var statusBar = document.getElementById("status-bar");
 
+// Event to update the estatus bar.
 ipcRenderer.on("status", (event, value) => {
   statusBar.innerText = value;
 });
