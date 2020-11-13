@@ -62,6 +62,8 @@ ipcRenderer.on("NEW", (event, value) => {
 
 // Event to creat a new row in the subjects table.
 ipcRenderer.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
+  ipcRenderer.send("Agregando materia", "listo");
+
   // Add the new row, and update the table if the window if it success.
   subjectDataBase.run(
     "INSERT INTO Materias " +
@@ -80,6 +82,23 @@ ipcRenderer.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
   ipcRenderer.send("status", "listo");
 });
 
+// This event delete a subject in the database.
+ipcRenderer.on("DELETE-DB-SUBJECT", (event, value) => {
+  ipcRenderer.send("Eliminando materia", "listo");
+
+  subjectDataBase.run(
+    "DELETE FROM Materias WHERE Codigo=\"".concat(value) + "\";",
+    function (err) {
+      if (err) {
+        return console.error(err.message);
+      } else{
+        updateTable();
+      }
+    }
+  );
+
+  ipcRenderer.send("status", "listo");
+});
 
 /**
 * This function update the subjects table. It selects the contens of it with
@@ -90,7 +109,8 @@ function updateTable() {
   function (err, table) {
     if (err) {
       return console.error(err.message);
+    } else {
+      ipcRenderer.send("UPDATE-SUBJECTS", table);
     }
-    ipcRenderer.send("UPDATE-SUBJECTS", table);
   });
 }

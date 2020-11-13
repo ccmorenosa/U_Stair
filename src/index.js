@@ -178,7 +178,7 @@ ipcMain.on("EXIT", (event, value) => {
 
 // This event create a new window to add a new subject to the database.
 ipcMain.on("NEW-DB-SUBJECT", (event, value) => {
-  workSpaceWindow.send("status", "nueva materia");
+  workSpaceWindow.send("status", "Nueva materia");
 
   formWindow = new BrowserWindow({
     width: 300,
@@ -200,6 +200,11 @@ ipcMain.on("NEW-DB-SUBJECT", (event, value) => {
     formWindow=null;
     workSpaceWindow.send("status", "listo");
   });
+});
+
+// This event delete a subject in the database.
+ipcMain.on("DELETE-DB-SUBJECT", (event, value) => {
+  processor.send("DELETE-DB-SUBJECT", value);
 });
 
 // This event will create a new subject to the database.

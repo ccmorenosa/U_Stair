@@ -53,7 +53,7 @@ ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
     "<td class=\"right-border bottom-border\">" + entries.Departamento + "</td>\n" +
     "<td class=\"right-border bottom-border\">" + entries.Programa + "</td>\n" +
     "<td class=\"bottom-border\"><img src=\"../../assets/icons-delete-50.svg\" " +
-    "class=\"icon-button pointer\"/>" +
+    "class=\"icon-button pointer delete-row\"/>" +
     "</td>\n";
 
     tableContent += "</tr>\n";
@@ -61,4 +61,25 @@ ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
 
   // Update table.
   table.innerHTML = tableContent;
+
+  // Active delete buttons.
+  activeDeleteButtons();
 });
+
+
+/**
+* This function add an event to delete a row of the table whenever the delete
+* button is clicked.
+*/
+function activeDeleteButtons() {
+  // Get all delete buttons of the table.
+  var deleteButtons = document.getElementsByClassName("delete-row");
+
+  // Add an event to the delete buttons.
+  for (var button of deleteButtons) {
+    button.addEventListener("click", (event) => {
+      var parNode = event.target.parentElement.parentElement.children[0];
+      ipcRenderer.send("DELETE-DB-SUBJECT", parNode.innerText);
+    });
+  }
+}
