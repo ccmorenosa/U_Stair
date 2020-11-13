@@ -16,6 +16,8 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+
+/* Tabs bar appearance and mouse events */
 .tabs-bar {
   background: linear-gradient(to bottom, rgba(210,210,210,1) 0%,rgba(180,180,180,1) 100%);
   border: solid #888 1px;
@@ -40,12 +42,21 @@
 
 .tab:hover {
   background: linear-gradient(to bottom, rgba(250,250,250,1) 0%,rgba(160,160,160,1) 100%);
-  cursor: pointer;
 }
 
 .tab.active,
 .tab.active:hover {
   background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(200,200,200,1) 100%);
+}
+
+
+/* Tool bar appearance and mouse events */
+.work-space.with-tool-bar {
+  background: linear-gradient(to bottom, rgba(210,210,210,1) 0%,rgba(180,180,180,1) 100%);
+  border: solid #888 1px;
+  border-bottom: none;
+  box-sizing: border-box;
+  height: calc(100vh - 80px);
 }
 
 .tool-bar {
@@ -69,9 +80,10 @@
 
 .tool:hover {
   background: linear-gradient(to bottom, rgba(200,200,200,1) 0%,rgba(160,160,160,1) 100%);
-  cursor: pointer;
 }
 
+
+/* Status bar appearance */
 .status-bar {
   background: linear-gradient(to bottom, rgba(180,180,180,1) 0%, rgba(210,210,210,1) 100%);
   border: solid #888 1px;
@@ -79,19 +91,9 @@
   height: 15px;
 }
 
-.work-space.with-tool-bar {
-  background: linear-gradient(to bottom, rgba(210,210,210,1) 0%,rgba(180,180,180,1) 100%);
-  border: solid #888 1px;
-  border-bottom: none;
-  box-sizing: border-box;
-  height: calc(100vh - 80px);
-}
 
+/* Icon buttons appearance */
 .icon-button {
   height: 15px;
-  padding: 5px;
-}
-
-.tool:hover {
-  cursor: pointer;
+  padding: 2px;
 }

@@ -16,6 +16,8 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+
+/* General aparience configuration */
 html, body {
  background: #eee;
  font-family: serif;
@@ -30,8 +32,8 @@ a {
   color: inherit;
 }
 
-/* Containers Settings */
 
+/* Containers Settings */
 .container {
   box-sizing: border-box;
   display: block;
@@ -40,7 +42,6 @@ a {
 
 
 /* width proportions */
-
 .full-width {
   width: 100%;
 }
@@ -59,7 +60,6 @@ a {
 
 
 /* floats */
-
 .float-left {
   float: left;
 }
@@ -70,7 +70,6 @@ a {
 
 
 /* Text Alignment */
-
 .t-center {
   text-align: center;
 }
@@ -85,7 +84,6 @@ a {
 
 
 /* Font Sizes */
-
 .tiny {
   font-size: 10px !important;
 }
@@ -120,31 +118,28 @@ a {
 
 
 /* Relative Displays */
-
-.display-container {
-  position: relative;
-}
-
-.display-topleft {
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-.display-topright {
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
 .display-bottomleft {
   position: absolute;
   left: 0;
   bottom: 0;
 }
+
 .display-bottomright {
   position: absolute;
   right: 0;
   bottom: 0;
+}
+
+.display-container {
+  position: relative;
+}
+
+.display-left {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(0%,-50%);
+  -ms-transform: translate(-0%,-50%);
 }
 
 .display-middle {
@@ -154,12 +149,16 @@ a {
   transform: translate(-50%,-50%);
 }
 
-.display-left {
+.display-topleft {
   position: absolute;
-  top: 50%;
-  left: 0%;
-  transform: translate(0%,-50%);
-  -ms-transform: translate(-0%,-50%);
+  left: 0;
+  top: 0;
+}
+
+.display-topright {
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .display-right {
@@ -187,8 +186,7 @@ a {
 }
 
 
-/* Font Settings*/
-
+/* Font Settings */
 p {
   padding: 0;
   margin: 0;
@@ -196,7 +194,6 @@ p {
 
 
 /* Scroll Bars Settings */
-
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -222,7 +219,7 @@ p {
 
 
 /* Cursor */
-.pointer {
+.pointer:hover {
   cursor: pointer;
 }
 

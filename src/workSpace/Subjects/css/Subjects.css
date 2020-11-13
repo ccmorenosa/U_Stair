@@ -16,12 +16,14 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+/* Database table */
 .work-space .database-view {
   height: 100%;
   overflow: hidden;
   width: calc(100% - 300px);
 }
 
+/* Database filter */
 .work-space .database-filter {
   box-sizing: border-box;
   height: 100%;
