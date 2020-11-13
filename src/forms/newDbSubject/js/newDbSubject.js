@@ -28,12 +28,12 @@ function newDbSubject() {
   var data = [
     form.children["Codigo"].value,
     form.children["Materia"].value,
-    form.children["Programa"].value,
+    form.children["Creditos"].value,
     form.children["Universidad"].value,
     form.children["Sede"].value,
     form.children["Facultad"].value,
     form.children["Departamento"].value,
-    form.children["Creditos"].value];
+    form.children["Programa"].value];
 
   data = data.map((value) => {
     return "\"" + value + "\"";
