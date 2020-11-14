@@ -31,8 +31,11 @@ var processor;
 // Declare important dirs.
 var tempDir;
 
+// File name
+var fileName = "";
+
 /**
-* This function create the main window, that will be shown in the middle of the
+* This function creates the main window, that will be shown in the middle of the
 * screen.
 *
 * It also will create the processor that will most of the process of the
@@ -73,7 +76,7 @@ function createWindow () {
 
   // Define temporal dir.
   tempDir = app.getPath("temp");
-  fs.mkdir(path.join(tempDir, "/u_stair/Subjects"), { recursive: true },
+  fs.mkdir(path.join(tempDir, "/u_stair"), { recursive: true },
   (err) => {
     if (err) {
       throw err
@@ -176,6 +179,31 @@ ipcMain.on("EXIT", (event, value) => {
   welcomeWin.close();
 });
 
+// This event save the database.
+ipcMain.on("FILE-SAVE", (event, value) => {
+  if (fileName == "") {
+    dialog.showSaveDialog({
+      title: "Abrir malla",
+      filters: [
+        {name: "Malla", extensions: ["msh"]}
+      ],
+      propertries: [
+        "createDirectory",
+        "showOverwriteConfirmation"
+      ]
+    }).then(result => {
+      if(!result.canceled) {
+        fileName = result.filePath;
+        processor.send("FILE-SAVE", [tempDir, fileName]);
+      }
+    }).catch(err => {
+      console.log(err)
+    });
+  } else {
+    processor.send("FILE-SAVE", [tempDir, fileName]);
+  }
+});
+
 // This event create a new window to add a new subject to the database.
 ipcMain.on("NEW-DB-SUBJECT", (event, value) => {
   workSpaceWindow.send("status", "Nueva materia");
@@ -198,7 +226,7 @@ ipcMain.on("NEW-DB-SUBJECT", (event, value) => {
 
   formWindow.on("close",  () => {
     formWindow=null;
-    workSpaceWindow.send("status", "listo");
+    workSpaceWindow.send("status", "Listo");
   });
 });
 

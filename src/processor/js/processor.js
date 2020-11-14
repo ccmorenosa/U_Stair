@@ -22,17 +22,17 @@ const path = require("path");
 const fs = require("fs");
 
 // Variable of the subject database.
-var subjectDataBase;
+var dataBase;
 
 // Create a new database in the temporal directory whenever the "NEW" button is
-// clickced.
+// clicked.
 ipcRenderer.on("NEW", (event, value) => {
   // Send an event to update the status bar.
   ipcRenderer.send("status", "cargando base de datos");
 
   // Create the database in the temporal directory and connect.
-  subjectDataBase = new sqlite.Database(
-    path.join(value, "u_stair/Subjects/local.db"),
+  dataBase = new sqlite.Database(
+    path.join(value, "u_stair/temp.db"),
     (err) => {
       if (err) {
         return console.error(err.message);
@@ -42,10 +42,10 @@ ipcRenderer.on("NEW", (event, value) => {
     }
   );
 
-  subjectDataBase.run("PRAGMA foreign_keys=ON;");
+  dataBase.run("PRAGMA foreign_keys=ON;");
 
   // Create the subjects table and update table if it success.
-  subjectDataBase.run(
+  dataBase.run(
     fs.readFileSync(path.join(__dirname,"../sql/Subjects.sql")).toString(),
     (err) => {
       if (err) {
@@ -57,15 +57,28 @@ ipcRenderer.on("NEW", (event, value) => {
   );
 
   // Send an event to update the status bar,
-  ipcRenderer.send("status", "listo");
+  ipcRenderer.send("status", "Listo");
 });
 
-// Event to creat a new row in the subjects table.
+// This event save the database in the path that the user specify.
+ipcRenderer.on("FILE-SAVE", (event, value) => {
+  ipcRenderer.send("status", "Guardando");
+
+  fs.copyFile(path.join(value[0], "u_stair/temp.db"), value[1], (err) => {
+    if (err) {
+      return console.error(err.message);
+    }
+  });
+
+  ipcRenderer.send("status", "Listo");
+});
+
+// Event to create a new row in the subjects table.
 ipcRenderer.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
   ipcRenderer.send("Agregando materia", "listo");
 
   // Add the new row, and update the table if the window if it success.
-  subjectDataBase.run(
+  dataBase.run(
     "INSERT INTO Materias " +
     "(Codigo, Nombre, Creditos, Universidad, Sede," +
     " Facultad, Departamento, Programa) " +
@@ -79,14 +92,14 @@ ipcRenderer.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
     }
   );
 
-  ipcRenderer.send("status", "listo");
+  ipcRenderer.send("status", "Listo");
 });
 
 // This event delete a subject in the database.
 ipcRenderer.on("DELETE-DB-SUBJECT", (event, value) => {
   ipcRenderer.send("Eliminando materia", "listo");
 
-  subjectDataBase.run(
+  dataBase.run(
     "DELETE FROM Materias WHERE Codigo=\"".concat(value) + "\";",
     function (err) {
       if (err) {
@@ -97,15 +110,15 @@ ipcRenderer.on("DELETE-DB-SUBJECT", (event, value) => {
     }
   );
 
-  ipcRenderer.send("status", "listo");
+  ipcRenderer.send("status", "Listo");
 });
 
 /**
-* This function update the subjects table. It selects the contens of it with
-* sql, and send an event with the table.
+* This function update the subjects table. It selects the contents of it with
+* SQL, and send an event with the table.
 */
 function updateTable() {
-  subjectDataBase.all("SELECT * FROM Materias;",
+  dataBase.all("SELECT * FROM Materias;",
   function (err, table) {
     if (err) {
       return console.error(err.message);

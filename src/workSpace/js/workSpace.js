@@ -16,7 +16,7 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-const {ipcRenderer} = require("electron");
+const {ipcRenderer, Menu} = require("electron");
 const path = require("path");
 
 // Variable of the status bar.
@@ -26,3 +26,16 @@ var statusBar = document.getElementById("status-bar");
 ipcRenderer.on("status", (event, value) => {
   statusBar.innerText = value;
 });
+
+// Tool bar icons
+var tools = ["FILE-NEW", "FILE-OPEN", "FILE-SAVE"]
+
+// Add events for all buttons.
+for (var button of tools) {
+  (function(action){
+    document.getElementById(action).addEventListener("click",
+    (event) => {
+      ipcRenderer.send(action, null);
+    });
+  })(button)
+}

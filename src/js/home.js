@@ -18,10 +18,10 @@
 
 const {ipcRenderer} = require("electron");
 
-// Buttons in the main menu
+// Buttons in the main menu.
 var mainButtons = ["NEW", "OPEN", "SETTINGS", "EXIT"]
 
-// Add events for all buttons
+// Add events for all buttons.
 for (var button of mainButtons) {
   (function(action){
     document.getElementById(action).addEventListener("click",
