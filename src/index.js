@@ -50,11 +50,11 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: true
     }
-  })
+  });
 
   // and load the index.html of the app.
   welcomeWin.loadURL(url.format({
-    pathname: path.join(__dirname,"index.html"),
+    pathname: path.join(__dirname, "index.html"),
     protocol: "file:",
     slashes: true
   }));
@@ -79,39 +79,39 @@ function createWindow () {
   fs.mkdir(path.join(tempDir, "/u_stair"), { recursive: true },
   (err) => {
     if (err) {
-      throw err
-    };
+      throw err;
+    }
   });
 
   // Open the DevTools.
   welcomeWin.webContents.openDevTools();
-  processor.webContents.openDevTools();
+  // processor.webContents.openDevTools();
 
   welcomeWin.on("close",  () => {
     fs.rmdir(path.join(tempDir, "/u_stair"), { recursive: true }, (err) => {
       if (err) {
-        throw err
-      };
+        throw err;
+      }
     });
     app.quit();
   });
 }
 
 // This avoid to open most that one window.
-const gotTheLock = app.requestSingleInstanceLock()
+const gotTheLock = app.requestSingleInstanceLock();
 
 if (!gotTheLock) {
-  app.quit()
+  app.quit();
 } else {
   app.on('second-instance', (event, commandLine, workingDirectory) => {
     // Someone tried to run a second instance, we should focus our window.
     if (welcomeWin) {
       if (welcomeWin.isMinimized()) {
-        welcomeWin.restore()
-      };
+        welcomeWin.restore();
+      }
       welcomeWin.focus();
     }
-  })
+  });
 
   // Create myWindow, load the rest of the app, etc...
   app.whenReady().then(createWindow);
@@ -129,7 +129,7 @@ ipcMain.on("NEW", (event, value) => {
       nodeIntegration: true,
       webviewTag: true
     }
-  })
+  });
 
   workSpaceWindow.maximize();
 
@@ -163,7 +163,7 @@ ipcMain.on("OPEN", (event, value) => {
       // welcomeWin.hide();
     }
   }).catch(err => {
-    console.log(err)
+    console.log(err);
   });
   // welcomeWin.hide();
 });
@@ -197,7 +197,7 @@ ipcMain.on("FILE-SAVE", (event, value) => {
         processor.send("FILE-SAVE", [tempDir, fileName]);
       }
     }).catch(err => {
-      console.log(err)
+      console.log(err);
     });
   } else {
     processor.send("FILE-SAVE", [tempDir, fileName]);
@@ -215,7 +215,7 @@ ipcMain.on("NEW-DB-SUBJECT", (event, value) => {
     webPreferences: {
       nodeIntegration: true
     }
-  })
+  });
 
   // and load the index.html of the app.
   formWindow.loadURL(url.format({
