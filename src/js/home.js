@@ -16,18 +16,8 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-const {ipcRenderer} = require("electron");
-
-
 // Buttons in the main menu.
 var mainButtons = ["NEW", "OPEN", "SETTINGS", "EXIT"];
 
 // Add events for all buttons.
-for (var button of mainButtons) {
-  ((action) => {
-    document.getElementById(action).addEventListener("click",
-    (event) => {
-      ipcRenderer.send(action, null);
-    });
-  })(button);
-}
+activateButtons(mainButtons);

@@ -16,10 +16,27 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-.draggable {
-  -webkit-app-region: drag;
-}
+const electron = require("electron");
+const {ipcMain} = electron;
 
-.btn {
-  -webkit-app-region: no-drag;
-}
+ipcMain.on("CLOSE", (event, value) => {
+  workSpaceWindow.close();
+});
+
+ipcMain.on("MAXIMIZE", (event, value) => {
+  if (workSpaceWindow.isMaximized()) {
+
+    workSpaceWindow.unmaximize();
+    workSpaceWindow.send("UNMAXIMIZE");
+
+  } else {
+
+    workSpaceWindow.maximize();
+    workSpaceWindow.send("MAXIMIZE");
+
+  }
+});
+
+ipcMain.on("ICONIZE", (event, value) => {
+  workSpaceWindow.minimize();
+});

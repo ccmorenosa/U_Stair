@@ -23,16 +23,20 @@ const url = require("url");
 const fs = require("fs");
 
 // Declare all windows.
-var welcomeWin;
-var workSpaceWindow;
-var formWindow;
-var processor;
+global.welcomeWin;
+global.workSpaceWindow;
+global.formWindow;
+global.processor;
 
 // Declare important dirs.
-var tempDir;
+global.tempDir;
+global.srcPath = path.join(app.getAppPath(),"src");
 
 // File name
 var fileName = "";
+
+require("./js/main_home");
+require("./workSpace/js/main_workSpace");
 
 /**
 * This function creates the main window, that will be shown in the middle of the
@@ -55,7 +59,7 @@ function createWindow () {
 
   // and load the index.html of the app.
   welcomeWin.loadURL(url.format({
-    pathname: path.join(__dirname, "index.html"),
+    pathname: path.join(srcPath, "index.html"),
     protocol: "file:",
     slashes: true
   }));
@@ -70,7 +74,7 @@ function createWindow () {
 
   // Load the processor window.
   processor.loadURL(url.format({
-    pathname: path.join(__dirname,"processor/processor.html"),
+    pathname: path.join(srcPath, "processor/processor.html"),
     protocol: "file:",
     slashes: true
   }));
@@ -118,69 +122,6 @@ if (!gotTheLock) {
   app.whenReady().then(createWindow);
 }
 
-// This event get the event when the user wants to create a new database.
-ipcMain.on("NEW", (event, value) => {
-  // Create the browser window.
-  workSpaceWindow = new BrowserWindow({
-    width: 800,
-    minWidth: 800,
-    height: 600,
-    minHeight: 600,
-    frame: false,
-    webPreferences: {
-      nodeIntegration: true,
-      webviewTag: true
-    }
-  });
-
-  workSpaceWindow.maximize();
-
-  // and load the index.html of the workSpaceWindow.
-  workSpaceWindow.loadURL(url.format({
-    pathname: path.join(__dirname,"workSpace/Subjects/index.html"),
-    protocol: "file:",
-    slashes: true
-  }));
-
-  workSpaceWindow.webContents.openDevTools();
-  workSpaceWindow.on("close",  () => {
-    workSpaceWindow=null;
-    welcomeWin.show();
-  });
-
-  welcomeWin.hide();
-
-  processor.send("NEW", tempDir);
-});
-
-// This event get the event when the user wants to load an existing database.
-ipcMain.on("OPEN", (event, value) => {
-  dialog.showOpenDialog({
-    title: "Abrir malla",
-    propertries: [
-      "openFile"
-    ]
-  }).then(result => {
-    if(!result.canceled) {
-      // welcomeWin.hide();
-    }
-  }).catch(err => {
-    console.log(err);
-  });
-  // welcomeWin.hide();
-});
-
-// This event get the event when the user wants to change the program
-// configuration.
-ipcMain.on("SETTINGS", (event, value) => {
-  console.log("GETTED");
-});
-
-// This event will close the application.
-ipcMain.on("EXIT", (event, value) => {
-  welcomeWin.close();
-});
-
 // This event save the database.
 ipcMain.on("FILE-SAVE", (event, value) => {
   if (fileName == "") {
@@ -221,7 +162,7 @@ ipcMain.on("NEW-DB-SUBJECT", (event, value) => {
 
   // and load the index.html of the app.
   formWindow.loadURL(url.format({
-    pathname: path.join(__dirname,"forms/newDbSubject/index.html"),
+    pathname: path.join(srcPath, "forms/newDbSubject/index.html"),
     protocol: "file:",
     slashes: true
   }));

@@ -16,10 +16,15 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-.draggable {
-  -webkit-app-region: drag;
-}
+const {ipcRenderer} = require("electron");
 
-.btn {
-  -webkit-app-region: no-drag;
+function activateButtons(buttonsList) {
+  for (var button of buttonsList) {
+    ((action) => {
+      document.getElementById(action).addEventListener("click",
+      (event) => {
+        ipcRenderer.send(action, null);
+      });
+    })(button);
+  }
 }
