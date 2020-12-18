@@ -28,36 +28,40 @@
 
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/home.css">
+
+  <script defer src="js/home.js"></script>
 </head>
 
-<body class="welcome-window">
+<body>
+
+  <div class="draggable pb-4 mb-4 palette-midnight-blue"></div>
+
   <!-- App icon -->
-  <div class="full-width container">
-    <div class="full-width t-center jumbo">U Stair</div>
+  <div class="text-center mb-5">
+    <h1 class="m-0">U Stair</h1>
   </div>
 
   <!-- Main menu -->
-  <div class="full-width main-menu">
+  <div class="text-center">
     <!-- New mesh button -->
-    <div id="NEW" class="main-button t-center xlarge pointer">
-      Nueva malla
-    </div>
+    <button id="NEW" class="btn btn-primary mb-3 btn-lg"> Nueva malla </button>
+    <br>
 
     <!-- Load mesh button -->
-    <div id="OPEN" class="main-button t-center xlarge pointer">
-      Abrir malla
-    </div>
+    <button id="OPEN" class="btn btn-primary mb-5 btn-lg"> Abrir malla </button>
+    <br>
 
     <!-- Settings button -->
-    <div id="SETTINGS" class="main-button t-center xlarge pointer">
-      Configuración
-    </div>
+    <button id="SETTINGS" class="btn btn-primary btn-lg">
+      <span class="fui-gear"></span>
+    </button>
 
     <!-- Exit button -->
-    <div id="EXIT" class="main-button t-center xlarge pointer">Salir</div>
+    <button id="EXIT" class="btn btn-danger btn-lg">
+      <span class="fui-exit"></span>
+    </button>
   </div>
 
-  <script src="js/home.js"></script>
 </body>
 
 </html>
