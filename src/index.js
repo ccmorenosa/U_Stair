@@ -126,6 +126,7 @@ ipcMain.on("NEW", (event, value) => {
     minWidth: 800,
     height: 600,
     minHeight: 600,
+    frame: false,
     webPreferences: {
       nodeIntegration: true,
       webviewTag: true

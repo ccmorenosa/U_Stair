@@ -16,13 +16,15 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+body {
+  overflow: hidden;
+}
+
 
 /* Tabs bar appearance and mouse events */
-.tabs-bar {
-  background: linear-gradient(to bottom, rgba(210,210,210,1) 0%,rgba(180,180,180,1) 100%);
-  border: solid #888 1px;
-  box-sizing: border-box;
-  height: 25px;
+.nav-link {
+  font-size: 16px;
+  padding: 0.1rem 24px !important;
 }
 
 .tab {

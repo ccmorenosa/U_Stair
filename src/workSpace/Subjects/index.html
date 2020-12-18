@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!--
 ....UStair.  Grade curriculum schedule.
 ....Copyright (C) 2020  Andŕes Felipe Moreno Sarria
@@ -16,7 +17,6 @@
 ....along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -->
 
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -29,16 +29,52 @@
   <link rel="stylesheet" href="../../css/main.css">
   <link rel="stylesheet" href="../css/workSpace.css">
   <link rel="stylesheet" href="css/Subjects.css">
+
+  <script src="../../js/style.js"></script>
 </head>
 
 <body>
-  <!-- Tabs bar -->
-  <div class="tabs-bar full-width medium">
-    <a class="tab pointer float-left active">Grupo de Materias</a>
-    <a class="tab pointer float-left">Planeación</a>
-    <a class="tab pointer float-left">Malla</a>
-    <a class="tab pointer float-left">Semestre</a>
+
+  <!-- Draggable bar -->
+  <div class="draggable palette-midnight-blue btn-toolbar">
+    <div class="btn-group ml-auto">
+
+      <!-- Iconize button -->
+      <button id="ICONIZE" class="btn btn-warning btn-sm rounded-0 p-1">
+        <span class="fui-triangle-down-small"></span>
+      </button>
+
+      <!-- Maximize button -->
+      <button id="MAXIMIZE" class="btn btn-primary btn-sm rounded-0 p-1">
+        <span class="fui-windows"></span>
+      </button>
+
+      <!-- Close button -->
+      <button id="EXIT" class="btn btn-danger btn-sm rounded-0 p-1">
+        <span class="fui-cross"></span>
+      </button>
+
+    </div>
   </div>
+
+  <!-- Tabs bar -->
+  <ul class="nav nav-tabs user-select-none">
+    <li class="nav-item">
+      <a class="nav-link active bg-primary text-light">Grupo de Materias</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link">Planeación</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link">Malla</a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link">Semestre</a>
+    </li>
+  </ul>
 
   <!-- Tool bar -->
   <div class="tool-bar full-width">

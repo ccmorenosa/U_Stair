@@ -19,7 +19,3 @@
 .draggable {
   -webkit-app-region: drag;
 }
-
-.fui-exit:before {
-  content: "\e638";
-}

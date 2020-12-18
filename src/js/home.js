@@ -17,47 +17,17 @@
 **/
 
 const {ipcRenderer} = require("electron");
-const {app} = require("electron").remote;
-const $ = jQuery = require("jquery");
-const path = require("path");
-const url = require("url");
 
-require("bootstrap");
-
-let head = document.head;
-
-let bootstrapLink = document.createElement("link");
-let flatLink = document.createElement("link");
-
-bootstrapLink.type = "text/css";
-bootstrapLink.rel = "stylesheet";
-bootstrapLink.href = url.format({
-  pathname: path.join(app.getAppPath(), "node_modules/bootstrap/dist/css/bootstrap.min.css"),
-  protocol: "file:",
-  slashes: true
-});
-
-head.appendChild(bootstrapLink);
-
-flatLink.type = "text/css";
-flatLink.rel = "stylesheet";
-flatLink.href = url.format({
-  pathname: path.join(app.getAppPath(), "node_modules/designmodo-flat-ui/dist/css/flat-ui.min.css "),
-  protocol: "file:",
-  slashes: true
-});
-
-head.appendChild(flatLink);
 
 // Buttons in the main menu.
-var mainButtons = ["NEW", "OPEN", "SETTINGS", "EXIT"]
+var mainButtons = ["NEW", "OPEN", "SETTINGS", "EXIT"];
 
 // Add events for all buttons.
 for (var button of mainButtons) {
-  (function(action){
+  ((action) => {
     document.getElementById(action).addEventListener("click",
     (event) => {
       ipcRenderer.send(action, null);
     });
-  })(button)
+  })(button);
 }

@@ -17,7 +17,6 @@
 **/
 
 const {ipcRenderer, Menu} = require("electron");
-const path = require("path");
 
 // Variable of the status bar.
 var statusBar = document.getElementById("status-bar");
