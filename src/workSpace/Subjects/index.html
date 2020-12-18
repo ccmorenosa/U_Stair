@@ -58,33 +58,49 @@
   </div>
 
   <!-- Tabs bar -->
-  <ul class="nav nav-tabs user-select-none">
+  <ul class="nav nav-tabs user-select-none palette-clouds">
     <li class="nav-item">
-      <a class="nav-link active bg-primary text-light">Grupo de Materias</a>
+      <a class="nav-link border-0 rounded-0 active bg-primary text-light">Grupo de Materias</a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link">Planeación</a>
+      <a class="nav-link border-0 rounded-0">Planeación</a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link">Malla</a>
+      <a class="nav-link border-0 rounded-0">Malla</a>
     </li>
 
     <li class="nav-item">
-      <a class="nav-link">Semestre</a>
+      <a class="nav-link border-0 rounded-0">Semestre</a>
     </li>
   </ul>
 
   <!-- Tool bar -->
-  <div class="tool-bar full-width">
-    <img id="FILE-NEW" src="../../assets/icons8-add-file-50.png" class="tool pointer float-left right-border">
-    <img id="FILE-OPEN" src="../../assets/icons8-email-open-50.png" class="tool pointer float-left right-border">
-    <img id="FILE-SAVE" src="../../assets/icons8-save-50.png" class="tool pointer float-left right-border">
+  <div class="draggable palette-clouds btn-toolbar">
+    <div class="btn-group mr-2">
 
-    <div class="tool-separator float-left right-border"></div>
+      <button id="FILE-NEW" class="btn btn-primary btn-sm rounded-0 p-1">
+        <img  src="../../assets/new-icon.svg" class="tool">
+      </button>
 
-    <img id="NEW-DB-SUBJECT" src="../../assets/icons8-plus-50.png" class="tool pointer right-border">
+      <button id="FILE-OPEN" class="btn btn-primary btn-sm rounded-0 p-1">
+        <img src="../../assets/open-icon.svg" class="tool">
+      </button>
+
+      <button id="FILE-SAVE" class="btn btn-primary btn-sm rounded-0 p-1">
+        <img src="../../assets/save-icon.svg" class="tool">
+      </button>
+
+    </div>
+
+    <div class="btn-group">
+
+      <button class="btn btn-primary btn-sm rounded-0 p-1">
+        <img id="NEW-DB-SUBJECT" src="../../assets/plus-icon.svg" class="tool">
+      </button>
+
+    </div>
   </div>
 
   <!-- Work space of the subject table -->
