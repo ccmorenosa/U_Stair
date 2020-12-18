@@ -16,10 +16,30 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+/* Draggable configuration*/
+
 .draggable {
   -webkit-app-region: drag;
 }
 
 .btn {
   -webkit-app-region: no-drag;
+}
+
+
+/* Overflow */
+
+.overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.overflow-y-scroll {
+  overflow-y: scroll;
+}
+
+
+/* Flex */
+
+.flex {
+  flex: 1;
 }

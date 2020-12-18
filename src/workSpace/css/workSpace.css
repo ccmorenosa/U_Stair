@@ -16,12 +16,14 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-body {
+body, html {
+  height: 100%;
   overflow: hidden;
 }
 
 
 /* Tabs bar appearance and mouse events */
+
 .nav-link {
   font-size: 16px;
   padding: 0.1rem 24px !important;
@@ -29,7 +31,16 @@ body {
 
 
 /* Tools */
+
 .tool {
   height: 18px;
   padding: 2px;
+}
+
+
+/* Status bar */
+
+.status-bar {
+  background: #B7F5E9;
+  font-size: 14px;
 }

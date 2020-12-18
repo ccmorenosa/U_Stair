@@ -33,7 +33,7 @@
   <script src="../../js/style.js"></script>
 </head>
 
-<body>
+<body class="d-flex flex-column">
 
   <!-- Draggable bar -->
   <div class="draggable palette-midnight-blue btn-toolbar">
@@ -104,34 +104,36 @@
   </div>
 
   <!-- Work space of the subject table -->
-  <div class="work-space with-tool-bar full-width">
+  <div class="w-100 flex">
 
     <!-- Table with all the subjects in the database -->
-    <div class="database-view float-left medium right-border">
-      <table id="DATABASE-TABLE" class="full-width t-center">
+    <div class="w-75 h-100 p-0 m-0 float-left border-right overflow-x-hidden bg-white">
+
+      <table id="DATABASE-TABLE" class="w-100">
 
         <tr>
-          <th class="right-border bottom-border">Codigo</th>
-          <th class="right-border bottom-border">Nombre</th>
-          <th class="right-border bottom-border">Créditos</th>
-          <th class="right-border bottom-border">Universidad</th>
-          <th class="right-border bottom-border">Sede</th>
-          <th class="right-border bottom-border">Facultad</th>
-          <th class="right-border bottom-border">Departamento</th>
-          <th class="right-border bottom-border">Programa</th>
+          <th scope="col">Codigo</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Créditos</th>
+          <th scope="col">Universidad</th>
+          <th scope="col">Sede</th>
+          <th scope="col">Facultad</th>
+          <th scope="col">Departamento</th>
+          <th scope="col">Programa</th>
           <th class="bottom-border">Borrar</th>
         </tr>
 
       </table>
+
     </div>
 
     <!-- Filter of the table -->
-    <div class="database-filter float-left">
+    <div class="w-25 p-0 m-0 float-left bg-white">
       Filtro
     </div>
   </div>
 
-  <div id="status-bar" class="status-bar full-width small">Idle</div>
+  <div id="status-bar" class="status-bar palette-peter-river text-light pl-2">Idle</div>
 
   <!-- Script to handle the events -->
   <script src="../../js/buttons.js"></script>
