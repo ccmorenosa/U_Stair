@@ -27,10 +27,53 @@
 }
 
 
+/* Font Sizes */
+
+.text-tiny {
+  font-size: 10px !important;
+}
+
+.text-small {
+  font-size: 12px !important;
+}
+
+.text-medium {
+  font-size: 15px !important;
+}
+
+.text-large {
+  font-size: 18px !important;
+}
+
+.text-xlarge {
+  font-size: 24px !important;
+}
+
+.text-xxlarge {
+  font-size: 36px !important;
+}
+
+.text-xxxlarge {
+  font-size: 48px !important;
+}
+
+.text-jumbo {
+  font-size: 64px !important;
+}
+
+.text-extra-jumbo {
+  font-size: 100px !important;
+}
+
+
 /* Overflow */
 
 .overflow-x-hidden {
   overflow-x: hidden;
+}
+
+.overflow-x-scroll {
+  overflow-x: scroll;
 }
 
 .overflow-y-scroll {
@@ -42,4 +85,11 @@
 
 .flex {
   flex: 1;
+}
+
+
+/* Cursor */
+
+.pointer {
+  cursor: pointer;
 }

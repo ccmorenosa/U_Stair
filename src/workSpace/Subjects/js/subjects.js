@@ -27,36 +27,39 @@ document.getElementById("NEW-DB-SUBJECT").addEventListener("click", (event) => {
 // Event to update the table whenever is necesary.
 ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
   console.log("Update");
+
   // Fill the table headers.
-  tableContent = "<tr>\n" +
-  "<th class=\"right-border bottom-border\">Código</th>\n" +
-  "<th class=\"right-border bottom-border\">Nombre</th>\n" +
-  "<th class=\"right-border bottom-border\">Créditos</th>\n" +
-  "<th class=\"right-border bottom-border\">Universidad</th>\n" +
-  "<th class=\"right-border bottom-border\">Sede</th>\n" +
-  "<th class=\"right-border bottom-border\">Facultad</th>\n" +
-  "<th class=\"right-border bottom-border\">Departamento</th>\n" +
-  "<th class=\"right-border bottom-border\">Programa</th>\n" +
-  "<th class=\"bottom-border\">Borrar</th>\n" +
-  "</tr>\n";
+  tableContent = "<thead class=\"palette-wet-asphalt text-light\">" +
+  "<tr>" +
+  "<th scope=\"col\">Codigo</th>" +
+  "<th scope=\"col\">Nombre</th>" +
+  "<th scope=\"col\">Créditos</th>" +
+  "<th scope=\"col\">Universidad</th>" +
+  "<th scope=\"col\">Sede</th>" +
+  "<th scope=\"col\">Facultad</th>" +
+  "<th scope=\"col\">Departamento</th>" +
+  "<th scope=\"col\">Programa</th>" +
+  "<th scope=\"col\">Borrar</th>" +
+  "</tr>" +
+  "</thead>";
 
   // Fill the table content.
   for (var row in value) {
     var entries = value[row];
     tableContent += "<tr>\n" +
-    "<td class=\"right-border bottom-border\">" + entries.Codigo + "</td>\n" +
-    "<td class=\"right-border bottom-border\">" + entries.Nombre + "</td>\n" +
-    "<td class=\"right-border bottom-border\">" + entries.Creditos + "</td>\n" +
-    "<td class=\"right-border bottom-border\">" + entries.Universidad + "</td>\n" +
-    "<td class=\"right-border bottom-border\">" + entries.Sede + "</td>\n" +
-    "<td class=\"right-border bottom-border\">" + entries.Facultad + "</td>\n" +
-    "<td class=\"right-border bottom-border\">" + entries.Departamento + "</td>\n" +
-    "<td class=\"right-border bottom-border\">" + entries.Programa + "</td>\n" +
-    "<td class=\"bottom-border\"><img src=\"../../assets/icons-delete-50.svg\" " +
-    "class=\"icon-button pointer delete-row\"/>" +
-    "</td>\n";
-
-    tableContent += "</tr>\n";
+    "<td>" + entries.Codigo + "</td>\n" +
+    "<td>" + entries.Nombre + "</td>\n" +
+    "<td>" + entries.Creditos + "</td>\n" +
+    "<td>" + entries.Universidad + "</td>\n" +
+    "<td>" + entries.Sede + "</td>\n" +
+    "<td>" + entries.Facultad + "</td>\n" +
+    "<td>" + entries.Departamento + "</td>\n" +
+    "<td>" + entries.Programa + "</td>\n" +
+    "<td>" +
+    "<img src=\"../../assets/delete-icon.svg\" " +
+    "class=\"bg-danger delete-row rounded-circle delete-button pointer\"/> " +
+    "</td>\n" +
+    "</tr>\n";
   }
 
   // Update table.

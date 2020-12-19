@@ -58,7 +58,7 @@
   </div>
 
   <!-- Tabs bar -->
-  <ul class="nav nav-tabs user-select-none palette-clouds">
+  <ul class="nav nav-tabs user-select-none palette-clouds text-medium">
     <li class="nav-item">
       <a class="nav-link border-0 rounded-0 active bg-primary text-light">Grupo de Materias</a>
     </li>
@@ -107,21 +107,24 @@
   <div class="w-100 flex">
 
     <!-- Table with all the subjects in the database -->
-    <div class="w-75 h-100 p-0 m-0 float-left border-right overflow-x-hidden bg-white">
+    <div class="w-75 h-100 p-0 m-0 float-left border-right
+    overflow-x-scroll bg-white">
 
-      <table id="DATABASE-TABLE" class="w-100">
+      <table id="DATABASE-TABLE" class="w-100 text-center text-medium">
 
-        <tr>
-          <th scope="col">Codigo</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Créditos</th>
-          <th scope="col">Universidad</th>
-          <th scope="col">Sede</th>
-          <th scope="col">Facultad</th>
-          <th scope="col">Departamento</th>
-          <th scope="col">Programa</th>
-          <th class="bottom-border">Borrar</th>
-        </tr>
+        <thead class="palette-wet-asphalt text-light">
+          <tr>
+            <th scope="col">Codigo</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Créditos</th>
+            <th scope="col">Universidad</th>
+            <th scope="col">Sede</th>
+            <th scope="col">Facultad</th>
+            <th scope="col">Departamento</th>
+            <th scope="col">Programa</th>
+            <th scope="col">Borrar</th>
+          </tr>
+        </thead>
 
       </table>
 
@@ -133,7 +136,8 @@
     </div>
   </div>
 
-  <div id="status-bar" class="status-bar palette-peter-river text-light pl-2">Idle</div>
+  <div id="status-bar" class="status-bar palette-peter-river text-small
+  text-light pl-2">Idle</div>
 
   <!-- Script to handle the events -->
   <script src="../../js/buttons.js"></script>
