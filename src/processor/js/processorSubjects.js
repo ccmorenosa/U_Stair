@@ -16,6 +16,9 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+// Actual table
+var subjectsTable = null;
+
 // Event to create a new row in the subjects table.
 ipcRenderer.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
   ipcRenderer.send("status", "Agregando materia");
@@ -48,7 +51,7 @@ ipcRenderer.on("DELETE-DB-SUBJECT", (event, value) => {
       if (err) {
         return console.error(err.message);
       } else{
-        updateSubjectsTable();
+        ipcRenderer.send("UPDATE-SUBJECTS", subjectsTable);
       }
     }
   );
@@ -105,7 +108,8 @@ ipcRenderer.on("SEARCH-SUBJECT", (event, value) => {
     if (err) {
       return console.error(err.message);
     } else {
-      ipcRenderer.send("UPDATE-SUBJECTS", table);
+      subjectsTable = table;
+      ipcRenderer.send("UPDATE-SUBJECTS", subjectsTable);
     }
   });
 
@@ -131,7 +135,8 @@ function updateSubjectsTable() {
     if (err) {
       return console.error(err.message);
     } else {
-      ipcRenderer.send("UPDATE-SUBJECTS", table);
+      subjectsTable = table;
+      ipcRenderer.send("UPDATE-SUBJECTS", subjectsTable);
     }
   });
 }
