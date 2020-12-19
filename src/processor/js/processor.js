@@ -28,7 +28,7 @@ var dataBase;
 // clicked.
 ipcRenderer.on("NEW", (event, value) => {
   // Send an event to update the status bar.
-  ipcRenderer.send("status", "cargando base de datos");
+  ipcRenderer.send("status", "Cargando base de datos");
 
   // Create the database in the temporal directory and connect.
   dataBase = new sqlite.Database(
@@ -51,7 +51,7 @@ ipcRenderer.on("NEW", (event, value) => {
       if (err) {
         return console.error(err.message);
       } else {
-        updateTable();
+        updateSubjectsTable();
       }
     }
   );
@@ -75,7 +75,7 @@ ipcRenderer.on("FILE-SAVE", (event, value) => {
 
 // Event to create a new row in the subjects table.
 ipcRenderer.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
-  ipcRenderer.send("Agregando materia", "listo");
+  ipcRenderer.send("status", "Agregando materia");
 
   // Add the new row, and update the table if the window if it success.
   dataBase.run(
@@ -87,7 +87,7 @@ ipcRenderer.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
       if (err) {
         return console.error(err.message);
       } else{
-        updateTable();
+        updateSubjectsTable();
       }
     }
   );
@@ -105,10 +105,19 @@ ipcRenderer.on("DELETE-DB-SUBJECT", (event, value) => {
       if (err) {
         return console.error(err.message);
       } else{
-        updateTable();
+        updateSubjectsTable();
       }
     }
   );
+
+  ipcRenderer.send("status", "Listo");
+});
+
+// This event delete a subject in the database.
+ipcRenderer.on("REFRESH-SUBJECT", (event, value) => {
+  ipcRenderer.send("Actualizando tabla de materias", "listo");
+
+  updateSubjectsTable();
 
   ipcRenderer.send("status", "Listo");
 });
@@ -117,7 +126,7 @@ ipcRenderer.on("DELETE-DB-SUBJECT", (event, value) => {
 * This function update the subjects table. It selects the contents of it with
 * SQL, and send an event with the table.
 */
-function updateTable() {
+function updateSubjectsTable() {
   dataBase.all("SELECT * FROM Materias;",
   function (err, table) {
     if (err) {

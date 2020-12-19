@@ -60,13 +60,15 @@ ipcMain.on("NEW", (event, value) => {
   });
 
   workSpaceWindow.on("close",  () => {
-    workSpaceWindow=null;
+    workSpaceWindow = null;
     welcomeWin.show();
   });
 
   welcomeWin.hide();
 
   processor.send("NEW", tempDir);
+
+  welcomeWin.send("UPDATE-SUBJECTS");
 });
 
 // This event get the event when the user wants to load an existing database.

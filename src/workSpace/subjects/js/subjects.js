@@ -19,15 +19,13 @@
 var table = document.getElementById("DATABASE-TABLE");
 var obj;
 
-// Add a event to add a new subject with the ubtton in the tool bar.
-document.getElementById("NEW-DB-SUBJECT").addEventListener("click", (event) => {
-  ipcRenderer.send("NEW-DB-SUBJECT", null);
-});
+// Activate subject tab tools.
+var subjecTools = ["NEW-DB-SUBJECT", "REFRESH-SUBJECT"];
+activateButtons(subjecTools);
+
 
 // Event to update the table whenever is necesary.
 ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
-  console.log("Update");
-
   // Fill the table headers.
   tableContent = "<thead class=\"palette-wet-asphalt text-light\">" +
   "<tr>" +

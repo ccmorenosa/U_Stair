@@ -47,6 +47,6 @@ body, html {
 /* Special buttons */
 
 .delete-button {
-  width: 18px;
   padding: 2px;
+  width: 18px;
 }

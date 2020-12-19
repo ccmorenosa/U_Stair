@@ -25,9 +25,9 @@ const url = require("url");
 ipcMain.on("FILE-SAVE", (event, value) => {
   if (fileName == "") {
     dialog.showSaveDialog({
-      title: "Abrir malla",
+      title: "Guardar malla",
       filters: [
-        {name: "Malla", extensions: ["msh"]}
+        {name: "Malla", extensions: ["umsh"]}
       ],
       propertries: [
         "createDirectory",
@@ -36,6 +36,11 @@ ipcMain.on("FILE-SAVE", (event, value) => {
     }).then(result => {
       if(!result.canceled) {
         fileName = result.filePath;
+
+        if (fileName.substring(fileName.length-5) != ".umsh") {
+          fileName += ".umsh";
+        }
+
         processor.send("FILE-SAVE", [tempDir, fileName]);
       }
     }).catch(err => {
@@ -81,6 +86,11 @@ ipcMain.on("DELETE-DB-SUBJECT", (event, value) => {
 ipcMain.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
   formWindow.close();
   processor.send("NEW-DB-SUBJECT-CREATED", value);
+});
+
+// This event will update the database in the table of the subject database.
+ipcMain.on("REFRESH-SUBJECT", (event, value) => {
+  processor.send("REFRESH-SUBJECT", value);
 });
 
 // This event will update the database in the table of the subject database.

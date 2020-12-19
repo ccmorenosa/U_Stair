@@ -23,21 +23,21 @@ const url = require("url");
 const fs = require("fs");
 
 // Declare all windows.
-global.welcomeWin;
-global.workSpaceWindow;
-global.formWindow;
-global.processor;
+global.welcomeWin = null;
+global.workSpaceWindow = null;
+global.formWindow = null;
+global.processor = null;
 
 // Declare important dirs.
-global.tempDir;
+global.tempDir = app.getPath("temp");
 global.srcPath = path.join(app.getAppPath(),"src");
 
 // File name
-var fileName = "";
+global.fileName = "";
 
 require("./js/main_home");
 require("./workSpace/js/main_workSpace");
-require("./workSpace/subjects/js/main_worksubjects");
+require("./workSpace/subjects/js/main_subjects");
 
 /**
 * This function creates the main window, that will be shown in the middle of the
@@ -81,7 +81,6 @@ function createWindow () {
   }));
 
   // Define temporal dir.
-  tempDir = app.getPath("temp");
   fs.mkdir(path.join(tempDir, "/u_stair"), { recursive: true },
   (err) => {
     if (err) {
