@@ -29,15 +29,15 @@ ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
   // Fill the table headers.
   tableContent = "<thead class=\"palette-wet-asphalt text-light\">" +
   "<tr>" +
-  "<th scope=\"col\">Codigo</th>" +
-  "<th scope=\"col\">Nombre</th>" +
-  "<th scope=\"col\">Créditos</th>" +
-  "<th scope=\"col\">Universidad</th>" +
-  "<th scope=\"col\">Sede</th>" +
-  "<th scope=\"col\">Facultad</th>" +
-  "<th scope=\"col\">Departamento</th>" +
-  "<th scope=\"col\">Programa</th>" +
-  "<th scope=\"col\">Borrar</th>" +
+  "<th class=\"py-1\" scope=\"col\">Codigo</th>" +
+  "<th class=\"py-1\" scope=\"col\">Nombre</th>" +
+  "<th class=\"py-1\" scope=\"col\">Créditos</th>" +
+  "<th class=\"py-1\" scope=\"col\">Universidad</th>" +
+  "<th class=\"py-1\" scope=\"col\">Sede</th>" +
+  "<th class=\"py-1\" scope=\"col\">Facultad</th>" +
+  "<th class=\"py-1\" scope=\"col\">Departamento</th>" +
+  "<th class=\"py-1\" scope=\"col\">Programa</th>" +
+  "<th class=\"py-1\" scope=\"col\">Borrar</th>" +
   "</tr>" +
   "</thead>";
 
@@ -45,15 +45,15 @@ ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
   for (var row in value) {
     var entries = value[row];
     tableContent += "<tr>\n" +
-    "<td>" + entries.Codigo + "</td>\n" +
-    "<td>" + entries.Nombre + "</td>\n" +
-    "<td>" + entries.Creditos + "</td>\n" +
-    "<td>" + entries.Universidad + "</td>\n" +
-    "<td>" + entries.Sede + "</td>\n" +
-    "<td>" + entries.Facultad + "</td>\n" +
-    "<td>" + entries.Departamento + "</td>\n" +
-    "<td>" + entries.Programa + "</td>\n" +
-    "<td>" +
+    "<td class=\"py-1\">" + entries.Codigo + "</td>\n" +
+    "<td class=\"py-1\">" + entries.Nombre + "</td>\n" +
+    "<td class=\"py-1\">" + entries.Creditos + "</td>\n" +
+    "<td class=\"py-1\">" + entries.Universidad + "</td>\n" +
+    "<td class=\"py-1\">" + entries.Sede + "</td>\n" +
+    "<td class=\"py-1\">" + entries.Facultad + "</td>\n" +
+    "<td class=\"py-1\">" + entries.Departamento + "</td>\n" +
+    "<td class=\"py-1\">" + entries.Programa + "</td>\n" +
+    "<td class=\"py-1\">" +
     "<img src=\"../../assets/delete-icon.svg\" " +
     "class=\"bg-danger delete-row rounded-circle delete-button pointer\"/> " +
     "</td>\n" +

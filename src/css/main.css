@@ -88,6 +88,11 @@
 }
 
 
+.no-flex {
+  flex: 0;
+}
+
+
 /* Cursor */
 
 .pointer {
