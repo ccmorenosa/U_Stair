@@ -37,6 +37,7 @@ var fileName = "";
 
 require("./js/main_home");
 require("./workSpace/js/main_workSpace");
+require("./workSpace/subjects/js/main_worksubjects");
 
 /**
 * This function creates the main window, that will be shown in the middle of the
@@ -121,73 +122,6 @@ if (!gotTheLock) {
   // Create myWindow, load the rest of the app, etc...
   app.whenReady().then(createWindow);
 }
-
-// This event save the database.
-ipcMain.on("FILE-SAVE", (event, value) => {
-  if (fileName == "") {
-    dialog.showSaveDialog({
-      title: "Abrir malla",
-      filters: [
-        {name: "Malla", extensions: ["msh"]}
-      ],
-      propertries: [
-        "createDirectory",
-        "showOverwriteConfirmation"
-      ]
-    }).then(result => {
-      if(!result.canceled) {
-        fileName = result.filePath;
-        processor.send("FILE-SAVE", [tempDir, fileName]);
-      }
-    }).catch(err => {
-      console.log(err);
-    });
-  } else {
-    processor.send("FILE-SAVE", [tempDir, fileName]);
-  }
-});
-
-// This event create a new window to add a new subject to the database.
-ipcMain.on("NEW-DB-SUBJECT", (event, value) => {
-  workSpaceWindow.send("status", "Nueva materia");
-
-  formWindow = new BrowserWindow({
-    width: 300,
-    height: 400,
-    resizable: false,
-    webPreferences: {
-      nodeIntegration: true
-    }
-  });
-
-  // and load the index.html of the app.
-  formWindow.loadURL(url.format({
-    pathname: path.join(srcPath, "forms/newDbSubject/index.html"),
-    protocol: "file:",
-    slashes: true
-  }));
-
-  formWindow.on("close",  () => {
-    formWindow=null;
-    workSpaceWindow.send("status", "Listo");
-  });
-});
-
-// This event delete a subject in the database.
-ipcMain.on("DELETE-DB-SUBJECT", (event, value) => {
-  processor.send("DELETE-DB-SUBJECT", value);
-});
-
-// This event will create a new subject to the database.
-ipcMain.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
-  formWindow.close();
-  processor.send("NEW-DB-SUBJECT-CREATED", value);
-});
-
-// This event will update the database in the table of the subject database.
-ipcMain.on("UPDATE-SUBJECTS", (event, value) => {
-  workSpaceWindow.send("UPDATE-SUBJECTS", value);
-});
 
 // This event update the status bar.
 ipcMain.on("status", (event, value) => {

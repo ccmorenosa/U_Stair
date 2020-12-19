@@ -40,7 +40,7 @@ ipcMain.on("NEW", (event, value) => {
 
   // and load the index.html of the workSpaceWindow.
   workSpaceWindow.loadURL(url.format({
-    pathname: path.join(srcPath, "workSpace/Subjects/index.html"),
+    pathname: path.join(srcPath, "workSpace/subjects/index.html"),
     protocol: "file:",
     slashes: true
   }));
