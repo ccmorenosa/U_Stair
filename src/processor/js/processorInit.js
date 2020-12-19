@@ -31,11 +31,11 @@ ipcRenderer.on("NEW", (event, value) => {
   ipcRenderer.send("status", "Cargando base de datos");
 
   // Create the database in the temporal directory and connect.
-  dataBase = new sqlite.Database(
-    path.join(value, "u_stair/temp.db"),
+  dataBase = new sqlite.Database(path.join(value, "u_stair/temp.db"),
     (err) => {
       if (err) {
         return console.error(err.message);
+        return console.error(path.join(value, "u_stair/temp.db"));
       } else {
         console.log("Connected to database");
       }
@@ -72,67 +72,3 @@ ipcRenderer.on("FILE-SAVE", (event, value) => {
 
   ipcRenderer.send("status", "Listo");
 });
-
-// Event to create a new row in the subjects table.
-ipcRenderer.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
-  ipcRenderer.send("status", "Agregando materia");
-
-  // Add the new row, and update the table if the window if it success.
-  dataBase.run(
-    "INSERT INTO Materias " +
-    "(Codigo, Nombre, Creditos, Universidad, Sede," +
-    " Facultad, Departamento, Programa) " +
-    "VALUES (".concat(value) + ");",
-    function (err) {
-      if (err) {
-        return console.error(err.message);
-      } else{
-        updateSubjectsTable();
-      }
-    }
-  );
-
-  ipcRenderer.send("status", "Listo");
-});
-
-// This event delete a subject in the database.
-ipcRenderer.on("DELETE-DB-SUBJECT", (event, value) => {
-  ipcRenderer.send("Eliminando materia", "listo");
-
-  dataBase.run(
-    "DELETE FROM Materias WHERE Codigo=\"".concat(value) + "\";",
-    function (err) {
-      if (err) {
-        return console.error(err.message);
-      } else{
-        updateSubjectsTable();
-      }
-    }
-  );
-
-  ipcRenderer.send("status", "Listo");
-});
-
-// This event delete a subject in the database.
-ipcRenderer.on("REFRESH-SUBJECT", (event, value) => {
-  ipcRenderer.send("Actualizando tabla de materias", "listo");
-
-  updateSubjectsTable();
-
-  ipcRenderer.send("status", "Listo");
-});
-
-/**
-* This function update the subjects table. It selects the contents of it with
-* SQL, and send an event with the table.
-*/
-function updateSubjectsTable() {
-  dataBase.all("SELECT * FROM Materias;",
-  function (err, table) {
-    if (err) {
-      return console.error(err.message);
-    } else {
-      ipcRenderer.send("UPDATE-SUBJECTS", table);
-    }
-  });
-}

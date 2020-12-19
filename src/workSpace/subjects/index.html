@@ -145,10 +145,10 @@
 
       </div>
 
-      <form class="overflow-y-scroll pt-3 flex">
+      <form id="filter" class="overflow-y-scroll pt-3 flex">
 
         <div class="form-group ml-3 mb-3">
-          <label for="materia">Materia o código</label>
+          <label for="materia">Nombre o código</label>
           <input id="materia" class="form-control w-75" type="search">
         </div>
 
@@ -163,13 +163,13 @@
         </div>
 
         <div class="form-group ml-3 mb-3">
-          <label for="Facultad">Facultad</label>
-          <input id="Facultad" class="form-control w-75" type="search">
+          <label for="facultad">Facultad</label>
+          <input id="facultad" class="form-control w-75" type="search">
         </div>
 
         <div class="form-group ml-3 mb-3">
           <label for="programa">Programa</label>
-          <select id="Programa" class="form-control w-75">
+          <select id="programa" class="form-control w-75">
             <option value="Pregrado">Pregrado</option>
             <option value="Postgrado">Postgrado</option>
           </select>
@@ -180,8 +180,9 @@
           <input id="creditos" class="form-control w-25" type="number" min="1" max="50">
         </div>
 
-        <button class="btn btn-success ml-3 my-4" type="submit">Buscar</button>
       </form>
+      <button class="btn btn-success ml-3 my-4 w-50 text-medium"
+      onclick="applyFilter()">Buscar</button>
 
 
     </div>
@@ -194,6 +195,7 @@
   <script src="../../js/buttons.js"></script>
   <script src="../js/workSpace.js"></script>
   <script src="js/subjects.js"></script>
+  <script src="js/filter.js"></script>
 </body>
 
 </html>

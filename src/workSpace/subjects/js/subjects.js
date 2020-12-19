@@ -67,7 +67,6 @@ ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
   activeDeleteButtons();
 });
 
-
 /**
 * This function add an event to delete a row of the table whenever the delete
 * button is clicked.

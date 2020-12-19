@@ -35,9 +35,9 @@ global.srcPath = path.join(app.getAppPath(),"src");
 // File name
 global.fileName = "";
 
-require("./js/main_home");
-require("./workSpace/js/main_workSpace");
-require("./workSpace/subjects/js/main_subjects");
+require("./js/mainHome");
+require("./workSpace/js/mainWorkSpace");
+require("./workSpace/subjects/js/mainSubjects");
 
 /**
 * This function creates the main window, that will be shown in the middle of the
@@ -89,8 +89,8 @@ function createWindow () {
   });
 
   // Open the DevTools.
-  welcomeWin.webContents.openDevTools();
-  // processor.webContents.openDevTools();
+  // welcomeWin.webContents.openDevTools();
+  processor.webContents.openDevTools();
 
   welcomeWin.on("close",  () => {
     fs.rmdir(path.join(tempDir, "/u_stair"), { recursive: true }, (err) => {

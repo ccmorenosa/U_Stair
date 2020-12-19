@@ -88,6 +88,11 @@ ipcMain.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
   processor.send("NEW-DB-SUBJECT-CREATED", value);
 });
 
+ipcMain.on("SEARCH-SUBJECT", (event, value) => {
+  console.log(value);
+  processor.send("SEARCH-SUBJECT", value);
+});
+
 // This event will update the database in the table of the subject database.
 ipcMain.on("REFRESH-SUBJECT", (event, value) => {
   processor.send("REFRESH-SUBJECT", value);
