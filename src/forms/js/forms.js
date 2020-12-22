@@ -16,29 +16,11 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-var form = document.getElementById("new-db-subject-form");
+const {ipcRenderer} = require("electron");
 
 /**
-* This function submit the form to create a new subject in the database.
+* This function close the form.
 */
-function newDbSubject() {
-
-  console.log("asdghfasdjfg");
-
-  var data = [
-    form.children[0].children["Codigo"].value,
-    form.children[1].children["Materia"].value,
-    form.children[7].children["Creditos"].value,
-    form.children[3].children["Universidad"].value,
-    form.children[4].children["Sede"].value,
-    form.children[5].children["Facultad"].value,
-    form.children[6].children["Departamento"].value,
-    form.children[2].children["Programa"].value
-  ];
-
-  data = data.map((value) => {
-    return "\"" + value + "\"";
-  });
-
-  ipcRenderer.send("NEW-DB-SUBJECT-CREATED", data);
+function closeForm() {
+  ipcRenderer.send("CLOSE-FORM");
 }

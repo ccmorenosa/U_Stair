@@ -23,6 +23,12 @@ const url = require("url");
 
 // This event create a new window to add a new subject to the database.
 ipcMain.on("NEW-DB-SUBJECT", (event, value) => {
+  if (formOpened) {
+    return;
+  }
+
+  formOpened = true;
+
   workSpaceWindow.send("status", "Nueva materia");
 
   formWindow = new BrowserWindow({
@@ -35,7 +41,7 @@ ipcMain.on("NEW-DB-SUBJECT", (event, value) => {
     }
   });
 
-  // and load the index.html of the app.
+  // and load the index.html of the form.
   formWindow.loadURL(url.format({
     pathname: path.join(srcPath, "forms/newDbSubject/index.html"),
     protocol: "file:",
@@ -43,7 +49,8 @@ ipcMain.on("NEW-DB-SUBJECT", (event, value) => {
   }));
 
   formWindow.on("close",  () => {
-    formWindow=null;
+    formOpened = false;
+    formWindow = null;
     workSpaceWindow.send("status", "Listo");
   });
 });
@@ -60,7 +67,6 @@ ipcMain.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
 });
 
 ipcMain.on("SEARCH-SUBJECT", (event, value) => {
-  console.log(value);
   processor.send("SEARCH-SUBJECT", value);
 });
 

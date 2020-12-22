@@ -31,9 +31,9 @@
   <link rel="stylesheet" href="../../../node_modules/designmodo-flat-ui/dist/css/flat-ui.min.css">
 </head>
 
-<body class="d-flex flex-column bg-primary">
+<body class="d-flex flex-column">
   <!-- Draggable bar -->
-  <div class="draggable palette-midnight-blue text-center">
+  <div class="draggable palette-midnight-blue text-light text-center">
     Nueva materia
 
     <div class="btn-group float-right h-100">
@@ -46,7 +46,7 @@
   </div>
 
   <!-- Begining of the form -->
-  <form id="new-db-subject-form" class="w-100 flex overflow-y-scroll" onsubmit="newDbSubject();">
+  <form id="new-db-subject-form" class="w-100 flex overflow-y-scroll border border-primary" onsubmit="newDbSubject()">
 
     <div class="form-group px-3 mb-2">
       <!-- Code of the subject -->
@@ -99,14 +99,13 @@
       <input type="number" name="Creditos" class="form-control w-100" min="1" max="100" required/>
     </div>
 
-    <div class="form-group px-3 mt-3 d-block">
-      <!-- Submit button -->
-      <input class="btn btn-success px-1 mb-4 w-50 text-medium"
-      type="submit" name="Aceptar" value="Aceptar"/>
-    </div>
+    <input class="btn btn-success mx-3 px-1 my-4 w-50 text-medium"
+    type="submit" name="Aceptar" value="Aceptar"/>
+
   </form>
 
   <!-- Submit function -->
+  <script src="../js/forms.js"></script>
   <script src="js/newDbSubject.js"></script>
 </body>
 

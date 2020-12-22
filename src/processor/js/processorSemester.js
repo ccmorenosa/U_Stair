@@ -22,7 +22,7 @@ var semestersCount = 1;
 ipcRenderer.on("GET-SEMESTERS", (event, value) => {
   ipcRenderer.send("status", "Actualizando tabla de semestres");
 
-  updateSubjectsTable();
+  updateSemesterTable();
 
   ipcRenderer.send("status", "Listo");
 });
@@ -31,7 +31,7 @@ ipcRenderer.on("GET-SEMESTERS", (event, value) => {
 * This function update the semesters table. It selects the contents of it with
 * SQL, and send an event with the table.
 */
-function updateSubjectsTable() {
+function updateSemesterTable() {
   dataBase.all("SELECT * FROM Semestre;",
   function (err, table) {
     if (err) {
@@ -60,11 +60,10 @@ ipcRenderer.on("NEW-SEMESTER", (event, value) => {
 
   ipcRenderer.send("status", "Actualizando tabla de semestres");
 
-  updateSubjectsTable();
+  updateSemesterTable();
 
   ipcRenderer.send("status", "Listo");
 });
-
 
 // This event delete a semester in the database.
 ipcRenderer.on("DELETE-SEMESTER", (event, value) => {
@@ -88,7 +87,22 @@ ipcRenderer.on("DELETE-SEMESTER", (event, value) => {
 
   ipcRenderer.send("status", "Actualizando tabla de semestres");
 
-  updateSubjectsTable();
+  updateSemesterTable();
 
   ipcRenderer.send("status", "Listo");
+});
+
+ipcRenderer.on("FIND-SUBJECT", (event, value) => {
+  search = "SELECT Codigo, Nombre FROM Materias WHERE " +
+  "(Nombre LIKE \"%" + value +
+  "%\" OR Codigo LIKE \"%" + value + "%\") ";
+
+  dataBase.all(search,
+  function (err, table) {
+    if (err) {
+      return console.error(err.message);
+    } else {
+      ipcRenderer.send("UPDATE-LEFT-TABLE", table);
+    }
+  });
 });

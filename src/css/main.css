@@ -16,6 +16,12 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+body, html {
+  height: 100%;
+  overflow: hidden;
+}
+
+
 /* Draggable configuration*/
 
 .draggable {
@@ -114,4 +120,38 @@
 
 .d-inline-table {
   display: inline-table;
+}
+
+
+/* Forms */
+
+.form-control {
+  height: 35px !important;
+  padding: 0 12px !important;
+}
+
+
+/* Scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+  height: 7px;
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ecf0f1;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #27ae60;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #2ecc71;
 }

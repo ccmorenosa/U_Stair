@@ -44,6 +44,7 @@ ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
   // Fill the table content.
   for (var row in value) {
     var entries = value[row];
+
     tableContent += "<tr>\n" +
     "<td class=\"py-1\">" + entries.Codigo + "</td>\n" +
     "<td class=\"py-1\">" + entries.Nombre + "</td>\n" +
@@ -83,3 +84,5 @@ function activeDeleteButtons() {
     });
   }
 }
+
+ipcRenderer.send("REFRESH-SUBJECT");

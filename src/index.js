@@ -18,9 +18,9 @@
 
 const electron = require("electron");
 const {app, BrowserWindow, ipcMain, dialog} = electron;
+const fs = require("fs-extra");
 const path = require("path");
 const url = require("url");
-const fs = require("fs");
 
 // Declare all windows.
 global.welcomeWin = null;
@@ -34,6 +34,9 @@ global.srcPath = path.join(app.getAppPath(),"src");
 
 // File name
 global.fileName = "";
+
+// Bool for opened forms.
+global.formOpened = false;
 
 require("./js/mainHome");
 require("./forms/js/mainForms");

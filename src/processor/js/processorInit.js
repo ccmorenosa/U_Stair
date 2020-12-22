@@ -19,7 +19,7 @@
 const {ipcRenderer} = require("electron");
 const sqlite = require("sqlite3");
 const path = require("path");
-const fs = require("fs");
+const fs = require("fs-extra");
 
 // Variable of the subject database.
 var dataBase;

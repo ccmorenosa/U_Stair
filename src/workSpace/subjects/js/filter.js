@@ -24,6 +24,5 @@ function applyFilter() {
   for (var input of filter.children) {
     filterParams[input.children[1].id] = input.children[1].value;
   }
-  console.log(filterParams);
   ipcRenderer.send("SEARCH-SUBJECT", filterParams);
 }

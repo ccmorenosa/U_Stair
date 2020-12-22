@@ -33,7 +33,7 @@ ipcRenderer.on("UPDATE-SEMESTERS", (event, value) => {
   var semesterHTML = "";
 
   for (var semester of semesters) {
-    semesterHTML += "<div id=\"" + semester.Number +
+    semesterHTML += "<div id=\"" + semester.Numero +
     "\" class=\"h-100 w-10 m-0 p-0 d-inline-table\">" +
     "<p class=\"palette-wet-asphalt w-100 text-light text-medium py-1 m-0 text-center\">" +
     semester.Numero + "</p>";
@@ -50,14 +50,36 @@ ipcRenderer.on("UPDATE-SEMESTERS", (event, value) => {
     }
 
     semesterHTML += "<div class=\"w-100 text-center\">" +
-    "<button class=\"btn btn-primary btn-sm rounded-0 p-1\">" +
-    "<img class=\"NEW-SUBJECT tool\" src=\"../../assets/plus-icon.svg\">" +
-    "</button>" +
+    "<img class=\"NEW-SUBJECT btn btn-primary btn-sm rounded-0 p-1 tool\"" +
+    " src=\"../../assets/plus-icon.svg\">" +
     "</div>" +
     "</div>";
 
   }
 
+  // Update table.
   semestersTable.innerHTML = semesterHTML;
 
+  // Activate buttons.
+  activeAddSubjectButtons();
 });
+
+/**
+* This function add an event to add a subject in the semester whenever the add
+* button is clicked.
+*/
+function activeAddSubjectButtons() {
+  // Get all delete buttons of the table.
+  var addSubjectButtons = document.getElementsByClassName("NEW-SUBJECT");
+
+  // Add an event to the delete buttons.
+  for (var button of addSubjectButtons) {
+    button.addEventListener("click", (event) => {
+      var semester = event.target.parentElement.parentElement.id;
+      ipcRenderer.send(
+        "NEW-SEMESTER-SUBJECT",
+        [semester, semesters[semester - 1].Materias]
+      );
+    });
+  }
+}

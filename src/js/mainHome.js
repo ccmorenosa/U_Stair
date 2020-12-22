@@ -20,6 +20,7 @@ const electron = require("electron");
 const {app, BrowserWindow, ipcMain, dialog} = electron;
 const path = require("path");
 const url = require("url");
+const fs = require("fs-extra");
 
 // This event get the event when the user wants to create a new database.
 ipcMain.on("NEW", (event, value) => {
@@ -60,6 +61,13 @@ ipcMain.on("NEW", (event, value) => {
   });
 
   workSpaceWindow.on("close",  () => {
+    fs.removeSync(path.join(tempDir, "u_stair/temp.db"), {}, (err) => {
+      if (err) {
+        console.error(err);
+      }
+      console.log("suc");
+    });
+
     workSpaceWindow = null;
     welcomeWin.show();
   });
