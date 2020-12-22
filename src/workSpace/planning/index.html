@@ -22,13 +22,14 @@
 <head>
   <meta charset="UTF-8">
   <title>¡Bienvenido!</title>
+
   <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="../../css/main.css">
   <link rel="stylesheet" href="../css/workSpace.css">
-  <link rel="stylesheet" href="css/subjects.css">
+  <!-- <link rel="stylesheet" href="css/Subjects.css"> -->
   <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../../node_modules/designmodo-flat-ui/dist/css/flat-ui.min.css">
 </head>
@@ -60,12 +61,11 @@
   <!-- Tabs bar -->
   <ul class="nav nav-tabs user-select-none palette-clouds text-medium">
     <li class="nav-item">
-      <a class="nav-link border-0 rounded-0 active bg-primary text-light">Grupo de Materias</a>
+      <a href="../subjects/index.html" class="nav-link border-0 rounded-0">Grupo de Materias</a>
     </li>
 
     <li class="nav-item">
-      <a href="../planning/index.html"
-      class="nav-link border-0 rounded-0">Planeación</a>
+      <a class="nav-link border-0 rounded-0 active bg-primary text-light">Planeación</a>
     </li>
 
     <li class="nav-item">
@@ -82,7 +82,7 @@
     <div class="btn-group mr-2">
 
       <button id="FILE-NEW" class="btn btn-primary btn-sm rounded-0 p-1">
-        <img  src="../../assets/new-icon.svg" class="tool">
+        <img src="../../assets/new-icon.svg" class="tool">
       </button>
 
       <button id="FILE-OPEN" class="btn btn-primary btn-sm rounded-0 p-1">
@@ -98,96 +98,14 @@
     <div class="btn-group">
 
       <button class="btn btn-primary btn-sm rounded-0 p-1">
-        <img id="NEW-DB-SUBJECT" src="../../assets/plus-icon.svg" class="tool">
-      </button>
-
-      <button class="btn btn-primary btn-sm rounded-0 p-1">
-        <img id="REFRESH-SUBJECT" src="../../assets/refresh-icon.svg" class="tool">
+        <img id="NEW-SEMESTER" src="../../assets/plus-icon.svg" class="tool">
       </button>
 
     </div>
   </div>
 
-  <!-- Work space of the subject table -->
-  <div class="w-100 flex overflow-auto">
-
-    <!-- Table with all the subjects in the database -->
-    <div class="w-75 h-100 p-0 m-0 float-left border-right
-    overflow-x-scroll bg-white">
-
-      <table id="DATABASE-TABLE" class="w-100 text-center text-medium">
-
-        <thead class="palette-wet-asphalt text-light">
-          <tr>
-            <th class="py-1" scope="col">Codigo</th>
-            <th class="py-1" scope="col">Nombre</th>
-            <th class="py-1" scope="col">Créditos</th>
-            <th class="py-1" scope="col">Universidad</th>
-            <th class="py-1" scope="col">Sede</th>
-            <th class="py-1" scope="col">Facultad</th>
-            <th class="py-1" scope="col">Departamento</th>
-            <th class="py-1" scope="col">Programa</th>
-            <th class="py-1" scope="col">Borrar</th>
-          </tr>
-        </thead>
-
-      </table>
-
-    </div>
-
-    <!-- Filter of the table -->
-    <div class="w-25 h-100 d-flex flex-column p-0 m-0 float-left bg-white no-flex">
-
-      <div class="palette-wet-asphalt">
-
-        <p class="text-light text-medium py-1 m-0 text-center">
-          Filtro
-        </p>
-
-      </div>
-
-      <form id="filter" class="overflow-y-scroll pt-3 flex">
-
-        <div class="form-group ml-3 mb-3">
-          <label for="materia">Nombre o código</label>
-          <input id="materia" class="form-control w-75" type="search">
-        </div>
-
-        <div class="form-group ml-3 mb-3">
-          <label for="universidad">Universidad</label>
-          <input id="universidad" class="form-control w-75" type="search">
-        </div>
-
-        <div class="form-group ml-3 mb-3">
-          <label for="sede">Sede</label>
-          <input id="sede" class="form-control w-75" type="search">
-        </div>
-
-        <div class="form-group ml-3 mb-3">
-          <label for="facultad">Facultad</label>
-          <input id="facultad" class="form-control w-75" type="search">
-        </div>
-
-        <div class="form-group ml-3 mb-3">
-          <label for="programa">Programa</label>
-          <select id="programa" class="form-control w-75">
-            <option value="Pregrado">Pregrado</option>
-            <option value="Postgrado">Postgrado</option>
-          </select>
-        </div>
-
-        <div class="form-group ml-3 mb-3">
-          <label for="creditos">Créditos</label>
-          <input id="creditos" class="form-control w-25" type="number" min="1" max="50">
-        </div>
-
-      </form>
-      <button class="btn btn-success ml-3 my-4 w-50 text-medium"
-      onclick="applyFilter()">Buscar</button>
-
-
-    </div>
-  </div>
+  <!-- Work space of the semesters table -->
+  <div id="semesters-table" class="w-100 flex overflow-y-scroll overflow-x-scroll d-flex"></div>
 
   <div id="status-bar" class="status-bar palette-peter-river text-small
   text-light pl-2">Idle</div>
@@ -195,8 +113,7 @@
   <!-- Script to handle the events -->
   <script src="../../js/buttons.js"></script>
   <script src="../js/workSpace.js"></script>
-  <script src="js/subjects.js"></script>
-  <script src="js/filter.js"></script>
+  <script src="js/planning.js"></script>
 </body>
 
 </html>

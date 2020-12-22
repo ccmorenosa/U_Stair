@@ -38,6 +38,7 @@ global.fileName = "";
 require("./js/mainHome");
 require("./workSpace/js/mainWorkSpace");
 require("./workSpace/subjects/js/mainSubjects");
+require("./workSpace/planning/js/mainSemester");
 
 /**
 * This function creates the main window, that will be shown in the middle of the

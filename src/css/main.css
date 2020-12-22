@@ -76,6 +76,10 @@
   overflow-x: scroll;
 }
 
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+
 .overflow-y-scroll {
   overflow-y: scroll;
 }
@@ -97,4 +101,17 @@
 
 .pointer {
   cursor: pointer;
+}
+
+
+/* Widths */
+
+.w-10 {
+  width: 10% !important;
+}
+
+/* Displays */
+
+.d-inline-table {
+  display: inline-table;
 }

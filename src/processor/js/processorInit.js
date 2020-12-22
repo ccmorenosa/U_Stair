@@ -35,7 +35,6 @@ ipcRenderer.on("NEW", (event, value) => {
     (err) => {
       if (err) {
         return console.error(err.message);
-        return console.error(path.join(value, "u_stair/temp.db"));
       } else {
         console.log("Connected to database");
       }
@@ -46,12 +45,34 @@ ipcRenderer.on("NEW", (event, value) => {
 
   // Create the subjects table and update table if it success.
   dataBase.run(
-    fs.readFileSync(path.join(__dirname,"../sql/Subjects.sql")).toString(),
+    fs.readFileSync(path.join(__dirname,"../sql/subjects.sql")).toString(),
     (err) => {
       if (err) {
         return console.error(err.message);
       } else {
         updateSubjectsTable();
+      }
+    }
+  );
+
+  // Create the subjects table and update table if it success.
+  dataBase.run(
+    fs.readFileSync(path.join(__dirname,"../sql/semester.sql")).toString(),
+    (err) => {
+      if (err) {
+        return console.error(err.message);
+      } else {
+
+        dataBase.run(
+          "INSERT INTO Semestre (Numero, Materias) " +
+          "VALUES (1, \'{}\')",
+          (err) => {
+            if (err) {
+              return console.error(err.message);
+            }
+          }
+        );
+
       }
     }
   );
