@@ -36,6 +36,7 @@ global.srcPath = path.join(app.getAppPath(),"src");
 global.fileName = "";
 
 require("./js/mainHome");
+require("./forms/js/mainForms");
 require("./workSpace/js/mainWorkSpace");
 require("./workSpace/subjects/js/mainSubjects");
 require("./workSpace/planning/js/mainSemester");

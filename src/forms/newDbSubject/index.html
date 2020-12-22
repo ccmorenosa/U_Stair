@@ -26,50 +26,84 @@
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="../../css/home.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../node_modules/designmodo-flat-ui/dist/css/flat-ui.min.css">
 </head>
 
-<body>
+<body class="d-flex flex-column bg-primary">
+  <!-- Draggable bar -->
+  <div class="draggable palette-midnight-blue text-center">
+    Nueva materia
+
+    <div class="btn-group float-right h-100">
+      <!-- Close button -->
+      <button class="btn btn-danger btn-sm rounded-0 p-1" onclick="closeForm()">
+        <span class="fui-cross"></span>
+      </button>
+
+    </div>
+  </div>
+
   <!-- Begining of the form -->
-  <form id="new-db-subject-form" onsubmit="newDbSubject();">
+  <form id="new-db-subject-form" class="w-100 flex overflow-y-scroll" onsubmit="newDbSubject();">
 
-    <!-- Code of the subject -->
-    <div class="form-label">Código</div>
-    <input type="text" name="Codigo" required/>
+    <div class="form-group px-3 mb-2">
+      <!-- Code of the subject -->
+      <div class="small">Código</div>
+      <input type="text" name="Codigo" class="form-control w-100" required/>
+    </div>
 
-    <!-- Name of the subject -->
-    <div class="form-label">Materia</div>
-    <input type="text" name="Materia" required/>
+    <div class="form-group px-3 mb-2">
+      <!-- Name of the subject -->
+      <div class="small">Materia</div>
+      <input type="text" name="Materia" class="form-control w-100" required/>
+    </div>
 
-    <!-- Program (Undergraduate or Postgraduate) -->
-    <div class="form-label">Programa</div>
-    <select class="" name="Programa">
-      <option value="Pregrado">Pregrado</option>
-      <option value="Postgrado">Postgrado</option>
-    </select>
+    <div class="form-group px-3 mb-2">
+      <!-- Program (Undergraduate or Postgraduate) -->
+      <div class="small">Programa</div>
+      <select name="Programa" class="form-control w-100">
+        <option value="Pregrado">Pregrado</option>
+        <option value="Postgrado">Postgrado</option>
+      </select>
+    </div>
 
-    <!-- University -->
-    <div class="form-label">Universidad</div>
-    <input type="text" name="Universidad" required/>
+    <div class="form-group px-3 mb-2">
+      <!-- University -->
+      <div class="small">Universidad</div>
+      <input type="text" name="Universidad" class="form-control w-100" required/>
+    </div>
 
-    <!-- Campus -->
-    <div class="form-label">Sede</div>
-    <input type="text" name="Sede" required/>
+    <div class="form-group px-3 mb-2">
+      <!-- Campus -->
+      <div class="small">Sede</div>
+      <input type="text" name="Sede" class="form-control w-100" required/>
+    </div>
 
-    <!-- School / Area -->
-    <div class="form-label">Facultad</div>
-    <input type="text" name="Facultad" required/>
+    <div class="form-group px-3 mb-2">
+      <!-- School / Area -->
+      <div class="small">Facultad</div>
+      <input type="text" name="Facultad" class="form-control w-100" required/>
+    </div>
 
-    <!-- Department -->
-    <div class="form-label">Departamento</div>
-    <input type="text" name="Departamento" required/>
+    <div class="form-group px-3 mb-2">
+      <!-- Department -->
+      <div class="small">Departamento</div>
+      <input type="text" name="Departamento" class="form-control w-100" required/>
+    </div>
 
-    <!-- Number of Credits -->
-    <div class="form-label">Creditos</div>
-    <input type="number" name="Creditos" min="1" max="100" required/>
+    <div class="form-group px-3 mb-2">
+      <!-- Number of Credits -->
+      <div class="small">Creditos</div>
+      <input type="number" name="Creditos" class="form-control w-100" min="1" max="100" required/>
+    </div>
 
-    <!-- Submit button -->
-    <input type="submit" name="Aceptar" value="Aceptar"/>
+    <div class="form-group px-3 mt-3 d-block">
+      <!-- Submit button -->
+      <input class="btn btn-success px-1 mb-4 w-50 text-medium"
+      type="submit" name="Aceptar" value="Aceptar"/>
+    </div>
   </form>
 
   <!-- Submit function -->

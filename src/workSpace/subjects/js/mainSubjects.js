@@ -26,9 +26,10 @@ ipcMain.on("NEW-DB-SUBJECT", (event, value) => {
   workSpaceWindow.send("status", "Nueva materia");
 
   formWindow = new BrowserWindow({
-    width: 300,
-    height: 400,
+    width: 350,
+    height: 600,
     resizable: false,
+    frame: false,
     webPreferences: {
       nodeIntegration: true
     }

@@ -41,3 +41,10 @@ function newDbSubject() {
 
   ipcRenderer.send("NEW-DB-SUBJECT-CREATED", data);
 }
+
+/**
+* This function close the form.
+*/
+function closeForm() {
+  ipcRenderer.send("CLOSE-FORM");
+}
