@@ -65,7 +65,7 @@ ipcRenderer.on("NEW", (event, value) => {
 
         dataBase.run(
           "INSERT INTO Semestre (Numero, Materias) " +
-          "VALUES (1, \'{}\')",
+          "VALUES (1, \'{}\');",
           (err) => {
             if (err) {
               return console.error(err.message);

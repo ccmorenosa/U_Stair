@@ -21,36 +21,6 @@ const {app, BrowserWindow, ipcMain, dialog} = electron;
 const path = require("path");
 const url = require("url");
 
-// This event save the database.
-ipcMain.on("FILE-SAVE", (event, value) => {
-  if (fileName == "") {
-    dialog.showSaveDialog({
-      title: "Guardar malla",
-      filters: [
-        {name: "Malla", extensions: ["umsh"]}
-      ],
-      propertries: [
-        "createDirectory",
-        "showOverwriteConfirmation"
-      ]
-    }).then(result => {
-      if(!result.canceled) {
-        fileName = result.filePath;
-
-        if (fileName.substring(fileName.length-5) != ".umsh") {
-          fileName += ".umsh";
-        }
-
-        processor.send("FILE-SAVE", [tempDir, fileName]);
-      }
-    }).catch(err => {
-      console.log(err);
-    });
-  } else {
-    processor.send("FILE-SAVE", [tempDir, fileName]);
-  }
-});
-
 // This event create a new window to add a new subject to the database.
 ipcMain.on("NEW-DB-SUBJECT", (event, value) => {
   workSpaceWindow.send("status", "Nueva materia");

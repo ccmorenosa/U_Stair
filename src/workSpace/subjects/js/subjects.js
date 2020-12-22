@@ -20,8 +20,8 @@ var table = document.getElementById("DATABASE-TABLE");
 var obj;
 
 // Activate subject tab tools.
-var subjecTools = ["NEW-DB-SUBJECT", "REFRESH-SUBJECT"];
-activateButtons(subjecTools);
+var subjectTools = ["NEW-DB-SUBJECT", "REFRESH-SUBJECT"];
+activateButtons(subjectTools);
 
 
 // Event to update the table whenever is necesary.

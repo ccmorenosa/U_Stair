@@ -21,12 +21,22 @@ const {app, BrowserWindow, ipcMain, dialog} = electron;
 const path = require("path");
 const url = require("url");
 
-// This event delete a subject in the database.
+// This event get all the semesters in the database.
 ipcMain.on("GET-SEMESTERS", (event, value) => {
   processor.send("GET-SEMESTERS", value);
 });
 
-// This event will update the database in the table of the subject database.
+// This event will update the table of semesters.
 ipcMain.on("UPDATE-SEMESTERS", (event, value) => {
   workSpaceWindow.send("UPDATE-SEMESTERS", value);
+});
+
+// This event add a semester in the database.
+ipcMain.on("NEW-SEMESTER", (event, value) => {
+  processor.send("NEW-SEMESTER", value);
+});
+
+// This event delete a semester in the database.
+ipcMain.on("DELETE-SEMESTER", (event, value) => {
+  processor.send("DELETE-SEMESTER", value);
 });

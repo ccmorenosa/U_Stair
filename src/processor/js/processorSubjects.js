@@ -43,7 +43,7 @@ ipcRenderer.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
 
 // This event delete a subject in the database.
 ipcRenderer.on("DELETE-DB-SUBJECT", (event, value) => {
-  ipcRenderer.send("Eliminando materia", "listo");
+  ipcRenderer.send("status", "Eliminando materia");
 
   dataBase.run(
     "DELETE FROM Materias WHERE Codigo=\"".concat(value) + "\";",
@@ -61,7 +61,7 @@ ipcRenderer.on("DELETE-DB-SUBJECT", (event, value) => {
 
 // This event delete a subject in the database.
 ipcRenderer.on("SEARCH-SUBJECT", (event, value) => {
-  ipcRenderer.send("Buscando materias", "listo");
+  ipcRenderer.send("status", "Buscando materias");
 
   var search = "SELECT * FROM Materias WHERE ";
   var prev = false;
@@ -118,7 +118,7 @@ ipcRenderer.on("SEARCH-SUBJECT", (event, value) => {
 
 // This event delete a subject in the database.
 ipcRenderer.on("REFRESH-SUBJECT", (event, value) => {
-  ipcRenderer.send("Actualizando tabla de materias", "listo");
+  ipcRenderer.send("status", "Actualizando tabla de materias");
 
   updateSubjectsTable();
 

@@ -19,10 +19,12 @@
 const electron = require("electron");
 const {ipcMain} = electron;
 
+// Close button.
 ipcMain.on("CLOSE", (event, value) => {
   workSpaceWindow.close();
 });
 
+// Maixmize-minimize button.
 ipcMain.on("MAXIMIZE", (event, value) => {
   if (workSpaceWindow.isMaximized()) {
 
@@ -37,6 +39,37 @@ ipcMain.on("MAXIMIZE", (event, value) => {
   }
 });
 
+// Iconize button.
 ipcMain.on("ICONIZE", (event, value) => {
   workSpaceWindow.minimize();
+});
+
+// This event save the database.
+ipcMain.on("FILE-SAVE", (event, value) => {
+  if (fileName == "") {
+    dialog.showSaveDialog({
+      title: "Guardar malla",
+      filters: [
+        {name: "Malla", extensions: ["umsh"]}
+      ],
+      propertries: [
+        "createDirectory",
+        "showOverwriteConfirmation"
+      ]
+    }).then(result => {
+      if(!result.canceled) {
+        fileName = result.filePath;
+
+        if (fileName.substring(fileName.length-5) != ".umsh") {
+          fileName += ".umsh";
+        }
+
+        processor.send("FILE-SAVE", [tempDir, fileName]);
+      }
+    }).catch(err => {
+      console.log(err);
+    });
+  } else {
+    processor.send("FILE-SAVE", [tempDir, fileName]);
+  }
 });

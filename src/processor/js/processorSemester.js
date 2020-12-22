@@ -16,9 +16,11 @@
 ** along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-// This event delete a subject in the database.
+var semestersCount = 1;
+
+// This event updtae the semesters table.
 ipcRenderer.on("GET-SEMESTERS", (event, value) => {
-  ipcRenderer.send("Actualizando tabla de materias", "listo");
+  ipcRenderer.send("status", "Actualizando tabla de semestres");
 
   updateSubjectsTable();
 
@@ -26,7 +28,7 @@ ipcRenderer.on("GET-SEMESTERS", (event, value) => {
 });
 
 /**
-* This function update the subjects table. It selects the contents of it with
+* This function update the semesters table. It selects the contents of it with
 * SQL, and send an event with the table.
 */
 function updateSubjectsTable() {
@@ -39,3 +41,54 @@ function updateSubjectsTable() {
     }
   });
 }
+
+// This event add a semester in the database.
+ipcRenderer.on("NEW-SEMESTER", (event, value) => {
+  ipcRenderer.send("status", "Agregando semestre");
+
+  semestersCount++;
+
+  dataBase.run(
+    "INSERT INTO Semestre (Numero, Materias) " +
+    "VALUES (" + semestersCount + ", \'{}\');",
+    (err) => {
+      if (err) {
+        return console.error(err.message);
+      }
+    }
+  );
+
+  ipcRenderer.send("status", "Actualizando tabla de semestres");
+
+  updateSubjectsTable();
+
+  ipcRenderer.send("status", "Listo");
+});
+
+
+// This event delete a semester in the database.
+ipcRenderer.on("DELETE-SEMESTER", (event, value) => {
+  if (semestersCount == 0) {
+    return;
+  }
+
+  ipcRenderer.send("status", "Agregando semestre");
+
+  dataBase.run(
+    "DELETE FROM Semestre WHERE Numero=" +
+    semestersCount + ";",
+    (err) => {
+      if (err) {
+        return console.error(err.message);
+      }
+    }
+  );
+
+  semestersCount--;
+
+  ipcRenderer.send("status", "Actualizando tabla de semestres");
+
+  updateSubjectsTable();
+
+  ipcRenderer.send("status", "Listo");
+});

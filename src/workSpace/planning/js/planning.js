@@ -17,10 +17,16 @@
 **/
 
 var semesters;
-var semestersTable = document.getElementById("semesters-table")
+var semestersTable = document.getElementById("semesters-table");
 
+// Activate subject tab tools.
+var semesterTools = ["NEW-SEMESTER", "DELETE-SEMESTER"];
+activateButtons(semesterTools);
+
+// Send an event to uptade the table when the tab is activated.
 ipcRenderer.send("GET-SEMESTERS");
 
+// Event that update the table
 ipcRenderer.on("UPDATE-SEMESTERS", (event, value) => {
   semesters = value;
 
@@ -47,6 +53,7 @@ ipcRenderer.on("UPDATE-SEMESTERS", (event, value) => {
     "<button class=\"btn btn-primary btn-sm rounded-0 p-1\">" +
     "<img class=\"NEW-SUBJECT tool\" src=\"../../assets/plus-icon.svg\">" +
     "</button>" +
+    "</div>" +
     "</div>";
 
   }
@@ -54,17 +61,3 @@ ipcRenderer.on("UPDATE-SEMESTERS", (event, value) => {
   semestersTable.innerHTML = semesterHTML;
 
 });
-
-//
-//
-// <div class="h-100 w-10 m-0 p-0 d-inline-table">
-//       <p class="palette-wet-asphalt w-100 text-light text-medium py-1 m-0 text-center">1</p>
-//
-//       <div class="card text-white bg-primary mb-1 w-100">
-//         <div class="card-header">Materia</div>
-//         <div class="card-body">
-//           <p class="card-title">Codigo: </p>
-//         </div>
-//       </div>
-//
-//     </div>
