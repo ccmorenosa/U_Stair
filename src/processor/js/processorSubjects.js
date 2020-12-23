@@ -104,25 +104,25 @@ function updateFilteredSubjectsTable(filters) {
   var search = "SELECT * FROM Materias WHERE ";
   var prev = false;
 
-  if (filters.materia != ""){
+  if (filters.materia){
     search += "(Nombre LIKE \"%" + filters.materia +
     "%\" OR Codigo LIKE \"%" + filters.materia + "%\") ";
     prev = true;
   }
 
-  if (filters.universidad != ""){
+  if (filters.universidad){
     search += joinPrev(prev);
     search += "Universidad LIKE \"%" + filters.universidad + "%\" ";
     prev = true;
   }
 
-  if (filters.sede != ""){
+  if (filters.sede){
     search += joinPrev(prev);
     search += "Sede LIKE \"%" + filters.sede + "%\" ";
     prev = true;
   }
 
-  if (filters.facultad != ""){
+  if (filters.facultad){
     search += joinPrev(prev);
     search += "Facultad LIKE \"%" + filters.facultad + "%\" ";
     prev = true;
@@ -132,7 +132,7 @@ function updateFilteredSubjectsTable(filters) {
   search += "Programa=\"" + filters.programa + "\" ";
   prev = true;
 
-  if (filters.creditos != ""){
+  if (filters.creditos){
     search += joinPrev(prev);
     search += "Creditos=\"" + filters.creditos + "\" ";
   }
