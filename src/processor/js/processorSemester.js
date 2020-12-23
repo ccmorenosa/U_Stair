@@ -62,6 +62,8 @@ ipcRenderer.on("NEW-SEMESTER", (event, value) => {
 
   updateSemesterTable();
 
+  ipcRenderer.send("MODIFY");
+
   ipcRenderer.send("status", "Listo");
 });
 
@@ -89,6 +91,8 @@ ipcRenderer.on("DELETE-SEMESTER", (event, value) => {
 
   updateSemesterTable();
 
+  ipcRenderer.send("MODIFY");
+
   ipcRenderer.send("status", "Listo");
 });
 
@@ -113,6 +117,8 @@ ipcRenderer.on("ADD-SUBJECTS", (event, value) => {
   ipcRenderer.send("status", "Actualizando tabla de semestres");
 
   updateSemesterTable();
+
+  ipcRenderer.send("MODIFY");
 
   ipcRenderer.send("status", "Listo");
 });

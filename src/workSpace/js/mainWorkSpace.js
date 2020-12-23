@@ -19,6 +19,9 @@
 const electron = require("electron");
 const {ipcMain, dialog} = electron;
 
+// Modify flag.
+var modify = false;
+
 // Close button.
 ipcMain.on("CLOSE", (event, value) => {
   workSpaceWindow.close();
@@ -44,32 +47,88 @@ ipcMain.on("ICONIZE", (event, value) => {
   workSpaceWindow.minimize();
 });
 
+// This event open a database.
+ipcMain.on("FILE-OPEN", (event, value) => {
+
+  if (modify) {
+    var buttonClicked = dialog.showMessageBoxSync({
+      title: "Cambios sin guardar",
+      type: "question",
+      buttons: ["Cancelar", "No guardar", "Guardar"],
+      message: "Seguro desea continuar, se perderán los cambios realizados."
+    });
+
+    if (buttonClicked == 1) {
+    } else if (buttonClicked == 2 ) {
+      saveDataBase();
+    } else {
+      return;
+    }
+
+  }
+
+
+  dialog.showOpenDialog({
+    title: "Abrir malla",
+    multiSelections: false,
+    propertries: [
+      "openFile"
+    ]
+  }).then( result => {
+    if(!result.canceled) {
+      fileName = result.filePaths[0];
+
+      processor.send("OPEN", [tempDir, fileName]);
+
+      welcomeWin.hide();
+    }
+  }).catch( err => {
+    console.log(err);
+  });
+
+});
+
 // This event save the database.
 ipcMain.on("FILE-SAVE", (event, value) => {
+  saveDataBase();
+});
+
+ipcMain.on("MODIFY", (event, value) => {
+  modify = true;
+});
+
+
+/**
+* This function save the database.
+*/
+function saveDataBase() {
+
   if (fileName == "") {
-    dialog.showSaveDialog({
+    var result = dialog.showSaveDialogSync({
       title: "Guardar malla",
       filters: [
         {name: "Malla", extensions: ["umsh"]}
       ],
-      propertries: [
+      properties: [
         "createDirectory",
         "showOverwriteConfirmation"
       ]
-    }).then(result => {
-      if(!result.canceled) {
-        fileName = result.filePath;
-
-        if (fileName.substring(fileName.length-5) != ".umsh") {
-          fileName += ".umsh";
-        }
-
-        processor.send("FILE-SAVE", [tempDir, fileName]);
-      }
-    }).catch(err => {
-      console.log(err);
     });
+
+    if(result) {
+      fileName = result;
+
+      if (fileName.substring(fileName.length-5) != ".umsh") {
+        fileName += ".umsh";
+      }
+
+      processor.send("FILE-SAVE", [tempDir, fileName]);
+      modify = false;
+    }
+
   } else {
     processor.send("FILE-SAVE", [tempDir, fileName]);
+    modify = false;
   }
-});
+
+}

@@ -39,6 +39,8 @@ ipcRenderer.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
     }
   );
 
+  ipcRenderer.send("MODIFY");
+
   ipcRenderer.send("status", "Listo");
 });
 
@@ -56,6 +58,8 @@ ipcRenderer.on("DELETE-DB-SUBJECT", (event, value) => {
       }
     }
   );
+
+  ipcRenderer.send("MODIFY");
 
   ipcRenderer.send("status", "Listo");
 });
@@ -139,7 +143,6 @@ function updateFilteredSubjectsTable(filters) {
 
   search += ";";
 
-console.log(search);
   dataBase.all(search,
   function (err, table) {
     if (err) {

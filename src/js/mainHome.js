@@ -33,6 +33,7 @@ ipcMain.on("NEW", (event, value) => {
 
 // This event get the event when the user wants to load an existing database.
 ipcMain.on("OPEN", (event, value) => {
+
   dialog.showOpenDialog({
     title: "Abrir malla",
     multiSelections: false,
@@ -51,6 +52,7 @@ ipcMain.on("OPEN", (event, value) => {
   }).catch( err => {
     console.log(err);
   });
+
 });
 
 // This event get the event when the user wants to change the program
