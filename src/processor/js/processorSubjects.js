@@ -18,7 +18,7 @@
 
 // Actual table
 var subjectsTable = null;
-var actualFilter = {"programa": "Pregrado"};
+var actualFilter = {"programa": ""};
 
 // Event to create a new row in the subjects table.
 ipcRenderer.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
@@ -129,7 +129,7 @@ function updateFilteredSubjectsTable(filters) {
   }
 
   search += joinPrev(prev);
-  search += "Programa=\"" + filters.programa + "\" ";
+  search += "Programa LIKE \"%" + filters.programa + "%\" ";
   prev = true;
 
   if (filters.creditos){
