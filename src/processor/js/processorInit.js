@@ -85,6 +85,11 @@ ipcRenderer.on("OPEN", (event, value) => {
 
   connectDatabase(path.join(value[0], "u_stair/temp.db"));
 
+  dataBase.all("SELECT * FROM Semestre",
+  (err, table) => {
+    semestersCount = table.length;
+  });
+
   ipcRenderer.send("status", "Actualizando tabla de materias");
   updateSubjectsTable();
 

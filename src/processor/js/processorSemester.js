@@ -129,7 +129,7 @@ ipcRenderer.on("FIND-SUBJECT", (event, value) => {
   "%\" OR Codigo LIKE \"%" + value + "%\") ";
 
   dataBase.all(search,
-  function (err, table) {
+  (err, table) => {
     if (err) {
       return console.error(err.message);
     } else {
