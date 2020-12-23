@@ -30,16 +30,7 @@ ipcRenderer.on("NEW", (event, value) => {
   // Send an event to update the status bar.
   ipcRenderer.send("status", "Cargando base de datos");
 
-  // Create the database in the temporal directory and connect.
-  dataBase = new sqlite.Database(path.join(value, "u_stair/temp.db"),
-    (err) => {
-      if (err) {
-        return console.error(err.message);
-      } else {
-        console.log("Connected to database");
-      }
-    }
-  );
+  connectDatabase(path.join(value, "u_stair/temp.db"));
 
   dataBase.run("PRAGMA foreign_keys=ON;");
 
@@ -81,6 +72,28 @@ ipcRenderer.on("NEW", (event, value) => {
   ipcRenderer.send("status", "Listo");
 });
 
+// This event open the given database.
+ipcRenderer.on("OPEN", (event, value) => {
+  // Send an event to update the status bar.
+  ipcRenderer.send("status", "Cargando base de datos");
+
+  fs.copyFile(value[1], path.join(value[0], "u_stair/temp.db"), (err) => {
+    if (err) {
+      return console.error(err.message);
+    }
+  });
+
+  connectDatabase(path.join(value[0], "u_stair/temp.db"));
+
+  ipcRenderer.send("status", "Actualizando tabla de materias");
+  updateSubjectsTable();
+
+  ipcRenderer.send("status", "Actualizando tabla de semestres");
+  updateSemesterTable();
+
+  ipcRenderer.send("status", "Listo");
+});
+
 // This event save the database in the path that the user specify.
 ipcRenderer.on("FILE-SAVE", (event, value) => {
   ipcRenderer.send("status", "Guardando");
@@ -93,3 +106,20 @@ ipcRenderer.on("FILE-SAVE", (event, value) => {
 
   ipcRenderer.send("status", "Listo");
 });
+
+
+/**
+* This function connect to the database.
+*/
+function connectDatabase(databasePath) {
+  // Create the database in the temporal directory and connect.
+  dataBase = new sqlite.Database(databasePath,
+    (err) => {
+      if (err) {
+        return console.error(err.message);
+      } else {
+        console.log("Connected to database");
+      }
+    }
+  );
+}

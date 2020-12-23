@@ -17,7 +17,7 @@
 **/
 
 const electron = require("electron");
-const {ipcMain} = electron;
+const {ipcMain, dialog} = electron;
 
 // Close button.
 ipcMain.on("CLOSE", (event, value) => {

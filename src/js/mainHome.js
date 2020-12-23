@@ -24,6 +24,51 @@ const fs = require("fs-extra");
 
 // This event get the event when the user wants to create a new database.
 ipcMain.on("NEW", (event, value) => {
+  makeWorkSpaceWindow ();
+
+  welcomeWin.hide();
+
+  processor.send("NEW", tempDir);
+});
+
+// This event get the event when the user wants to load an existing database.
+ipcMain.on("OPEN", (event, value) => {
+  dialog.showOpenDialog({
+    title: "Abrir malla",
+    multiSelections: false,
+    propertries: [
+      "openFile"
+    ]
+  }).then( result => {
+    if(!result.canceled) {
+      makeWorkSpaceWindow ();
+      fileName = result.filePaths[0];
+
+      processor.send("OPEN", [tempDir, fileName]);
+
+      welcomeWin.hide();
+    }
+  }).catch( err => {
+    console.log(err);
+  });
+});
+
+// This event get the event when the user wants to change the program
+// configuration.
+ipcMain.on("SETTINGS", (event, value) => {
+  console.log("GETTED");
+});
+
+// This event will close the application.
+ipcMain.on("EXIT", (event, value) => {
+  welcomeWin.close();
+});
+
+
+/**
+* This function create the workspace window.
+*/
+function makeWorkSpaceWindow() {
   // Create the browser window.
   workSpaceWindow = new BrowserWindow({
     width: 800,
@@ -71,38 +116,4 @@ ipcMain.on("NEW", (event, value) => {
     workSpaceWindow = null;
     welcomeWin.show();
   });
-
-  welcomeWin.hide();
-
-  processor.send("NEW", tempDir);
-
-  welcomeWin.send("UPDATE-SUBJECTS");
-});
-
-// This event get the event when the user wants to load an existing database.
-ipcMain.on("OPEN", (event, value) => {
-  dialog.showOpenDialog({
-    title: "Abrir malla",
-    propertries: [
-      "openFile"
-    ]
-  }).then(result => {
-    if(!result.canceled) {
-      // welcomeWin.hide();
-    }
-  }).catch(err => {
-    console.log(err);
-  });
-  // welcomeWin.hide();
-});
-
-// This event get the event when the user wants to change the program
-// configuration.
-ipcMain.on("SETTINGS", (event, value) => {
-  console.log("GETTED");
-});
-
-// This event will close the application.
-ipcMain.on("EXIT", (event, value) => {
-  welcomeWin.close();
-});
+}
