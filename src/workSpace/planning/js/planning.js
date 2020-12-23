@@ -38,7 +38,7 @@ ipcRenderer.on("UPDATE-SEMESTERS", (event, value) => {
     "<p class=\"palette-wet-asphalt w-100 text-light text-medium py-1 m-0 text-center\">" +
     semester.Numero + "</p>";
 
-    subjects = JSON.parse(semester.Materias);
+    var subjects = JSON.parse(semester.Materias);
 
     for (var subject in subjects) {
       semesterHTML += "<div class=\"card text-white bg-primary mb-1 w-100 rounded-0\">" +
@@ -76,9 +76,11 @@ function activeAddSubjectButtons() {
   for (var button of addSubjectButtons) {
     button.addEventListener("click", (event) => {
       var semester = event.target.parentElement.parentElement.id;
+      var subjects = JSON.parse(semesters[semester - 1].Materias );
+
       ipcRenderer.send(
         "NEW-SEMESTER-SUBJECT",
-        [semester, semesters[semester - 1].Materias]
+        [semester, subjects]
       );
     });
   }

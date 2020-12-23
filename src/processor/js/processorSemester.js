@@ -92,6 +92,31 @@ ipcRenderer.on("DELETE-SEMESTER", (event, value) => {
   ipcRenderer.send("status", "Listo");
 });
 
+ipcRenderer.on("ADD-SUBJECTS", (event, value) => {
+  ipcRenderer.send("status", "Agregando materias");
+
+  console.log(JSON.stringify(value[1]));
+
+  var sqlQuery = "UPDATE Semestre SET Materias=\'" + JSON.stringify(value[1]) +
+  "\' WHERE Numero=" + parseInt(value[0]) + ";";
+
+  console.log(sqlQuery);
+
+  dataBase.run(sqlQuery,
+    (err) => {
+      if (err) {
+        return console.error(err.message);
+      }
+    }
+  );
+
+  ipcRenderer.send("status", "Actualizando tabla de semestres");
+
+  updateSemesterTable();
+
+  ipcRenderer.send("status", "Listo");
+});
+
 ipcRenderer.on("FIND-SUBJECT", (event, value) => {
   search = "SELECT Codigo, Nombre FROM Materias WHERE " +
   "(Nombre LIKE \"%" + value +

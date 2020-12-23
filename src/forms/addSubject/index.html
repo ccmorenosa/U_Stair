@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+....UStair.  Grade curriculum schedule.
+....Copyright (C) 2020  Andŕes Felipe Moreno Sarria
+....
+....This program is free software: you can redistribute it and/or modify
+....it under the terms of the GNU General Public License as published by
+....the Free Software Foundation, either version 3 of the License, or
+....(at your option) any later version.
+....
+....This program is distributed in the hope that it will be useful,
+....but WITHOUT ANY WARRANTY; without even the implied warranty of
+....MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+....GNU General Public License for more details.
+....
+....You should have received a copy of the GNU General Public License
+....along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar materias</title>
+  <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../node_modules/designmodo-flat-ui/dist/css/flat-ui.min.css">
+</head>
+
+<body class="d-flex flex-column">
+  <!-- Draggable bar -->
+  <div class="draggable palette-midnight-blue text-light text-center">
+    Agregar materias
+
+    <div class="btn-group float-right h-100">
+      <!-- Close button -->
+      <button class="btn btn-danger btn-sm rounded-0 p-1" onclick="closeForm()">
+        <span class="fui-cross"></span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Begining of the form -->
+  <div class="w-100 flex border border-primary">
+
+    <div class="h-100 w-50 float-left  float-left d-flex flex-column">
+
+      <div class="form-inline mx-3 mt-3">
+
+        <input type="text" class="form-control flex mb-2 mr-sm-2" id="materia">
+
+        <button class="btn btn-success w-25 mb-2 mr-sm-2 text-small"
+        onclick="searchSubjects()">Buscar</button>
+
+      </div>
+
+      <div class="flex m-3 border border-primary">
+        <table id="LEFT-TABLE" class="w-100 text-center text-medium">
+
+          <thead class="palette-wet-asphalt text-light">
+            <tr>
+              <th class="py-1" scope="col">Codigo</th>
+              <th class="py-1" scope="col">Nombre</th>
+              <th class="py-1" scope="col"></th>
+            </tr>
+          </thead>
+
+        </table>
+      </div>
+
+    </div>
+
+    <div class="h-100 w-50 float-left d-flex flex-column">
+
+      <div class="form-inline mx-3 mt-3">
+
+        <button class="btn btn-success w-25 mb-2 ml-auto text-small"
+        onclick="completeSemester()">Aceptar</button>
+
+      </div>
+
+      <div class="flex m-3 border border-primary">
+        <table id="RIGHT-TABLE" class="w-100 text-center text-medium">
+
+          <thead class="palette-wet-asphalt text-light">
+            <tr>
+              <th class="py-1" scope="col">Codigo</th>
+              <th class="py-1" scope="col">Nombre</th>
+              <th class="py-1" scope="col"></th>
+            </tr>
+          </thead>
+
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Submit function -->
+  <script src="../js/forms.js"></script>
+  <script src="js/activeButtons.js"></script>
+  <script src="js/addSubject.js"></script>
+</body>
+
+</html>

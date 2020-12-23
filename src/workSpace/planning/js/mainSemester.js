@@ -21,6 +21,8 @@ const {app, BrowserWindow, ipcMain, dialog} = electron;
 const path = require("path");
 const url = require("url");
 
+var semesterInfo;
+
 // This event get all the semesters in the database.
 ipcMain.on("GET-SEMESTERS", (event, value) => {
   processor.send("GET-SEMESTERS", value);
@@ -49,6 +51,8 @@ ipcMain.on("NEW-SEMESTER-SUBJECT", (event, value) => {
 
   formOpened = true;
 
+  semesterInfo = value;
+
   workSpaceWindow.send("status", "Configurando semestre");
 
   formWindow = new BrowserWindow({
@@ -68,9 +72,6 @@ ipcMain.on("NEW-SEMESTER-SUBJECT", (event, value) => {
     slashes: true
   }));
 
-  formWindow.send("SET-SEMESTER", value[0]);
-  formWindow.send("UPDATE-RIGHT-TABLE", value[1]);
-
   formWindow.on("close",  () => {
     formOpened = false;
     formWindow = null;
@@ -87,4 +88,14 @@ ipcMain.on("FIND-SUBJECT", (event, value) => {
 // This event refresh the left table of the form.
 ipcMain.on("UPDATE-LEFT-TABLE", (event, value) => {
   formWindow.send("UPDATE-LEFT-TABLE", value);
+});
+
+ipcMain.on("GET-SEMESTER-INFO", (event, value) => {
+  formWindow.send("SET-SEMESTER", semesterInfo[0]);
+  formWindow.send("UPDATE-RIGHT-TABLE", semesterInfo[1]);
+});
+
+ipcMain.on("ADD-SUBJECTS", (event, value) => {
+  formWindow.close();
+  processor.send("ADD-SUBJECTS", value);
 });
