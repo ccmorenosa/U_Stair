@@ -44,6 +44,37 @@ ipcRenderer.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
   ipcRenderer.send("status", "Listo");
 });
 
+// Event to edit an old row in the subjects table.
+ipcRenderer.on("OLD-DB-SUBJECT-EDITED", (event, value) => {
+  ipcRenderer.send("status", "Agregando materia");
+
+  var sqlQuery = "UPDATE Materias SET Codigo=\""+ value[0][0] +
+  "\", Nombre=\"" + value[0][1] +
+  "\", Creditos=" + value[0][2] +
+  ", Universidad=\"" + value[0][3] +
+  "\", Sede=\"" + value[0][4] +
+  "\", Facultad=\"" + value[0][5] +
+  "\", Departamento=\"" + value[0][6] +
+  "\", Programa=\"" + value[0][7] + "\" WHERE Codigo=\"" + value[1] + "\";";
+
+  console.log(sqlQuery);
+
+  // Add the new row, and update the table if the window if it success.
+  dataBase.run(sqlQuery,
+    function (err) {
+      if (err) {
+        return console.error(err.message);
+      } else{
+        updateSubjectsTable();
+      }
+    }
+  );
+
+  ipcRenderer.send("MODIFY");
+
+  ipcRenderer.send("status", "Listo");
+});
+
 // This event delete a subject in the database.
 ipcRenderer.on("DELETE-DB-SUBJECT", (event, value) => {
   ipcRenderer.send("status", "Eliminando materia");

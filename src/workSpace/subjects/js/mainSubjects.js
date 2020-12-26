@@ -106,6 +106,15 @@ ipcMain.on("NEW-DB-SUBJECT-CREATED", (event, value) => {
   processor.send("NEW-DB-SUBJECT-CREATED", value);
 });
 
+// This event will edit an old subject in the database.
+ipcMain.on("OLD-DB-SUBJECT-EDITED", (event, value) => {
+  var oldId = editingSubject;
+
+  formWindow.close();
+
+  processor.send("OLD-DB-SUBJECT-EDITED", [value, oldId]);
+});
+
 ipcMain.on("SEARCH-SUBJECT", (event, value) => {
   processor.send("SEARCH-SUBJECT", value);
 });

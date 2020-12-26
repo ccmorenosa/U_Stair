@@ -99,8 +99,6 @@ ipcRenderer.on("DELETE-SEMESTER", (event, value) => {
 ipcRenderer.on("ADD-SUBJECTS", (event, value) => {
   ipcRenderer.send("status", "Agregando materias");
 
-  console.log(JSON.stringify(value[1]));
-
   var sqlQuery = "UPDATE Semestre SET Materias=\'" + JSON.stringify(value[1]) +
   "\' WHERE Numero=" + parseInt(value[0]) + ";";
 
