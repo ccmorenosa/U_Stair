@@ -38,6 +38,9 @@ global.fileName = "";
 // Bool for opened forms.
 global.formOpened = false;
 
+// Variable for editing a subject.
+global.editingSubject = "";
+
 require("./js/mainHome");
 require("./forms/js/mainForms");
 require("./workSpace/js/mainWorkSpace");

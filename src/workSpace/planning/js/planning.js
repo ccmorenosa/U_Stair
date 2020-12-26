@@ -34,7 +34,7 @@ ipcRenderer.on("UPDATE-SEMESTERS", (event, value) => {
 
   for (var semester of semesters) {
     semesterHTML += "<div id=\"" + semester.Numero +
-    "\" class=\"h-100 w-10 m-0 p-0 d-inline-table\">" +
+    "\" class=\"h-100 m-0 p-0 mr-1 d-inline-table\">" +
     "<p class=\"palette-wet-asphalt w-100 text-light text-medium py-1 m-0 text-center\">" +
     semester.Numero + "</p>";
 
@@ -42,14 +42,14 @@ ipcRenderer.on("UPDATE-SEMESTERS", (event, value) => {
 
     for (var subject in subjects) {
       semesterHTML += "<div class=\"card text-white bg-primary mb-1 w-100 rounded-0\">" +
-      "<div class=\"card-header\">" + subjects[subject] + "</div>" +
-      "<div class=\"card-body\">" +
-      "<p class=\"card-title\">Codigo: " + subject + " </p>" +
+      "<div class=\"p-1 card-header text-medium text-center\">" + subjects[subject] + "</div>" +
+      "<div class=\"card-body px-2 py-1\">" +
+      "<p class=\"card-title text-medium\">Codigo: " + subject + " </p>" +
       "</div>" +
       "</div>";
     }
 
-    semesterHTML += "<div class=\"w-100 text-center\">" +
+    semesterHTML += "<div class=\"text-center  w-130-px\">" +
     "<img class=\"NEW-SUBJECT btn btn-primary btn-sm rounded-0 p-1 tool\"" +
     " src=\"../../assets/plus-icon.svg\">" +
     "</div>" +

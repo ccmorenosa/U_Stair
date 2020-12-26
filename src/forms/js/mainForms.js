@@ -24,3 +24,19 @@ ipcMain.on("CLOSE-FORM", (event, value) => {
   formWindow.close();
   processor.send("status", "Listo");
 });
+
+// This event search for a subject.
+ipcMain.on("SEARCH-DB-SUBJECT", (event, value) => {
+
+  if (editingSubject){
+    processor.send("SEARCH-DB-SUBJECT", editingSubject);
+  }
+
+});
+
+// This event fill the spaces in the form.
+ipcMain.on("FILL-SPACES", (event, value) => {
+
+  formWindow.send("FILL-SPACES", value);
+
+});

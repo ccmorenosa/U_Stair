@@ -46,7 +46,7 @@
   </div>
 
   <!-- Begining of the form -->
-  <form id="new-db-subject-form" class="w-100 flex overflow-y-scroll border border-primary" onsubmit="newDbSubject()">
+  <div id="new-db-subject-form" class="w-100 flex overflow-y-scroll border border-primary">
 
     <div class="form-group px-3 mb-2">
       <!-- Code of the subject -->
@@ -100,9 +100,9 @@
     </div>
 
     <input class="btn btn-success mx-3 px-1 my-4 w-50 text-medium"
-    type="submit" name="Aceptar" value="Aceptar"/>
+    type="submit" name="Aceptar" value="Aceptar" onclick="newDbSubject()"/>
 
-  </form>
+  </div>
 
   <!-- Submit function -->
   <script src="../js/forms.js"></script>

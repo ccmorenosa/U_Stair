@@ -116,6 +116,10 @@ body, html {
   width: 10% !important;
 }
 
+.w-130-px {
+  width: 130px !important;
+}
+
 /* Displays */
 
 .d-inline-table {

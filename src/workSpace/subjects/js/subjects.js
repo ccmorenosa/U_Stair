@@ -29,6 +29,7 @@ ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
   // Fill the table headers.
   tableContent = "<thead class=\"palette-wet-asphalt text-light\">" +
   "<tr>" +
+  "<th class=\"py-1\" scope=\"col\"></th>" +
   "<th class=\"py-1\" scope=\"col\">Codigo</th>" +
   "<th class=\"py-1\" scope=\"col\">Nombre</th>" +
   "<th class=\"py-1\" scope=\"col\">Créditos</th>" +
@@ -37,7 +38,7 @@ ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
   "<th class=\"py-1\" scope=\"col\">Facultad</th>" +
   "<th class=\"py-1\" scope=\"col\">Departamento</th>" +
   "<th class=\"py-1\" scope=\"col\">Programa</th>" +
-  "<th class=\"py-1\" scope=\"col\">Borrar</th>" +
+  "<th class=\"py-1\" scope=\"col\"></th>" +
   "</tr>" +
   "</thead>";
 
@@ -46,6 +47,7 @@ ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
     var entries = value[row];
 
     tableContent += "<tr>\n" +
+    "<td class=\"py-1\"> <input type=\"checkbox\"/> </td>\n" +
     "<td class=\"py-1\">" + entries.Codigo + "</td>\n" +
     "<td class=\"py-1\">" + entries.Nombre + "</td>\n" +
     "<td class=\"py-1\">" + entries.Creditos + "</td>\n" +
@@ -55,8 +57,8 @@ ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
     "<td class=\"py-1\">" + entries.Departamento + "</td>\n" +
     "<td class=\"py-1\">" + entries.Programa + "</td>\n" +
     "<td class=\"py-1\">" +
-    "<img src=\"../../assets/delete-icon.svg\" " +
-    "class=\"bg-danger delete-row rounded-circle delete-button pointer\"/> " +
+    "<img src=\"../../assets/edit-icon.svg\" " +
+    "class=\"bg-warning edit-row edit-button pointer\"/> " +
     "</td>\n" +
     "</tr>\n";
   }
@@ -64,25 +66,43 @@ ipcRenderer.on("UPDATE-SUBJECTS", (event, value) => {
   // Update table.
   table.innerHTML = tableContent;
 
-  // Active delete buttons.
-  activeDeleteButtons();
+  // Active edit buttons.
+  activeEditButtons();
 });
 
 /**
-* This function add an event to delete a row of the table whenever the delete
+* This function delete all the selected rows of the table whenever the delete
 * button is clicked.
 */
-function activeDeleteButtons() {
+function deleteItems() {
+  var tableItems = table.children[1].children;
+
+  for (var tableItem of tableItems) {
+    if (tableItem.children[0].children[0].checked) {
+      ipcRenderer.send("DELETE-DB-SUBJECT", tableItem.children[1].innerText);
+    }
+  }
+}
+
+/**
+* This function add an event to edit a row of the table whenever the delete
+* button is clicked.
+*/
+function activeEditButtons() {
   // Get all delete buttons of the table.
-  var deleteButtons = document.getElementsByClassName("delete-row");
+  var editButtons = document.getElementsByClassName("edit-row");
 
   // Add an event to the delete buttons.
-  for (var button of deleteButtons) {
+  for (var button of editButtons) {
+
     button.addEventListener("click", (event) => {
-      var parNode = event.target.parentElement.parentElement.children[0];
-      ipcRenderer.send("DELETE-DB-SUBJECT", parNode.innerText);
+      var parNode = event.target.parentElement.parentElement.children[1];
+      console.log(parNode);
+      ipcRenderer.send("EDIT-DB-SUBJECT", parNode.innerText);
     });
+
   }
+
 }
 
 ipcRenderer.send("REFRESH-SUBJECT");

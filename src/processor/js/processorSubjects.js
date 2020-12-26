@@ -83,6 +83,19 @@ ipcRenderer.on("REFRESH-SUBJECT", (event, value) => {
   ipcRenderer.send("status", "Listo");
 });
 
+// This event search a subject in the database.
+ipcRenderer.on("SEARCH-DB-SUBJECT", (event, value) => {
+  dataBase.all("SELECT * FROM Materias WHERE Codigo=\"" + value + "\";",
+  function (err, table) {
+    if (err) {
+      return console.error(err.message);
+    } else {
+      ipcRenderer.send("FILL-SPACES", table);
+    }
+  });
+
+});
+
 /**
 * This function update the subjects table. It selects the contents of it with
 * SQL, and send an event with the table.
