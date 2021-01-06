@@ -98,9 +98,7 @@
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
     "electron": "^9.3.4",
-    "electron-builder": "^22.9.1",
-    "electron-tabs": "^0.15.0",
-    "sqlite3": "^5.0.0"
+    "electron-builder": "^22.9.1"
   },
   "dependencies": {
     "bootstrap": "^4.5.3",
@@ -108,6 +106,7 @@
     "electron-squirrel-startup": "^1.0.0",
     "fs-extra": "^9.0.1",
     "jquery": "^3.5.1",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "sqlite3": "^5.0.0"
   }
 }

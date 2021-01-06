@@ -27,8 +27,9 @@
   <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="css/schedule.css">
   <link rel="stylesheet" href="../css/workSpace.css">
+  <link rel="stylesheet" href="../../css/main.css">
   <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../../node_modules/designmodo-flat-ui/dist/css/flat-ui.min.css">
 </head>
@@ -69,12 +70,12 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link border-0 rounded-0 active bg-primary text-light">Planeación</a>
+      <a href="../planning/index.html"
+      class="nav-link border-0 rounded-0">Planeación</a>
     </li>
 
     <li class="nav-item">
-      <a href="../schedule/index.html"
-      class="nav-link border-0 rounded-0">Semestre</a>
+      <a class="nav-link border-0 rounded-0 active bg-primary text-light">Semestre</a>
     </li>
   </ul>
 
@@ -97,20 +98,98 @@
     </div>
 
     <div class="btn-group">
-
+<!--
       <button id="NEW-SEMESTER" class="btn btn-primary btn-sm rounded-0 p-1">
         <img src="../../assets/plus-icon.svg" class="tool">
       </button>
 
       <button id="DELETE-SEMESTER" class="btn btn-danger btn-sm rounded-0 p-1">
         <img src="../../assets/minus-icon.svg" class="tool">
-      </button>
+      </button> -->
 
     </div>
   </div>
 
   <!-- Work space of the semesters table -->
-  <div id="semesters-table" class="w-100 flex overflow-y-scroll overflow-x-scroll d-flex"></div>
+
+    <!-- Work space of the semesters table -->
+    <div id="schedule-table" class="w-100 flex overflow-y-scroll overflow-x-scroll d-flex">
+
+      <div id="calendar" class="w-100 calendar">
+
+        <div class="hours w-100 h-100">
+          <ul>
+            <li>6:00</li>
+            <li>7:00</li>
+            <li>8:00</li>
+            <li>9:00</li>
+            <li>10:00</li>
+            <li>11:00</li>
+            <li>12:00</li>
+            <li>13:00</li>
+            <li>14:00</li>
+            <li>15:00</li>
+            <li>16:00</li>
+            <li>17:00</li>
+            <li>18:00</li>
+            <li>19:00</li>
+            <li>20:00</li>
+            <li>21:00</li>
+          </ul>
+        </div>
+
+        <div class="events w-100">
+
+          <ul class="d-flex w-100 h-100 text-center">
+            <li class="flex">
+              Lunes
+
+              <ul id="Lunes" class="h-100"></ul>
+
+            </li>
+            <li class="flex">
+              Martes
+
+              <ul id="Martes" class="h-100"></ul>
+
+            </li>
+            <li class="flex">
+              Miercoles
+
+              <ul id="Miercoles" class="h-100"></ul>
+
+            </li>
+            <li class="flex">
+              Jueves
+
+              <ul id="Jueves" class="h-100"></ul>
+
+            </li>
+            <li class="flex">
+              Viernes
+
+              <ul id="Viernes" class="h-100"></ul>
+
+            </li>
+            <li class="flex">
+              Sabado
+
+              <ul id="Sabado" class="h-100"></ul>
+
+            </li>
+            <li class="flex">
+              Domingo
+
+              <ul id="Domingo" class="h-100"></ul>
+
+            </li>
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
 
   <div id="status-bar" class="status-bar palette-peter-river text-small
   text-light pl-2">Idle</div>
@@ -118,7 +197,7 @@
   <!-- Script to handle the events -->
   <script src="../../js/buttons.js"></script>
   <script src="../js/workSpace.js"></script>
-  <script src="js/planning.js"></script>
+  <script src="js/schedule.js"></script>
 </body>
 
 </html>
