@@ -67,7 +67,6 @@ ipcMain.on("FILE-OPEN", (event, value) => {
 
   }
 
-
   dialog.showOpenDialog({
     title: "Abrir malla",
     multiSelections: false,

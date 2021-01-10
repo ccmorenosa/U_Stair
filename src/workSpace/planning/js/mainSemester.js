@@ -56,6 +56,7 @@ ipcMain.on("NEW-SEMESTER-SUBJECT", (event, value) => {
   workSpaceWindow.send("status", "Configurando semestre");
 
   formWindow = new BrowserWindow({
+    parent: workSpaceWindow,
     width: 800,
     height: 600,
     resizable: false,

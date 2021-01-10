@@ -20,3 +20,38 @@ const electron = require("electron");
 const {app, BrowserWindow, ipcMain, dialog} = electron;
 const path = require("path");
 const url = require("url");
+
+// This event create a new window to add a new subject to the database.
+ipcMain.on("ADD-SEMESTER", (event, value) => {
+  if (formOpened) {
+    return;
+  }
+
+  formOpened = true;
+
+  workSpaceWindow.send("status", "Agregando semestre");
+
+  formWindow = new BrowserWindow({
+    parent: workSpaceWindow,
+    width: 800,
+    height: 600,
+    resizable: false,
+    frame: false,
+    webPreferences: {
+      nodeIntegration: true
+    }
+  });
+
+  // and load the index.html of the form.
+  formWindow.loadURL(url.format({
+    pathname: path.join(srcPath, "forms/addSemesterSchedule/index.html"),
+    protocol: "file:",
+    slashes: true
+  }));
+
+  formWindow.on("close",  () => {
+    formOpened = false;
+    formWindow = null;
+    workSpaceWindow.send("status", "Listo");
+  });
+});

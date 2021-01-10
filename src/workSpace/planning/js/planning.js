@@ -76,7 +76,7 @@ function activeAddSubjectButtons() {
   for (var button of addSubjectButtons) {
     button.addEventListener("click", (event) => {
       var semester = event.target.parentElement.parentElement.id;
-      var subjects = JSON.parse(semesters[semester - 1].Materias );
+      var subjects = JSON.parse(semesters[semester - 1].Materias);
 
       ipcRenderer.send(
         "NEW-SEMESTER-SUBJECT",

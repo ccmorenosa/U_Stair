@@ -115,6 +115,7 @@ function makeWorkSpaceWindow() {
       console.log("suc");
     });
 
+    formOpened = false;
     workSpaceWindow = null;
     welcomeWin.show();
   });

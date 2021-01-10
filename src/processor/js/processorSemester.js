@@ -102,8 +102,6 @@ ipcRenderer.on("ADD-SUBJECTS", (event, value) => {
   var sqlQuery = "UPDATE Semestre SET Materias=\'" + JSON.stringify(value[1]) +
   "\' WHERE Numero=" + parseInt(value[0]) + ";";
 
-  console.log(sqlQuery);
-
   dataBase.run(sqlQuery,
     (err) => {
       if (err) {
@@ -134,4 +132,18 @@ ipcRenderer.on("FIND-SUBJECT", (event, value) => {
       ipcRenderer.send("UPDATE-LEFT-TABLE", table);
     }
   });
+});
+
+// This event get all the semesters and its subjects
+ipcRenderer.on("GET-SEMESTERS-INFO", (event, value) => {
+
+  dataBase.all("SELECT * FROM Semestre;",
+  function (err, table) {
+    if (err) {
+      return console.error(err.message);
+    } else {
+      ipcRenderer.send("SEND-SEMESTERS-INFO", table);
+    }
+  });
+
 });

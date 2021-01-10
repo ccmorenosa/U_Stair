@@ -40,3 +40,16 @@ ipcMain.on("FILL-SPACES", (event, value) => {
   formWindow.send("FILL-SPACES", value);
 
 });
+
+// This event get all the semesters and its subjects
+ipcMain.on("GET-SEMESTERS-INFO", (event, value) => {
+  processor.send("GET-SEMESTERS-INFO");
+
+});
+
+// This event send all the semesters and its subjects
+ipcMain.on("SEND-SEMESTERS-INFO", (event, value) => {
+
+  formWindow.send("SEND-SEMESTERS-INFO", value);
+
+});

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+....UStair.  Grade curriculum schedule.
+....Copyright (C) 2020  Andŕes Felipe Moreno Sarria
+....
+....This program is free software: you can redistribute it and/or modify
+....it under the terms of the GNU General Public License as published by
+....the Free Software Foundation, either version 3 of the License, or
+....(at your option) any later version.
+....
+....This program is distributed in the hope that it will be useful,
+....but WITHOUT ANY WARRANTY; without even the implied warranty of
+....MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+....GNU General Public License for more details.
+....
+....You should have received a copy of the GNU General Public License
+....along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Horario</title>
+  <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../node_modules/designmodo-flat-ui/dist/css/flat-ui.min.css">
+</head>
+
+<body class="d-flex flex-column">
+  <!-- Draggable bar -->
+  <div class="draggable palette-midnight-blue text-light text-center">
+    Horario
+
+    <div class="btn-group float-right h-100">
+      <!-- Close button -->
+      <button class="btn btn-danger btn-sm rounded-0 p-1" onclick="closeForm()">
+        <span class="fui-cross"></span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Begining of the form -->
+  <div class="w-100 flex border border-primary overflow-hidden">
+
+    <div class="h-100 w-10 float-left my-3 float-left d-flex flex-column">
+
+      <div id="semesters-bar" class="w-100 h-80 px-3 overflow-y-scroll">
+
+      </div>
+
+      <div class="w-100 px-2">
+        <button id="submit" class="btn btn-success btn-sm rounded-0 py-2 px-1 my-4 w-100">Aceptar</button>
+      </div>
+
+    </div>
+
+    <div class="h-100 w-90 p-3 float-left d-flex flex-column">
+
+      <div class="flex h-100 border border-primary overflow-y-scroll">
+
+        <div id="semester-table" class="w-100 text-left text-medium p-3"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Submit function -->
+  <script src="../js/forms.js"></script>
+  <script src="js/addSemesterSchedule.js"></script>
+</body>
+
+</html>

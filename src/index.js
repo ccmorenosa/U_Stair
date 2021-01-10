@@ -46,6 +46,7 @@ require("./forms/js/mainForms");
 require("./workSpace/js/mainWorkSpace");
 require("./workSpace/subjects/js/mainSubjects");
 require("./workSpace/planning/js/mainSemester");
+require("./workSpace/schedule/js/mainSchedule");
 
 /**
 * This function creates the main window, that will be shown in the middle of the

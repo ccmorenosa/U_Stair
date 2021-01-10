@@ -116,8 +116,27 @@ body, html {
   width: 10% !important;
 }
 
+.w-90 {
+  width: 90% !important;
+}
+
 .w-130-px {
   width: 130px !important;
+}
+
+
+/* Heights */
+
+.h-20 {
+  height: 20% !important;
+}
+
+.h-80 {
+  height: 80% !important;
+}
+
+.h-130-px {
+  height: 130px !important;
 }
 
 /* Displays */
