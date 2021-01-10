@@ -68,6 +68,28 @@ ipcRenderer.on("NEW", (event, value) => {
     }
   );
 
+  // Create the subjects table and update table if it success.
+  dataBase.run(
+    fs.readFileSync(path.join(__dirname,"../sql/timetable.sql")).toString(),
+    (err) => {
+      if (err) {
+        return console.error(err.message);
+      } else {
+
+        dataBase.run(
+          "INSERT INTO Horario (id, Info) " +
+          "VALUES (1, \'{}\');",
+          (err) => {
+            if (err) {
+              return console.error(err.message);
+            }
+          }
+        );
+
+      }
+    }
+  );
+
   // Send an event to update the status bar,
   ipcRenderer.send("status", "Listo");
 });

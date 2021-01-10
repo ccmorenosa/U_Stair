@@ -41,7 +41,7 @@ ipcRenderer.on("UPDATE-SEMESTERS", (event, value) => {
     var subjects = JSON.parse(semester.Materias);
 
     for (var subject in subjects) {
-      semesterHTML += "<div class=\"card text-white bg-primary mb-1 w-100 rounded-0\">" +
+      semesterHTML += "<div class=\"card text-white palette-emerald mb-1 w-100 rounded-0 font-weight-bold\">" +
       "<div class=\"p-1 card-header text-medium text-center\">" + subjects[subject] + "</div>" +
       "<div class=\"card-body px-2 py-1\">" +
       "<p class=\"card-title text-medium\">Codigo: " + subject + " </p>" +

@@ -173,7 +173,7 @@ function activeBlockButtons() {
       "<option value=\"Miercoles\">Miercoles</option>" +
       "<option value=\"Jueves\">Jueves</option>" +
       "<option value=\"Viernes\">Viernes</option>" +
-      "<option value=\"Sábado\">Sábado</option>" +
+      "<option value=\"Sabado\">Sábado</option>" +
       "<option value=\"Domingo\">Domingo</option>" +
       "</select>" +
 

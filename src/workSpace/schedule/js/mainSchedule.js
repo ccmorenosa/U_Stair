@@ -55,3 +55,13 @@ ipcMain.on("ADD-SEMESTER", (event, value) => {
     workSpaceWindow.send("status", "Listo");
   });
 });
+
+// This event will update the timetable.
+ipcMain.on("GET-TIMETABLE", (event, value) => {
+  processor.send("GET-TIMETABLE");
+});
+
+// This event will add the timetable.
+ipcMain.on("UPDATE-TIMETABLE", (event, value) => {
+  workSpaceWindow.send("UPDATE-TIMETABLE", value);
+});

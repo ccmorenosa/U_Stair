@@ -22,7 +22,7 @@ const {app, BrowserWindow, ipcMain, dialog} = electron;
 // This event will create a new subject to the database.
 ipcMain.on("CLOSE-FORM", (event, value) => {
   formWindow.close();
-  processor.send("status", "Listo");
+  workSpaceWindow.send("status", "Listo");
 });
 
 // This event search for a subject.
@@ -52,4 +52,10 @@ ipcMain.on("SEND-SEMESTERS-INFO", (event, value) => {
 
   formWindow.send("SEND-SEMESTERS-INFO", value);
 
+});
+
+// This event update the schedule
+ipcMain.on("TIMETABLE-DB", (event, value) => {
+  formWindow.close();
+  processor.send("TIMETABLE-DB", value);
 });
