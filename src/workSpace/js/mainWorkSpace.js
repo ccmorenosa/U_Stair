@@ -24,6 +24,26 @@ var modify = false;
 
 // Close button.
 ipcMain.on("CLOSE", (event, value) => {
+
+  if (modify) {
+    var buttonClicked = dialog.showMessageBoxSync({
+      title: "Cambios sin guardar",
+      type: "question",
+      buttons: ["Cancelar", "No guardar", "Guardar"],
+      message: "Seguro desea continuar, se perderán los cambios no guardados."
+    });
+
+    if (buttonClicked == 1) {
+    } else if (buttonClicked == 2 ) {
+      if(saveDataBase()) {
+        return;
+      }
+    } else {
+      return;
+    }
+
+  }
+
   workSpaceWindow.close();
 });
 
@@ -60,7 +80,9 @@ ipcMain.on("FILE-OPEN", (event, value) => {
 
     if (buttonClicked == 1) {
     } else if (buttonClicked == 2 ) {
-      saveDataBase();
+      if(saveDataBase()) {
+        return;
+      }
     } else {
       return;
     }
@@ -123,6 +145,9 @@ function saveDataBase() {
 
       processor.send("FILE-SAVE", [tempDir, fileName]);
       modify = false;
+    } else {
+      console.log(result);
+      return true;
     }
 
   } else {
