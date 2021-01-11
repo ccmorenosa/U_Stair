@@ -159,7 +159,7 @@ function createWindow () {
 
   // Open the DevTools.
   // welcomeWin.webContents.openDevTools();
-  processor.webContents.openDevTools();
+  // processor.webContents.openDevTools();
 
   welcomeWin.on("close",  () => {
     fs.rmdir(path.join(tempDir, "/u_stair"), { recursive: true }, (err) => {
