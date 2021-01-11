@@ -18,9 +18,9 @@
 
 const electron = require("electron");
 const {app, BrowserWindow, ipcMain, dialog} = electron;
+const fs = require("fs-extra");
 const path = require("path");
 const url = require("url");
-const fs = require("fs-extra");
 
 // This event get the event when the user wants to create a new database.
 ipcMain.on("NEW", (event, value) => {

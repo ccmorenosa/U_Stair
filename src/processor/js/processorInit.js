@@ -27,6 +27,8 @@ var dataBase;
 // Create a new database in the temporal directory whenever the "NEW" button is
 // clicked.
 ipcRenderer.on("NEW", (event, value) => {
+  semestersCount = 1;
+
   // Send an event to update the status bar.
   ipcRenderer.send("status", "Cargando base de datos");
 
@@ -60,6 +62,8 @@ ipcRenderer.on("NEW", (event, value) => {
           (err) => {
             if (err) {
               return console.error(err.message);
+            } else {
+              updateSemesterTable();
             }
           }
         );
@@ -82,6 +86,8 @@ ipcRenderer.on("NEW", (event, value) => {
           (err) => {
             if (err) {
               return console.error(err.message);
+            } else {
+              updateTimetable();
             }
           }
         );
@@ -117,6 +123,9 @@ ipcRenderer.on("OPEN", (event, value) => {
 
   ipcRenderer.send("status", "Actualizando tabla de semestres");
   updateSemesterTable();
+
+  ipcRenderer.send("status", "Actualizando horario");
+  updateTimetable();
 
   ipcRenderer.send("status", "Listo");
 });

@@ -18,6 +18,9 @@
 
 const electron = require("electron");
 const {ipcMain, dialog} = electron;
+const fs = require("fs-extra");
+const path = require("path");
+const url = require("url");
 
 // Modify flag.
 var modify = false;
@@ -65,6 +68,40 @@ ipcMain.on("MAXIMIZE", (event, value) => {
 // Iconize button.
 ipcMain.on("ICONIZE", (event, value) => {
   workSpaceWindow.minimize();
+});
+
+// This event open a database.
+ipcMain.on("FILE-NEW", (event, value) => {
+
+  if (modify) {
+    var buttonClicked = dialog.showMessageBoxSync({
+      title: "Cambios sin guardar",
+      type: "question",
+      buttons: ["Cancelar", "No guardar", "Guardar"],
+      message: "Seguro desea continuar, se perderán los cambios realizados."
+    });
+
+    if (buttonClicked == 1) {
+    } else if (buttonClicked == 2 ) {
+      if(saveDataBase()) {
+        return;
+      }
+    } else {
+      return;
+    }
+
+  }
+
+  fs.removeSync(path.join(tempDir, "u_stair/temp.db"), {}, (err) => {
+    if (err) {
+      console.error(err);
+    }
+    console.log("suc");
+  });
+
+  welcomeWin.hide();
+
+  processor.send("NEW", tempDir);
 });
 
 // This event open a database.
