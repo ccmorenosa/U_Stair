@@ -96,7 +96,6 @@ ipcMain.on("FILE-NEW", (event, value) => {
     if (err) {
       console.error(err);
     }
-    console.log("suc");
   });
 
   welcomeWin.hide();
@@ -183,7 +182,6 @@ function saveDataBase() {
       processor.send("FILE-SAVE", [tempDir, fileName]);
       modify = false;
     } else {
-      console.log(result);
       return true;
     }
 

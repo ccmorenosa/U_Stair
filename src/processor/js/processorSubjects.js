@@ -57,8 +57,6 @@ ipcRenderer.on("OLD-DB-SUBJECT-EDITED", (event, value) => {
   "\", Departamento=\"" + value[0][6] +
   "\", Programa=\"" + value[0][7] + "\" WHERE Codigo=\"" + value[1] + "\";";
 
-  console.log(sqlQuery);
-
   // Add the new row, and update the table if the window if it success.
   dataBase.run(sqlQuery,
     function (err) {

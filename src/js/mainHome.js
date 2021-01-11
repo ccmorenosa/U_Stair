@@ -112,7 +112,6 @@ function makeWorkSpaceWindow() {
       if (err) {
         console.error(err);
       }
-      console.log("suc");
     });
 
     formOpened = false;

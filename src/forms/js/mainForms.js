@@ -19,7 +19,7 @@
 const electron = require("electron");
 const {app, BrowserWindow, ipcMain, dialog} = electron;
 
-// This event will create a new subject to the database.
+// This event will close the form.
 ipcMain.on("CLOSE-FORM", (event, value) => {
   formWindow.close();
   workSpaceWindow.send("status", "Listo");

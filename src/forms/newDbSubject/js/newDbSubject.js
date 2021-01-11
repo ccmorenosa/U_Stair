@@ -25,8 +25,6 @@ var isEditing = false;
 */
 function newDbSubject() {
 
-  console.log("asdghfasdjfg");
-
   if (form.children[0].children["Codigo"].value == "" ||
   form.children[1].children["Materia"].value == "" ||
   form.children[7].children["Creditos"].value == "" ||
@@ -65,8 +63,6 @@ ipcRenderer.send("SEARCH-DB-SUBJECT");
 ipcRenderer.on("FILL-SPACES", (event, value) => {
 
   isEditing = true;
-
-  console.log(value);
 
   form.children[0].children["Codigo"].value = value[0].Codigo;
   form.children[1].children["Materia"].value = value[0].Nombre;

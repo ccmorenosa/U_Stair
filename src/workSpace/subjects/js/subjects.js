@@ -97,7 +97,6 @@ function activeEditButtons() {
 
     button.addEventListener("click", (event) => {
       var parNode = event.target.parentElement.parentElement.children[1];
-      console.log(parNode);
       ipcRenderer.send("EDIT-DB-SUBJECT", parNode.innerText);
     });
 
