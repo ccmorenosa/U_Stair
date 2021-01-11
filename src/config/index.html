@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!--
+....UStair.  Grade curriculum schedule.
+....Copyright (C) 2020  Andŕes Felipe Moreno Sarria
+....
+....This program is free software: you can redistribute it and/or modify
+....it under the terms of the GNU General Public License as published by
+....the Free Software Foundation, either version 3 of the License, or
+....(at your option) any later version.
+....
+....This program is distributed in the hope that it will be useful,
+....but WITHOUT ANY WARRANTY; without even the implied warranty of
+....MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+....GNU General Public License for more details.
+....
+....You should have received a copy of the GNU General Public License
+....along with this program.  If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>¡Bienvenido!</title>
+  <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="css/config.css">
+  <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../node_modules/designmodo-flat-ui/dist/css/flat-ui.min.css">
+</head>
+
+<body class="d-flex flex-column">
+
+  <!-- Draggable bar -->
+  <div class="draggable palette-midnight-blue text-light text-center">
+    Configuración
+
+    <div class="btn-group float-right h-100">
+      <!-- Close button -->
+      <button class="btn btn-danger btn-sm rounded-0 p-1" onclick="closeConfig()">
+        <span class="fui-cross"></span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Begining of the config -->
+  <div class="w-100 flex border border-primary overflow-hidden">
+
+    <div class="h-100 w-20 float-left p-3 float-left d-flex flex-column border-right">
+
+      <div class="w-100 text-center">
+        <img class="w-75 btn" src="../../node_modules/designmodo-flat-ui/dist/img/icons/svg/pencils.svg">
+
+        Apariencia
+      </div>
+
+    </div>
+
+    <div class="h-100 w-80 p-3 float-left d-flex flex-column overflow-y-scroll">
+
+      <h3 class="W-100 text-center">Horario</h3>
+
+      <h4 class="ml-3">colores de la materias</h4>
+
+      <ul class="ml-5">
+        <li class="w-50 mb-3 border-bottom d-block">
+          Materia 1:
+          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
+        </li>
+
+        <li class="w-50 mb-3 border-bottom d-block">
+          Materia 2:
+          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
+        </li>
+
+        <li class="w-50 mb-3 border-bottom d-block">
+          Materia 3:
+          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
+        </li>
+
+        <li class="w-50 mb-3 border-bottom d-block">
+          Materia 4:
+          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
+        </li>
+
+        <li class="w-50 mb-3 border-bottom d-block">
+          Materia 5:
+          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
+        </li>
+
+        <li class="w-50 mb-3 border-bottom d-block">
+          Materia 6:
+          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
+        </li>
+
+        <li class="w-50 mb-3 border-bottom d-block">
+          Materia 7:
+          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
+        </li>
+
+        <li class="w-50 mb-3 border-bottom d-block">
+          Materia 8:
+          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
+        </li>
+
+        <li class="w-50 mb-3 border-bottom d-block">
+          Materia 9:
+          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
+        </li>
+
+        <li class="w-50 mb-3 border-bottom d-block">
+          Materia 10:
+          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+
+  <!-- Submit function -->
+  <script src="../js/buttons.js"></script>
+  <script src="js/config.js"></script>
+</body>
+
+</html>

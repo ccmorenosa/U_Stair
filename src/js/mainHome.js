@@ -58,7 +58,29 @@ ipcMain.on("OPEN", (event, value) => {
 // This event get the event when the user wants to change the program
 // configuration.
 ipcMain.on("SETTINGS", (event, value) => {
-  console.log("GETTED");
+  // Create the browser window.
+  configWindow = new BrowserWindow({
+    parent: welcomeWin,
+    width: 800,
+    height: 600,
+    frame: false,
+    resizable: false,
+    modal: true,
+    webPreferences: {
+      nodeIntegration: true,
+    }
+  });
+
+  // and load the index.html of the workSpaceWindow.
+  configWindow.loadURL(url.format({
+    pathname: path.join(srcPath, "config/index.html"),
+    protocol: "file:",
+    slashes: true
+  }));
+
+  configWindow.on("close",  () => {
+    configWindow = null;
+  });
 });
 
 // This event will close the application.
@@ -73,6 +95,7 @@ ipcMain.on("EXIT", (event, value) => {
 function makeWorkSpaceWindow() {
   // Create the browser window.
   workSpaceWindow = new BrowserWindow({
+    parent: welcomeWin,
     width: 800,
     minWidth: 800,
     height: 600,
@@ -92,8 +115,6 @@ function makeWorkSpaceWindow() {
     protocol: "file:",
     slashes: true
   }));
-
-  workSpaceWindow.webContents.openDevTools();
 
   workSpaceWindow.on("move", (event, value) => {
     if (workSpaceWindow.isMaximized()) {

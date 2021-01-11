@@ -25,12 +25,17 @@ const url = require("url");
 // Declare all windows.
 global.welcomeWin = null;
 global.workSpaceWindow = null;
+global.configWindow = null;
 global.formWindow = null;
 global.processor = null;
 
 // Declare important dirs.
 global.tempDir = app.getPath("temp");
 global.srcPath = path.join(app.getAppPath(),"src");
+global.dataDir = app.getPath("userData");
+
+// Declare the variable for the configuration file.
+global.configFile = path.join(dataDir, "config.json");
 
 // File name
 global.fileName = "";
@@ -43,6 +48,7 @@ global.editingSubject = "";
 
 require("./js/mainHome");
 require("./forms/js/mainForms");
+require("./config/js/mainConfig");
 require("./workSpace/js/mainWorkSpace");
 require("./workSpace/subjects/js/mainSubjects");
 require("./workSpace/planning/js/mainSemester");
@@ -88,6 +94,60 @@ function createWindow () {
     protocol: "file:",
     slashes: true
   }));
+
+  // Create the data directory if it does not exists.
+  fs.pathExistsSync(dataDir, (err, exists) => {
+    if (err) {
+      throw err;
+    }
+
+    if (!exists) {
+      fs.mkdirSync(dataDir, (dErr) => {
+        if (dErr) {
+          throw dErr;
+        }
+      });
+    }
+  });
+
+  // Crete the configuration file if it does not exists.
+  fs.pathExists(configFile, (err, exists) => {
+    if (err) {
+      throw err;
+    }
+
+    if (!exists) {
+      var config = {
+        "colors": [
+          "#f1c40f",
+          "#1abc9c",
+          "#d35400",
+          "#9b59b6",
+          "#34495e",
+          "#2ecc71",
+          "#3498db",
+          "#e67e22",
+          "#e74c3c",
+          "#95a5a6"
+        ]
+      };
+
+      fs.writeJsonSync(configFile,
+        config,
+        {
+          "spaces": "\t",
+          "EOL": "\n"
+        },
+        (wErr) => {
+
+        if (wErr) {
+          throw wErr;
+        }
+
+      });
+    }
+
+  });
 
   // Define temporal dir.
   fs.mkdir(path.join(tempDir, "/u_stair"), { recursive: true },

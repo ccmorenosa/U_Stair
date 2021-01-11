@@ -18,6 +18,7 @@
 
 const electron = require("electron");
 const {app, BrowserWindow, ipcMain, dialog} = electron;
+const fs = require("fs-extra");
 const path = require("path");
 const url = require("url");
 
@@ -63,5 +64,14 @@ ipcMain.on("GET-TIMETABLE", (event, value) => {
 
 // This event will add the timetable.
 ipcMain.on("UPDATE-TIMETABLE", (event, value) => {
-  workSpaceWindow.send("UPDATE-TIMETABLE", value);
+
+  // Read the configuration file.
+  fs.readJson(configFile, (err, configObj) => {
+    if (err) {
+      throw err;
+    }
+
+    workSpaceWindow.send("UPDATE-TIMETABLE", [configObj.colors, value]);
+  });
+
 });

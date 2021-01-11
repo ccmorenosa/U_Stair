@@ -21,26 +21,7 @@ var scheduleTools = ["ADD-SEMESTER"];
 activateButtons(scheduleTools);
 
 // Color pallete
-var colors = [
-  "#f1c40f",
-  "#1abc9c",
-  "#d35400",
-  "#9b59b6",
-  "#34495e",
-  "#2ecc71",
-  "#3498db",
-  "#e67e22",
-  "#e74c3c",
-  "#95a5a6",
-  "#16a085",
-  "#27ae60",
-  "#2980b9",
-  "#8e44ad",
-  "#2c3e50",
-  "#f39c12",
-  "#c0392b",
-  "#7f8c8d"
-];
+var colors;
 
 // Week days
 
@@ -58,15 +39,15 @@ ipcRenderer.send("GET-TIMETABLE");
 
 // This event will add the timetable.
 ipcRenderer.on("UPDATE-TIMETABLE", (event, value) => {
+  colors = value[0];
+
   for (var weekDay in weekDays) {
     weekDays[weekDay].innerHTML = "";
   }
 
-  var timetable = JSON.parse(value[0].Info);
+  var timetable = JSON.parse(value[1][0].Info);
 
   var count = 0;
-
-  console.log(timetable);
 
   for (var subject in timetable) {
     var subjectName = timetable[subject][0];
