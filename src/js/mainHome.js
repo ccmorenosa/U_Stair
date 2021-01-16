@@ -93,6 +93,12 @@ ipcMain.on("EXIT", (event, value) => {
 * This function create the workspace window.
 */
 function makeWorkSpaceWindow() {
+  fs.removeSync(path.join(tempDir, "u_stair/temp.db"), {}, (err) => {
+    if (err) {
+      console.error(err);
+    }
+  });
+
   // Create the browser window.
   workSpaceWindow = new BrowserWindow({
     parent: welcomeWin,
@@ -129,12 +135,6 @@ function makeWorkSpaceWindow() {
   });
 
   workSpaceWindow.on("close",  () => {
-    fs.removeSync(path.join(tempDir, "u_stair/temp.db"), {}, (err) => {
-      if (err) {
-        console.error(err);
-      }
-    });
-
     formOpened = false;
     workSpaceWindow = null;
     welcomeWin.show();

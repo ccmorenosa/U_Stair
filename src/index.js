@@ -193,5 +193,7 @@ if (!gotTheLock) {
 
 // This event update the status bar.
 ipcMain.on("status", (event, value) => {
-  workSpaceWindow.send("status", value);
+  if (workSpaceWindow) {
+    workSpaceWindow.send("status", value);
+  }
 });
