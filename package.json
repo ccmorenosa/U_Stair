@@ -37,15 +37,21 @@
         "deb",
         "rpm",
         "pacman"
-      ]
+      ],
+      "category": "Productivity",
+      "maintainer": "afmorenosa"
     },
     "win": {
       "target": [
         "nsis",
-        "msi",
-        "squirrel"
+        "msi"
       ],
-      "icon": "build/icon.ico"
+      "publish": ["github"]
+    },
+    "nsis": {
+      "oneClick": false,
+      "license": "LICENSE",
+      "allowToChangeInstallationDirectory": true
     }
   },
   "repository": {
