@@ -41,7 +41,7 @@ ipcRenderer.on("NEW", (event, value) => {
     fs.readFileSync(path.join(__dirname,"../sql/subjects.sql")).toString(),
     (err) => {
       if (err) {
-        return console.error(err.message);
+        return console.error(err);
       } else {
         updateSubjectsTable();
       }
@@ -53,7 +53,7 @@ ipcRenderer.on("NEW", (event, value) => {
     fs.readFileSync(path.join(__dirname,"../sql/semester.sql")).toString(),
     (err) => {
       if (err) {
-        return console.error(err.message);
+        return console.error(err);
       } else {
 
         dataBase.run(
@@ -61,7 +61,7 @@ ipcRenderer.on("NEW", (event, value) => {
           "VALUES (1, \'{}\');",
           (err) => {
             if (err) {
-              return console.error(err.message);
+              return console.error(err);
             } else {
               updateSemesterTable();
             }
@@ -77,7 +77,7 @@ ipcRenderer.on("NEW", (event, value) => {
     fs.readFileSync(path.join(__dirname,"../sql/timetable.sql")).toString(),
     (err) => {
       if (err) {
-        return console.error(err.message);
+        return console.error(err);
       } else {
 
         dataBase.run(
@@ -85,7 +85,7 @@ ipcRenderer.on("NEW", (event, value) => {
           "VALUES (1, \'{}\');",
           (err) => {
             if (err) {
-              return console.error(err.message);
+              return console.error(err);
             } else {
               updateTimetable();
             }
@@ -107,7 +107,7 @@ ipcRenderer.on("OPEN", (event, value) => {
 
   fs.copyFile(value[1], path.join(value[0], "u_stair/temp.db"), (err) => {
     if (err) {
-      return console.error(err.message);
+      return console.error(err);
     }
   });
 
@@ -130,13 +130,20 @@ ipcRenderer.on("OPEN", (event, value) => {
   ipcRenderer.send("status", "Listo");
 });
 
+// This event close the connection to the database.
+ipcRenderer.on("CLOSE-CONNECTION", (event, value) => {
+
+  closeConnection(value);
+
+});
+
 // This event save the database in the path that the user specify.
 ipcRenderer.on("FILE-SAVE", (event, value) => {
   ipcRenderer.send("status", "Guardando");
 
   fs.copyFile(path.join(value[0], "u_stair/temp.db"), value[1], (err) => {
     if (err) {
-      return console.error(err.message);
+      return console.error(err);
     }
   });
 
@@ -152,10 +159,47 @@ function connectDatabase(databasePath) {
   dataBase = new sqlite.Database(databasePath,
     (err) => {
       if (err) {
-        return console.error(err.message);
+        return console.error(err);
       } else {
         console.log("Connected to database");
       }
     }
   );
+}
+
+/**
+* This function close the connection to the database
+*/
+function closeConnection(params) {
+
+  if (dataBase) {
+    dataBase.close((err) => {
+      if (err) {
+        return console.error(err);
+      }
+
+      deleteDatabase(params[0]);
+
+      if (params[1]) {
+        ipcRenderer.send("NEW");
+      }
+
+      console.log("Disconnected to database");
+
+    });
+
+}
+
+/**
+* This function remove the database
+*/
+function deleteDatabase(tempDir) {
+
+    fs.removeSync(path.join(tempDir, "u_stair/temp.db"), {}, (err) => {
+      if (err) {
+        console.error(err);
+      }
+    });
+  }
+
 }

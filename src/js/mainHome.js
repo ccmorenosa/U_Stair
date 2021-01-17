@@ -24,7 +24,7 @@ const url = require("url");
 
 // This event get the event when the user wants to create a new database.
 ipcMain.on("NEW", (event, value) => {
-  makeWorkSpaceWindow ();
+  makeWorkSpaceWindow();
 
   welcomeWin.hide();
 
@@ -42,7 +42,8 @@ ipcMain.on("OPEN", (event, value) => {
     ]
   }).then( result => {
     if(!result.canceled) {
-      makeWorkSpaceWindow ();
+      makeWorkSpaceWindow();
+
       fileName = result.filePaths[0];
 
       processor.send("OPEN", [tempDir, fileName]);
@@ -93,11 +94,9 @@ ipcMain.on("EXIT", (event, value) => {
 * This function create the workspace window.
 */
 function makeWorkSpaceWindow() {
-  fs.removeSync(path.join(tempDir, "u_stair/temp.db"), {}, (err) => {
-    if (err) {
-      console.error(err);
-    }
-  });
+  if (workSpaceWindow) {
+    return;
+  }
 
   // Create the browser window.
   workSpaceWindow = new BrowserWindow({
@@ -135,8 +134,12 @@ function makeWorkSpaceWindow() {
   });
 
   workSpaceWindow.on("close",  () => {
+
     formOpened = false;
     workSpaceWindow = null;
+
+    processor.send("CLOSE-CONNECTION", [tempDir, false]);
+
     welcomeWin.show();
   });
 }

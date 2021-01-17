@@ -36,16 +36,19 @@ ipcMain.on("CLOSE", (event, value) => {
       message: "Seguro desea continuar, se perderán los cambios no guardados."
     });
 
-    if (buttonClicked == 1) {
+    if (buttonClicked == 0) {
+      return;
     } else if (buttonClicked == 2 ) {
       if(saveDataBase()) {
         return;
       }
     } else {
-      return;
+      modify = false;
     }
 
   }
+
+  processor.send("CLOSE-CONNECTION", [tempDir, false]);
 
   workSpaceWindow.close();
 });
@@ -81,26 +84,19 @@ ipcMain.on("FILE-NEW", (event, value) => {
       message: "Seguro desea continuar, se perderán los cambios realizados."
     });
 
-    if (buttonClicked == 1) {
+    if (buttonClicked == 0) {
+      return;
     } else if (buttonClicked == 2 ) {
       if(saveDataBase()) {
         return;
       }
     } else {
-      return;
+      modify = false;
     }
 
   }
 
-  fs.removeSync(path.join(tempDir, "u_stair/temp.db"), {}, (err) => {
-    if (err) {
-      console.error(err);
-    }
-  });
-
-  welcomeWin.hide();
-
-  processor.send("NEW", tempDir);
+  processor.send("CLOSE-CONNECTION", [tempDir, true]);
 });
 
 // This event open a database.
@@ -114,13 +110,14 @@ ipcMain.on("FILE-OPEN", (event, value) => {
       message: "Seguro desea continuar, se perderán los cambios realizados."
     });
 
-    if (buttonClicked == 1) {
+    if (buttonClicked == 0) {
+      return;
     } else if (buttonClicked == 2 ) {
       if(saveDataBase()) {
         return;
       }
     } else {
-      return;
+      modify = false;
     }
 
   }
@@ -181,6 +178,8 @@ function saveDataBase() {
 
       processor.send("FILE-SAVE", [tempDir, fileName]);
       modify = false;
+      return false;
+
     } else {
       return true;
     }
@@ -188,6 +187,7 @@ function saveDataBase() {
   } else {
     processor.send("FILE-SAVE", [tempDir, fileName]);
     modify = false;
+    return false;
   }
 
 }
