@@ -9,15 +9,32 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
+
     "lint": "echo \"No linting configured\"",
+
     "bsqlt3": "electron-rebuild -f -w sqlite3",
+
     "test": "electron .",
+    "postinstall": "electron-builder install-app-deps",
     "pack": "electron-builder --dir",
     "distw": "electron-builder --win",
+    "dist-mac": "electron-builder --mac",
+    "dist-pacman": "electron-builder --linux pacman",
     "dist": "electron-builder"
   },
   "build": {
     "appId": "ustair",
+    "mac": {
+      "category": "public.app-category.education",
+      "target": ["mas", "dmg"]
+    },
+    "mas": {
+      "hardenedRuntime": false,
+      "entitlements": "build/entitlements.mas.plist",
+      "entitlementsInherit": "build/entitlements.mas.inherit.plist",
+      "gatekeeperAssess": false,
+      "asarUnpack": []
+    },
     "dmg": {
       "contents": [
         {
