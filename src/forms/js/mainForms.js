@@ -18,6 +18,7 @@
 
 const electron = require("electron");
 const {app, BrowserWindow, ipcMain, dialog} = electron;
+const fs = require("fs-extra");
 
 // This event will close the form.
 ipcMain.on("CLOSE-FORM", (event, value) => {
@@ -30,6 +31,18 @@ ipcMain.on("SEARCH-DB-SUBJECT", (event, value) => {
 
   if (editingSubject){
     processor.send("SEARCH-DB-SUBJECT", editingSubject);
+  } else {
+
+    // Read the configuration file.
+    fs.readJson(configFile, (err, configObj) => {
+      if (err) {
+        throw err;
+      }
+
+      formWindow.send("FILL-SPACES", [configObj.defaultsNewSubject]);
+
+    });
+
   }
 
 });

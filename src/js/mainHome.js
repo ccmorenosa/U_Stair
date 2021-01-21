@@ -74,7 +74,7 @@ ipcMain.on("SETTINGS", (event, value) => {
 
   // and load the index.html of the workSpaceWindow.
   configWindow.loadURL(url.format({
-    pathname: path.join(srcPath, "config/index.html"),
+    pathname: path.join(srcPath, "config/general/index.html"),
     protocol: "file:",
     slashes: true
   }));

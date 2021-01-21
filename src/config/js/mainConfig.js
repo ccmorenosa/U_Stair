@@ -89,3 +89,26 @@ ipcMain.on("UPDATE-TEXT", (event, value) => {
   });
 
 });
+
+ipcMain.on("UPDATE-DEFAULTS", (event, value) => {
+
+  // Read the configuration file.
+  fs.readJson(configFile, (err, configObj) => {
+    if (err) {
+      throw err;
+    }
+
+    configObj.defaultsNewSubject = value.defaultsNewSubject;
+
+    fs.writeJsonSync(configFile, configObj, {"spaces": "\t", "EOL": "\n"},
+    (wErr) => {
+
+      if (wErr) {
+        throw wErr;
+      }
+
+    });
+
+  });
+
+});

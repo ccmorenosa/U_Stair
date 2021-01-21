@@ -131,7 +131,13 @@ function createWindow () {
           "#95a5a6"
         ],
         "colorMesh": "#2ecc71",
-        "textMesh": "text-white"
+        "textMesh": "text-white",
+        "defaultsNewSubject": {
+          "Universidad": "",
+          "Sede": "",
+          "Facultad": "",
+          "Departamento": ""
+        }
       };
 
       fs.writeJsonSync(configFile, config, {"spaces": "\t", "EOL": "\n"},
@@ -162,6 +168,15 @@ function createWindow () {
 
         if (!configObj.textMesh) {
           configObj.textMesh = "text-white";
+        }
+
+        if (!configObj.defaultsNewSubject) {
+          configObj.defaultsNewSubject = {
+            "Universidad": "",
+            "Sede": "",
+            "Facultad": "",
+            "Departamento": ""
+          };
         }
 
         fs.writeJsonSync(configFile, configObj, {"spaces": "\t", "EOL": "\n"},

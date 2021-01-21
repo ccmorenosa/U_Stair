@@ -64,13 +64,37 @@ ipcRenderer.on("FILL-SPACES", (event, value) => {
 
   isEditing = true;
 
-  form.children[0].children["Codigo"].value = value[0].Codigo;
-  form.children[1].children["Materia"].value = value[0].Nombre;
-  form.children[7].children["Creditos"].value = value[0].Creditos;
-  form.children[3].children["Universidad"].value = value[0].Universidad;
-  form.children[4].children["Sede"].value = value[0].Sede;
-  form.children[5].children["Facultad"].value = value[0].Facultad;
-  form.children[6].children["Departamento"].value = value[0].Departamento;
-  form.children[2].children["Programa"].value = value[0].Programa;
+  if (value[0].Codigo) {
+    form.children[0].children.Codigo.value = value[0].Codigo;
+  }
+
+  if (value[0].Nombre) {
+    form.children[1].children.Materia.value = value[0].Nombre;
+  }
+
+  if (value[0].Creditos) {
+    form.children[7].children.Creditos.value = value[0].Creditos;
+  }
+
+  if (value[0].Universidad) {
+    form.children[3].children.Universidad.value = value[0].Universidad;
+  }
+
+  if (value[0].Sede) {
+    form.children[4].children.Sede.value = value[0].Sede;
+  }
+
+  if (value[0].Facultad) {
+    form.children[5].children.Facultad.value = value[0].Facultad;
+  }
+
+  if (value[0].Departamento) {
+    form.children[6].children.Departamento.value = value[0].Departamento;
+  }
+
+  if (value[0].Programa) {
+    form.children[2].children.Programa.value = value[0].Programa;
+  }
+
 
 });
