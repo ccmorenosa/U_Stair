@@ -174,6 +174,12 @@ function updateFilteredSubjectsTable(filters) {
     prev = true;
   }
 
+  if (filters.departamento){
+    search += joinPrev(prev);
+    search += "Departamento LIKE \"%" + filters.departamento + "%\" ";
+    prev = true;
+  }
+
   search += joinPrev(prev);
   search += "Programa LIKE \"%" + filters.programa + "%\" ";
   prev = true;
