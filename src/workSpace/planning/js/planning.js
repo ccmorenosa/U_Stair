@@ -28,7 +28,7 @@ ipcRenderer.send("GET-SEMESTERS");
 
 // Event that update the table
 ipcRenderer.on("UPDATE-SEMESTERS", (event, value) => {
-  semesters = value;
+  semesters = value[1];
 
   var semesterHTML = "";
 
@@ -41,7 +41,7 @@ ipcRenderer.on("UPDATE-SEMESTERS", (event, value) => {
     var subjects = JSON.parse(semester.Materias);
 
     for (var subject in subjects) {
-      semesterHTML += "<div class=\"card text-white palette-emerald mb-1 w-100 rounded-0 font-weight-bold\">" +
+      semesterHTML += "<div class=\"card mb-1 w-100 rounded-0 font-weight-bold " + value[0].textMesh + "\" style=\"background: " + value[0].colorMesh + ";\">" +
       "<div class=\"p-1 card-header text-medium text-center\">" + subjects[subject] + "</div>" +
       "<div class=\"card-body px-2 py-1\">" +
       "<p class=\"card-title text-medium\">Codigo: " + subject + " </p>" +

@@ -18,6 +18,7 @@
 
 const electron = require("electron");
 const {app, BrowserWindow, ipcMain, dialog} = electron;
+const fs = require("fs-extra");
 const path = require("path");
 const url = require("url");
 
@@ -30,7 +31,16 @@ ipcMain.on("GET-SEMESTERS", (event, value) => {
 
 // This event will update the table of semesters.
 ipcMain.on("UPDATE-SEMESTERS", (event, value) => {
-  workSpaceWindow.send("UPDATE-SEMESTERS", value);
+
+  // Read the configuration file.
+  fs.readJson(configFile, (err, configObj) => {
+    if (err) {
+      throw err;
+    }
+
+    workSpaceWindow.send("UPDATE-SEMESTERS", [configObj, value]);
+  });
+
 });
 
 // This event add a semester in the database.

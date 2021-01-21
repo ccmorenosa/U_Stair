@@ -37,7 +37,7 @@ ipcMain.on("GET-CONFIG", (event, value) => {
 
 });
 
-ipcMain.on("UDATE-COLORS", (event, value) => {
+ipcMain.on("UPDATE-COLORS", (event, value) => {
 
   // Read the configuration file.
   fs.readJson(configFile, (err, configObj) => {
@@ -45,7 +45,8 @@ ipcMain.on("UDATE-COLORS", (event, value) => {
       throw err;
     }
 
-    configObj.colors = value;
+    configObj.colorMesh = value[0];
+    configObj.colorsTimetable = value[1];
 
 
     fs.writeJsonSync(configFile,
@@ -55,6 +56,29 @@ ipcMain.on("UDATE-COLORS", (event, value) => {
         "EOL": "\n"
       },
       (wErr) => {
+
+      if (wErr) {
+        throw wErr;
+      }
+
+    });
+
+  });
+
+});
+
+ipcMain.on("UPDATE-TEXT", (event, value) => {
+
+  // Read the configuration file.
+  fs.readJson(configFile, (err, configObj) => {
+    if (err) {
+      throw err;
+    }
+
+    configObj.textMesh = value;
+
+    fs.writeJsonSync(configFile, configObj, {"spaces": "\t", "EOL": "\n"},
+    (wErr) => {
 
       if (wErr) {
         throw wErr;

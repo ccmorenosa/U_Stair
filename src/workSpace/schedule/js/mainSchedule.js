@@ -71,7 +71,7 @@ ipcMain.on("UPDATE-TIMETABLE", (event, value) => {
       throw err;
     }
 
-    workSpaceWindow.send("UPDATE-TIMETABLE", [configObj.colors, value]);
+    workSpaceWindow.send("UPDATE-TIMETABLE", [configObj.colorsTimetable, value]);
   });
 
 });

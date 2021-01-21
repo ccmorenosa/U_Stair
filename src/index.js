@@ -118,7 +118,7 @@ function createWindow () {
 
     if (!exists) {
       var config = {
-        "colors": [
+        "colorsTimetable": [
           "#f1c40f",
           "#1abc9c",
           "#d35400",
@@ -129,22 +129,52 @@ function createWindow () {
           "#e67e22",
           "#e74c3c",
           "#95a5a6"
-        ]
+        ],
+        "colorMesh": "#2ecc71",
+        "textMesh": "text-white"
       };
 
-      fs.writeJsonSync(configFile,
-        config,
-        {
-          "spaces": "\t",
-          "EOL": "\n"
-        },
-        (wErr) => {
+      fs.writeJsonSync(configFile, config, {"spaces": "\t", "EOL": "\n"},
+      (wErr) => {
 
         if (wErr) {
           throw wErr;
         }
 
       });
+    } else {
+
+      // Read the configuration file.
+      fs.readJson(configFile, (err, configObj) => {
+        if (err) {
+          throw err;
+        }
+
+        if (configObj.colors) {
+          configObj.colorsTimetable = configObj.colors;
+
+          delete configObj.colors;
+        }
+
+        if (!configObj.colorMesh) {
+          configObj.colorMesh = "#2ecc71";
+        }
+
+        if (!configObj.textMesh) {
+          configObj.textMesh = "text-white";
+        }
+
+        fs.writeJsonSync(configFile, configObj, {"spaces": "\t", "EOL": "\n"},
+        (wErr) => {
+
+          if (wErr) {
+            throw wErr;
+          }
+
+        });
+
+      });
+
     }
 
   });

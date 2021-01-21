@@ -62,62 +62,109 @@
 
     <div class="h-100 w-80 p-3 float-left d-flex flex-column overflow-y-scroll">
 
-      <h3 class="W-100 text-center">Horario</h3>
+      <div class="border-bottom">
 
-      <h4 class="ml-3">colores de la materias</h4>
+        <h3 class="W-100 text-center">Malla Curricular</h3>
 
-      <ul class="ml-5">
-        <li class="w-50 mb-3 border-bottom d-block">
-          Materia 1:
-          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
-        </li>
+        <h4 class="ml-3">Bloque de materia</h4>
 
-        <li class="w-50 mb-3 border-bottom d-block">
-          Materia 2:
-          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
-        </li>
+        <ul class="ml-5">
 
-        <li class="w-50 mb-3 border-bottom d-block">
-          Materia 3:
-          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
-        </li>
+          <li class="w-50 mb-3 border-bottom d-block">
+            Color:
+            <input type="color" class="color-block d-inline-block pointer" id="color-block-mesh" oninput="updateColors()"/>
+          </li>
 
-        <li class="w-50 mb-3 border-bottom d-block">
-          Materia 4:
-          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
-        </li>
+          <li class="w-50 mb-3 border-bottom d-block">
+            Color del texto:
+            <br>
 
-        <li class="w-50 mb-3 border-bottom d-block">
-          Materia 5:
-          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
-        </li>
+            <input type="radio" name="text-color-mesh" class="d-inline-block pointer ml-5" oninput="updateText()" value="text-black" id="text-black"/>
+            <label for="text-black">Negro</label>
+            <br>
 
-        <li class="w-50 mb-3 border-bottom d-block">
-          Materia 6:
-          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
-        </li>
+            <input type="radio" name="text-color-mesh" class="d-inline-block pointer ml-5" oninput="updateText()" value="text-white" id="text-white"/>
+            <label for="text-white">Blanco</label>
+          </li>
 
-        <li class="w-50 mb-3 border-bottom d-block">
-          Materia 7:
-          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
-        </li>
+          <li class="w-50 mb-3 border-bottom d-block">
+            Ejemplo:
+            <br>
 
-        <li class="w-50 mb-3 border-bottom d-block">
-          Materia 8:
-          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
-        </li>
+            <div class="card my-3 mx-5 w-100 rounded-0 font-weight-bold" id="subject-sample">
+              <div class="p-1 card-header text-medium text-center"> Materia </div>
+              <div class="card-body px-2 py-1">
+                <p class="card-title text-medium">Codigo: 000000 </p>
+              </div>
+            </div>
 
-        <li class="w-50 mb-3 border-bottom d-block">
-          Materia 9:
-          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
-        </li>
+          </li>
 
-        <li class="w-50 mb-3 border-bottom d-block">
-          Materia 10:
-          <input type="color" class="color-block d-inline-block pointer" oninput="updateColors()"/>
-        </li>
+        </ul>
 
-      </ul>
+      </div>
+
+      <div class="border-bottom">
+
+        <h3 class="W-100 text-center">Horario</h3>
+
+        <h4 class="ml-3">Colores de la materias</h4>
+
+        <ul class="ml-5">
+
+          <li class="w-50 mb-3 border-bottom d-block">
+            Materia 1:
+            <input type="color" class="color-block color-block-timetable d-inline-block pointer" oninput="updateColors()"/>
+          </li>
+
+          <li class="w-50 mb-3 border-bottom d-block">
+            Materia 2:
+            <input type="color" class="color-block color-block-timetable d-inline-block pointer" oninput="updateColors()"/>
+          </li>
+
+          <li class="w-50 mb-3 border-bottom d-block">
+            Materia 3:
+            <input type="color" class="color-block color-block-timetable d-inline-block pointer" oninput="updateColors()"/>
+          </li>
+
+          <li class="w-50 mb-3 border-bottom d-block">
+            Materia 4:
+            <input type="color" class="color-block color-block-timetable d-inline-block pointer" oninput="updateColors()"/>
+          </li>
+
+          <li class="w-50 mb-3 border-bottom d-block">
+            Materia 5:
+            <input type="color" class="color-block color-block-timetable d-inline-block pointer" oninput="updateColors()"/>
+          </li>
+
+          <li class="w-50 mb-3 border-bottom d-block">
+            Materia 6:
+            <input type="color" class="color-block color-block-timetable d-inline-block pointer" oninput="updateColors()"/>
+          </li>
+
+          <li class="w-50 mb-3 border-bottom d-block">
+            Materia 7:
+            <input type="color" class="color-block color-block-timetable d-inline-block pointer" oninput="updateColors()"/>
+          </li>
+
+          <li class="w-50 mb-3 border-bottom d-block">
+            Materia 8:
+            <input type="color" class="color-block color-block-timetable d-inline-block pointer" oninput="updateColors()"/>
+          </li>
+
+          <li class="w-50 mb-3 border-bottom d-block">
+            Materia 9:
+            <input type="color" class="color-block color-block-timetable d-inline-block pointer" oninput="updateColors()"/>
+          </li>
+
+          <li class="w-50 mb-3 border-bottom d-block">
+            Materia 10:
+            <input type="color" class="color-block color-block-timetable d-inline-block pointer" oninput="updateColors()"/>
+          </li>
+
+        </ul>
+
+      </div>
 
     </div>
 
