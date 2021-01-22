@@ -60,7 +60,7 @@ ipcRenderer.on("UPDATE-TIMETABLE", (event, value) => {
       weekDayUl.innerHTML += "<li class=\"text-weight-bold\" style=\"width:" + width +
       "px; height: " + (50 * (parseInt(timetable[subject][i][2]) - parseInt(timetable[subject][i][1]))) + "px; " +
       "top: " + (50 * (1 + parseInt(timetable[subject][i][1]))) + "px; " +
-      "background:" + colors[count] + "\">" +
+      "background:" + colors[count%10] + "\">" +
       subjectName + "<br />" + "Código:" + subject +
       "</li>";
     }
