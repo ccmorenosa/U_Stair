@@ -17,10 +17,14 @@
     "test": "electron .",
     "postinstall": "electron-builder install-app-deps",
     "pack": "electron-builder --dir",
+
     "distw": "electron-builder --win",
+    "dist-linux": "electron-builder --linux deb rpm",
+
     "dist-mac": "electron-builder --mac",
-    "dist-pacman": "electron-builder --linux pacman",
-    "dist": "electron-builder"
+
+    "dist-pacman": "electron-builder --linux pacman"
+
   },
   "build": {
     "appId": "ustair",
