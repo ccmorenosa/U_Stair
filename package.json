@@ -8,29 +8,23 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish",
-
     "lint": "echo \"No linting configured\"",
-
     "bsqlt3": "electron-rebuild -f -w sqlite3",
-
     "test": "electron .",
     "postinstall": "electron-builder install-app-deps",
     "pack": "electron-builder --dir",
-
-    "distw": "electron-builder --win",
-    "dist-linux": "electron-builder --linux deb rpm",
-
-    "dist-mac": "electron-builder --mac",
-
+    "dist-win": "electron-builder --win --publish=never",
+    "dist-linux": "electron-builder --linux deb rpm --publish=never",
+    "dist-mac": "electron-builder --mac --publish=never",
     "dist-pacman": "electron-builder --linux pacman"
-
   },
   "build": {
     "appId": "ustair",
     "mac": {
       "category": "public.app-category.education",
-      "target": ["mas", "dmg"]
+      "target": [
+        "dmg"
+      ]
     },
     "mas": {
       "hardenedRuntime": false,
@@ -66,14 +60,9 @@
     },
     "win": {
       "target": [
-        "nsis",
-        "msi"
+        "nsis"
       ],
-      "icon": "src/assets/icon.png",
-      "publish": [
-        "github"
-      ],
-      "publisherName": "Andŕes Felipe Moreno Sarria <afmorenosa@unal.edu.co>"
+      "icon": "src/assets/icon.png"
     },
     "nsis": {
       "oneClick": false,
@@ -132,6 +121,7 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "cross-env": "^7.0.3",
     "electron": "^9.3.4",
     "electron-builder": "^22.9.1",
     "electron-rebuild": "^2.3.4"
