@@ -39,7 +39,7 @@ ipcMain.on("SEARCH-DB-SUBJECT", (event, value) => {
         throw err;
       }
 
-      formWindow.send("FILL-SPACES", [configObj.defaultsNewSubject]);
+      formWindow.send("FILL-SPACES", [configObj.defaultsNewSubject, false]);
 
     });
 
@@ -50,7 +50,7 @@ ipcMain.on("SEARCH-DB-SUBJECT", (event, value) => {
 // This event fill the spaces in the form.
 ipcMain.on("FILL-SPACES", (event, value) => {
 
-  formWindow.send("FILL-SPACES", value);
+  formWindow.send("FILL-SPACES", value.concat(true));
 
 });
 

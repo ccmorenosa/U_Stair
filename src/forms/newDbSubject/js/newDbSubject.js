@@ -62,7 +62,7 @@ ipcRenderer.send("SEARCH-DB-SUBJECT");
 
 ipcRenderer.on("FILL-SPACES", (event, value) => {
 
-  isEditing = true;
+  isEditing = value[1];
 
   if (value[0].Codigo) {
     form.children[0].children.Codigo.value = value[0].Codigo;
@@ -95,6 +95,5 @@ ipcRenderer.on("FILL-SPACES", (event, value) => {
   if (value[0].Programa) {
     form.children[2].children.Programa.value = value[0].Programa;
   }
-
 
 });
