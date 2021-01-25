@@ -100,7 +100,6 @@ function makeWorkSpaceWindow() {
 
   // Create the browser window.
   workSpaceWindow = new BrowserWindow({
-    parent: welcomeWin,
     width: 800,
     minWidth: 800,
     height: 600,
