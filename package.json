@@ -56,7 +56,7 @@
       ],
       "category": "Productivity",
       "icon": "src/assets/icon.png",
-      "maintainer": "afmorenosa"
+      "maintainer": "ccmorenosa"
     },
     "win": {
       "target": [
@@ -74,20 +74,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/afmorenosa/U_Stair.git"
+    "url": "git+https://github.com/ccmorenosa/U_Stair.git"
   },
   "keywords": [
     "Universitary",
     "Schedule",
     "Grade"
   ],
-  "author": "Andŕes Felipe Moreno Sarria <afmorenosa@unal.edu.co>",
-  "email": "afmorenosa@unal.edu.co",
+  "author": "Cindy Catalina Moreno Sarria <ccatamorenos@gmail.com>",
+  "email": "ccatamorenos@gmail.com",
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/afmorenosa/U_Stair/issues"
+    "url": "https://github.com/ccmorenosa/U_Stair/issues"
   },
-  "homepage": "https://github.com/afmorenosa/U_Stair#readme",
+  "homepage": "https://github.com/ccmorenosa/U_Stair#readme",
   "config": {
     "forge": {
       "packagerConfig": {},

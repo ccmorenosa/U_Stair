@@ -1,6 +1,6 @@
-image:https://github.com/afmorenosa/U_Stair/workflows/Linux/badge.svg[]
-image:https://github.com/afmorenosa/U_Stair/workflows/Windows/badge.svg[]
-image:https://github.com/afmorenosa/U_Stair/workflows/Mac/badge.svg[]
+image:https://github.com/ccmorenosa/U_Stair/workflows/Linux/badge.svg[]
+image:https://github.com/ccmorenosa/U_Stair/workflows/Windows/badge.svg[]
+image:https://github.com/ccmorenosa/U_Stair/workflows/Mac/badge.svg[]
 
 = U Stair
 
@@ -18,9 +18,9 @@ image::screenshots/timetable.png[]
 
 == Web page
 
-https://afmorenosa.github.io/U_Stair-WebPage/
+https://ccmorenosa.github.io/U_Stair-WebPage/
 
 == Usage
 
 To see the usage, please refer to this
-link:https://afmorenosa.github.io/U_Stair-WebPage/manual/[documentation page.]
+link:https://ccmorenosa.github.io/U_Stair-WebPage/manual/[documentation page.]
